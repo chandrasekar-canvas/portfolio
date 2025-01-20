@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >CHANDRASEKAR.D</title>
+    <link rel="icon" href="resume/sekar.png" type="image/x-icon">
+
+    <style>
+        /* General styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Navbar styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav h1 {
+            color: white;
+            font-size: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        /* Hamburger menu styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #333;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                text-align: center;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Section styles */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        #home {
+            background-color: #f0f4f8;
+        }
+
+        #about {
+            background-color: #ddd;
+        }
+
+        #projects {
+            background-color: #bbb;
+        }
+
+        #skills {
+            background-color: #999;
+        }
+
+        #contact {
+            background-color: #777;
+        }
+
+        /* Button styles */
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Resume section styles */
+        .resume-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .resume-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .download-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+
+
+        /* Certificates section styles */
+#certificates {
+    background-color: #eee;
+    padding: 60px 20px;
+}
+
+.certificate-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.certificate {
+    width: 300px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.certificate img {
+    width: 100%;
+    height: auto;
+}
+
+.certificate p {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Keyframes for fading in the text */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#home h2 {
+    font-size: 36px;
+    color: #007bff;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+#home p {
+    font-size: 20px;
+    color: #333;
+    animation: fadeIn 2s ease-in-out;
+}
+
+
+        /* Footer styles */
+        footer {
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+    <h1 style="display: flex; align-items: center;">
+        <span style="position: relative;">
+            <img src="resume/profile.png" style="width: 40px; height: 40px; border-radius: 10%; margin-right: 10px;">
+        </span>
+        <div>CHANDRASEKAR.D</div>
+    </h1>
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/resume/CHANDRASEKAR.D.pdf" download class="download-button">Download My Resume</a><br>
+            
+        </li>
+
+    </ul>
+</nav>
+
+  
+  <marquee style="width:100%; position:fixed; margin-bottom:0px;"><span id="nameContainer" style="font-size:10px; position: inherit; margin-left:10px;"></span></marquee>
+    <section id="home">
+        <h2 style="font-size: 36px; color: #007bff;">Welcome to My Portfolio!</h2>
+        <p style="font-size: 20px; color: #333; text-align: justify;">
+            I’m <span style="font-weight: bold; color: #ff6347;">Chandrasekar D</span>, 
+            a passionate <span style="font-style: italic; color: #007bff;">Software Developer</span> 
+            specializing in crafting innovative solutions and building seamless digital experiences.
+            <br><br>
+            <span style="font-weight: bold;">Scroll down</span> to explore my projects, skills, and 
+            the expertise I bring to the world of technology.
+        </p>
+    </section>
+    
+
+
+    <section id="about" style="padding: 30px 20px; background-color: #f7f9fc;">
+        <h2 style="font-size: 36px; color: #007bff; text-align: center; margin-bottom: 20px;">About Me</h2>
+        
+        <div style="max-width:90%; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <p  style="font-size: 18px;  text-align:justify; color: #333; line-height: 1.6;">
+                I'm <strong style="color: #ff6347;">Chandrasekar D</strong>, a dedicated <span style="color: #007bff; font-weight: bold;">Software Developer</span> with a passion for solving complex problems through technology. 
+                With a solid foundation in <strong>HTML, CSS, Bootstrap, SQL,</strong> and <strong>Python</strong>, I specialize in creating efficient, scalable, and user-centric applications.
+            </p>
+    
+            <p style="font-size: 18px; text-align:justify; color: #333; line-height: 1.6; margin-top: 20px;">
+                My journey into development began with my first project, <strong style="color: #ff6347;">Rend House</strong>, which sparked my love for coding and problem-solving. 
+                Since then, I’ve continuously expanded my expertise across various programming languages and frameworks.
+            </p>
+    
+            <p style="font-size: 18px; text-align:justify; color: #333; line-height: 1.6; margin-top: 20px;">
+                Beyond coding, I’m driven by <span style="color: #007bff; font-weight: bold;">continuous learning</span> and thrive on collaborating with others to bring innovative ideas to life. 
+                Whether it's backend development, frontend design, or full-stack solutions, I tackle every challenge with creativity and attention to detail.
+            </p>
+    
+            <p style="font-size: 18px; text-align:justify; color: #333; line-height: 1.6; margin-top: 20px;">
+                My goal is simple: to leverage technology to build <span style="color: #ff6347; font-weight: bold;">impactful solutions</span> that drive results and improve user experiences.
+            </p>
+        </div>
+    </section>
+    
+
+    <section id="projects" style="padding: 50px 20px; background-color: #f0f4f8;">
+        <h2 style="font-size: 36px; color: #007bff; text-align: center; margin-bottom: 20px;">My Projects</h2>
+        
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <!-- First Project -->
+            <div style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h3 style="color: #333;">1. RentSpot - A Rental System</h3>
+                <p style="font-size: 18px; color: #666; line-height: 1.6;">
+                    RentSpot is a full-fledged <strong style="color: #007bff;">rental system</strong> designed to simplify property rentals. 
+                    I developed this system to manage property listings, tenant requests, and lease agreements. 
+                    The platform streamlines the rental process for both landlords and tenants, ensuring seamless communication and transaction management.
+                </p>
+            </div>
+    
+            <!-- Second Project -->
+            <div style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h3 style="color: #333;">2. Matrimony Website - Feature Updates and Maintenance</h3>
+                <p style="font-size: 18px; color: #666; line-height: 1.6;">
+                    I played a key role in maintaining and enhancing an existing <strong style="color: #007bff;">Matrimony website</strong>. 
+                    My contributions included updating features, optimizing the user experience, and ensuring the platform remained responsive and up-to-date with modern web standards. 
+                    This involved improving the backend infrastructure and enhancing frontend components to increase user engagement and performance.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="skills" style="padding: 50px 20px; background-color: #f7f9fc;">
+        <h2 style="font-size: 36px; color: #007bff; text-align: center; margin-bottom: 20px;">Skills</h2>
+        
+        <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 18px; color: #333; line-height: 1.6; margin-bottom: 30px;">
+                I have a diverse skill set in software development, from backend to frontend, as well as database management and full-stack development. Below are some of my core skills:
+            </p>
+    
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <!-- Skill 1 -->
+                <div style="flex-basis: 200px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h3 style="color: #007bff;">HTML & CSS</h3>
+                    <p style="font-size: 16px; color: #666; line-height: 1.6;">
+                        Expert in creating responsive and visually appealing web pages using HTML and CSS, ensuring cross-browser compatibility and mobile-first designs.
+                    </p>
+                </div>
+    
+                <!-- Skill 2 -->
+                <div style="flex-basis: 200px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h3 style="color: #007bff;">Bootstrap</h3>
+                    <p style="font-size: 16px; color: #666; line-height: 1.6;">
+                        Proficient in building responsive websites using the Bootstrap framework, accelerating the development of feature-rich and mobile-friendly layouts.
+                    </p>
+                </div>
+    
+                <!-- Skill 3 -->
+                <div style="flex-basis: 200px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h3 style="color: #007bff;">SQL</h3>
+                    <p style="font-size: 16px; color: #666; line-height: 1.6;">
+                        Solid understanding of SQL for database design, querying, and management. Experience with relational databases for optimizing and managing data flow.
+                    </p>
+                </div>
+    
+                <!-- Skill 4 -->
+                <div style="flex-basis: 200px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h3 style="color: #007bff;">Python Basic</h3>
+                    <p style="font-size: 16px; color: #666; line-height: 1.6;">
+                        Basic experience in Python programming for backend development, automation, and building scalable applications with a focus on clean and maintainable code.
+                    </p>
+                </div>
+    
+                <!-- Skill 5 -->
+                <div style="flex-basis: 250px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h3 style="color: #007bff;">PHP</h3>
+                    <p style="font-size: 16px; color: #666; line-height: 1.6;">
+                        Experienced in server-side scripting with PHP, capable of developing dynamic web applications, integrating with databases, and managing server-side logic to enhance functionality.
+                    </p>
+                </div> 
+
+            </div>
+        </div>
+    </section>
+    
+
+
+<section id="certificates">
+    <h2>Certificates</h2>
+    <p>Here are some certificates I have earned.</p>
+    <div class="certificate-gallery">
+        <div class="certificate">
+            <img src="certificate/Java.png" alt="Certificate 1">
+            <p>JAVA</p>
+        </div>
+        <div class="certificate">
+            <img src="certificate/Reactjs.png" alt="Certificate 2">
+            <p>REACT JS</p>
+        </div>
+        <!-- Add more certificates as needed -->
+
+        <div class="certificate">
+            <img src="certificate/CHAT GPT.png" alt="Certificate 1">
+            <p>CHATGPT BASIC</p>
+        </div>
+     
+    </div>
+   
+        
+        <!-- Add more certificates as needed -->
+
+
+    </div>
+
+
+</section>
+
+
+
+
+<!-- Resume Section -->
+<section class="resume-container">
+    <h2>My Resume</h2>
+    <iframe src="./resume/CHANDRASEKAR.D.pdf" type="application/pdf"></iframe>
+    <a href="resume/CHANDRASEKAR.D.pdf" download class="download-button">Download My Resume</a>
+</section>
+
+
+<section id="contact" style="padding: 60px 20px; background-color: #e9ecef; text-align: center;">
+    <h2 style="font-size: 40px; color: #343a40; margin-bottom: 20px; font-weight: 700;">Contact Me</h2>
+    <p style="font-size: 18px; color: #495057; line-height: 1.8; margin-bottom: 30px;">
+        I’d love to hear from you! Whether you have questions, feedback, or just want to connect, feel free to reach out through any of the methods below.
+    </p>
+    
+    <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
+        <div style="margin-bottom: 20px;">
+            <p style="font-size: 18px; color: #007bff; margin-bottom: 5px;"><strong>Email:</strong></p>
+            <a href="mailto:chandrasekarcse321@gmail.com" style="color: #007bff; text-decoration: none; font-size: 16px;">
+                chandrasekarcse321@gmail.com
+            </a>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <p style="font-size: 18px; color: #007bff; margin-bottom: 5px;"><strong>Phone:</strong></p>
+            <a href="tel:+916383924993" style="color: #007bff; text-decoration: none; font-size: 16px;">
+                +91 6383924993
+            </a>
+        </div>
+        <div>
+            <p style="font-size: 18px; color: #56e77f; margin-bottom: 5px;"><strong>WhatsApp:</strong></p>
+            <a  id="whatsapp-link" class="whatsapp" href="#" target="_parent" style=  "color: #2d11e6; text-decoration: dotted;">+91 6383924993</a>
+        </div>
+    </div>
+
+    <script>
+        function getTimeBasedGreeting() {
+            const now = new Date();
+            const hours = now.getHours();
+            let greeting = "";
+
+            if (hours >= 5 && hours < 12) {
+                greeting = "Good Morning";
+            } else if (hours >= 12 && hours < 18) {
+                greeting = "Good Afternoon";
+            } else if (hours >= 18 && hours < 22) {
+                greeting = "Good Evening";
+            } else {
+                greeting = "Good Night";
+            }
+
+            return `${greeting} Chandrasekar.D `;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const greeting = getTimeBasedGreeting();
+            const whatsappLink = document.getElementById('whatsapp-link');
+            whatsappLink.href = `https://wa.me/+916383924993?text=${encodeURIComponent(greeting)}`;
+            whatsappLink.textContent = '+91 6383924993';
+        });
+    </script>
+</section>
+
+
+
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 <span style="color:green;">CHANDRASEKAR.D</span>. All rights reserved.</p>
+    <a href="resume/CHANDRASEKAR.D.pdf" download class="download-button">Download My Resume</a>
+</footer>
+
+<script>
+    // Toggle navbar on mobile
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('open');
+    }
+
+    // Smooth scrolling to sections
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+
+<script>
+    const nameText = "D.CHANDRASEKAR";
+    const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFC300', '#DAF7A6', '#C70039', '#900C3F', '#581845'];
+
+    const nameContainer = document.getElementById('nameContainer');
+
+    // Function to create and display letters
+    function displayLetters() {
+        nameContainer.innerHTML = ''; // Clear existing content
+        nameText.split('').forEach((letter, index) => {
+            const span = document.createElement('span');
+            span.className = 'letter';
+            span.textContent = letter;
+            nameContainer.appendChild(span);
+        });
+    }
+
+    // Function to animate color change
+    function animateColors() {
+        let colorIndex = 0;
+        document.querySelectorAll('.letter').forEach((letter) => {
+            setInterval(() => {
+                letter.style.color = colors[colorIndex % colors.length];
+                colorIndex++;
+            }, 3000); // Change color every 3 seconds
+        });
+    }
+
+    // Initialize the display and animation
+    displayLetters();
+    animateColors();
+</script>
+
+</body>
+</html>
+
+
+
+
