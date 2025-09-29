@@ -7,6 +7,84 @@
     <link rel="icon" href="resume/sekar.png" type="image/x-icon">
 
     <style>
+
+
+         .dropdown {
+            position: relative;
+        }
+
+        .dropdown-btn {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .dropdown-btn:hover {
+            background: #f0f0f0;
+            color: #667eea;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-content a:hover {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-left: 3px solid #764ba2;
+            padding-left: 1.5rem;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+
+
+        /* drop down end   */
        
         * {
             margin: 0;
@@ -268,13 +346,29 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
-       <li> <label for="myOptions">Learn Documents</label>
-<select id="myOptions" name="myOptions" multiple size="40">
-  <a href="./Git.html"><option value="option1">Git&gitup</option></a>
-  <option value="option2">Upcomming...! </option>
-
-</select>
-           </li>
+       <div class="dropdown">
+                <button class="dropdown-btn">Courses ▼</button>
+                <div class="dropdown-content">
+                    <a href="web-development.html">🌐 Web Development</a>
+                    <a href="python.html">🐍 Python Programming</a>
+                    <a href="data-science.html">📊 Data Science</a>
+                    <a href="machine-learning.html">🤖 Machine Learning</a>
+                    <a href="mobile-app.html">📱 Mobile App Development</a>
+                    <a href="cyber-security.html">🔐 Cyber Security</a>
+                </div>
+            </div>
+        <script>
+        // Mobile-ல dropdown toggle பண்ண
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownBtn = document.querySelector('.dropdown-btn');
+        
+        if (window.innerWidth <= 768) {
+            dropdownBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            });
+        }
+    </script>
         
         <li><a href="/resume/Chandrasekar.D.pdf" download class="download-button">Download My Resume</a><br>
             
@@ -560,6 +654,7 @@
 
 </body>
 </html>
+
 
 
 
