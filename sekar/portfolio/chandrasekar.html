@@ -178,13 +178,14 @@
 
         .iframe-widget {
             width: 100%;
-            max-width: 360px;
-            aspect-ratio: 9 / 12;
+            max-width: 900px;
+            height: 600px;
             margin: 12px auto;
             border-radius: 14px;
             box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-            overflow: hidden;
+            overflow: auto;
             background: #fff;
+            position: relative;
         }
 
         .iframe-widget iframe {
@@ -192,6 +193,20 @@
             height: 100%;
             border: 0;
             display: block;
+            transform-origin: 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .iframe-widget {
+                max-width: 95vw;
+                height: 70vh;
+                min-height: 400px;
+            }
+            
+            .iframe-widget iframe {
+                width: 100%;
+                height: 100%;
+            }
         }
 
         .slide-info {
@@ -357,7 +372,33 @@
         }
 
         @media (max-width: 400px) {
-            .iframe-widget { max-width: 92vw; }
+            .iframe-widget { 
+                max-width: 98vw;
+                height: 65vh;
+                min-height: 350px;
+                margin: 8px auto;
+            }
+        }
+        
+        /* Slider responsive adjustments */
+        @media (max-width: 768px) {
+            .slider-container {
+                padding: 10px;
+            }
+            
+            .slider-controls {
+                gap: 10px;
+            }
+            
+            .slider-btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            
+            .slide-info {
+                font-size: 16px;
+                padding: 0 10px;
+            }
         }
     </style>
 </head>
@@ -471,6 +512,24 @@
                 </div>
                 <div class="slide-info">
                     <p>Portfolio Website. <a href="https://chandrasekarweb.netlify.app/" target="_blank">Visit Site</a></p>
+                </div>
+            </div>
+
+              <div class="slide">
+                <div class="iframe-widget">
+                    <iframe src="https://sknmandapam.com/matrimony/index.php" title="Skn Matrimony" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
+                </div>
+                <div class="slide-info">
+                    <p>Live mysql and php of Uibo skn matrimoni sites working to pre company. <a href="https://sknmandapam.com/matrimony/index.php" target="_blank">Visit Site</a></p>
+                </div>
+            </div>
+
+              <div class="slide">
+                <div class="iframe-widget">
+                    <iframe src="https://rentspot.uiboinfotech.com/user.php" title="rendal system App" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
+                </div>
+                <div class="slide-info">
+                    <p>Live mysql and php of Uibo rendal App working to pre company. <a href="https://rentspot.uiboinfotech.com/user.php" target="_blank">Visit Site</a></p>
                 </div>
             </div>
         </div>
