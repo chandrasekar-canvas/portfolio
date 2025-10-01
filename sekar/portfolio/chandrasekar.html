@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHANDRASEKAR.D</title>
+    <title>CHANDRASEKAR.D - Portfolio</title>
     <link rel="icon" href="resume/sekar.png" type="image/x-icon">
     <style>
         * {
@@ -42,6 +42,7 @@
 
         .nav-links li {
             margin-left: 20px;
+            position: relative;
         }
 
         .nav-links a {
@@ -56,6 +57,70 @@
         .nav-links a:hover {
             background-color: #007bff;
             border-radius: 5px;
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-toggle::after {
+            content: '▼';
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #444;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin-top: 8px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .dropdown-menu a {
+            padding: 12px 16px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #007bff;
+            border-left: 3px solid #0056b3;
+            padding-left: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Hamburger menu styles */
@@ -109,6 +174,26 @@
 
             .hamburger {
                 display: flex;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                background-color: #555;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-toggle::after {
+                content: '▼';
+            }
+
+            .dropdown.active .dropdown-toggle::after {
+                transform: rotate(180deg);
             }
         }
 
@@ -408,7 +493,7 @@
 <nav>
     <h1 style="display: flex; align-items: center;">
         <span style="position: relative;">
-            <img src="resume/profile.png" style="width: 40px; height: 40px; border-radius: 10%; margin-right: 10px;">
+            <img src="resume/profile.png" style="width: 40px; height: 40px; border-radius: 10%; margin-right: 10px;" alt="Profile">
         </span>
         <div>CHANDRASEKAR.D</div>
     </h1>
@@ -420,8 +505,27 @@
     <ul class="nav-links" id="navLinks">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
+        
+        <!-- Projects Dropdown -->
+        <li class="dropdown" id="projectsDropdown">
+            <a href="#projects" class="dropdown-toggle">Projects</a>
+            <div class="dropdown-menu">
+                <a href="#project-rentspot">RentSpot - Rental System</a>
+                <a href="#project-matrimony">Matrimony Website</a>
+                <a href="#live-projects">Live Project Demos</a>
+            </div>
+        </li>
+
+        <li class="dropdown" id="projectsDropdown">
+            <a href="#projects" class="dropdown-toggle">Learning</a>
+            <div class="dropdown-menu">
+                <a href="https://chandrasekarweb.netlify.app/sekar/portfolio/git">GIT & GITHUB - BASIC</a>
+                <a href="#">Upcomming...!</a>
+            </div>
+        </li>
+        
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#certificates">Certificates</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="./resume/Chandrasekar.D.pdf" download class="download-button">Resume</a></li>
         <li><a href="https://chandrasekarweb.netlify.app/">Logout</a></li>
@@ -450,7 +554,7 @@
         </p>
 
         <p style="font-size: 18px; text-align:justify; color: #333; line-height: 1.6; margin-top: 20px;">
-            My journey into development began with my first project, <strong style="color: #ff6347;">Rend House</strong>, which sparked my love for coding and problem-solving. 
+            My journey into development began with my first project, <strong style="color: #ff6347;">Rent House</strong>, which sparked my love for coding and problem-solving. 
             Since then, I've continuously expanded my expertise across various programming languages and frameworks.
         </p>
 
@@ -469,7 +573,8 @@
     <h2 style="font-size: 36px; color: #007bff; text-align: center; margin-bottom: 20px;">My Projects</h2>
     
     <div style="max-width: 1000px; margin: 0 auto;">
-        <div style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <!-- Project 1 -->
+        <div id="project-rentspot" style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <h3 style="color: #333;">1. RentSpot - A Rental System</h3>
             <p style="font-size: 18px; color: #666; line-height: 1.6;">
                 RentSpot is a full-fledged <strong style="color: #007bff;">rental system</strong> designed to simplify property rentals. 
@@ -478,7 +583,8 @@
             </p>
         </div>
 
-        <div style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <!-- Project 2 -->
+        <div id="project-matrimony" style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <h3 style="color: #333;">2. Matrimony Website - Feature Updates and Maintenance</h3>
             <p style="font-size: 18px; color: #666; line-height: 1.6;">
                 I played a key role in maintaining and enhancing an existing <strong style="color: #007bff;">Matrimony website</strong>. 
@@ -490,8 +596,8 @@
 </section>
 
 <!-- Live Projects Slider -->
-<section style="background-color: #f7f9fc; padding: 60px 20px;">
-    <h2 style="font-size: 36px; color: #007bff; text-align: center; margin-bottom: 40px;">Live Projects</h2>
+<section id="live-projects" style="background-color: #f7f9fc; padding: 60px 20px;">
+    <h2 style="font-size: 36px; color: #007bff; text-align: center; margin-bottom: 40px;">Live Project Demos</h2>
     
     <div class="slider-container">
         <div class="slider-wrapper" id="sliderWrapper">
@@ -501,50 +607,30 @@
                     <iframe src="https://wethercli.netlify.app/" title="Weather App" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
                 </div>
                 <div class="slide-info">
-                    <p>Live React Weather App. <a href="https://wethercli.netlify.app/" target="_blank">Visit Site</a></p>
+                    <p><strong>React Weather App</strong> - Real-time weather application built with React. <a href="https://wethercli.netlify.app/" target="_blank">Visit Site</a></p>
                 </div>
             </div>
             
-            <!-- Slide 2 - Add more projects here -->
+            <!-- Slide 2 - Matrimony Project -->
+            <div class="slide">
+                <div class="iframe-widget">
+                    <iframe src="YOUR_MATRIMONY_SITE_URL" title="Matrimony Website" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
+                </div>
+                <div class="slide-info">
+                    <p><strong>சான்றோர்குல நாடார் திருமண தகவல் மையம்</strong> - Matrimony Website (Previous Company Project). <a href="YOUR_MATRIMONY_SITE_URL" target="_blank">Visit Site</a></p>
+                </div>
+            </div>
+            
+            <!-- Slide 3 - Portfolio -->
             <div class="slide">
                 <div class="iframe-widget">
                     <iframe src="https://chandrasekarweb.netlify.app/" title="Portfolio" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
                 </div>
                 <div class="slide-info">
-                    <p>Portfolio Website. <a href="https://chandrasekarweb.netlify.app/" target="_blank">Visit Site</a></p>
-                </div>
-            </div>
-
-              <div class="slide">
-                <div class="iframe-widget">
-                    <iframe src="https://sknmandapam.com/matrimony/index.php" title="Skn Matrimony" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
-                </div>
-                <div class="slide-info">
-                    <p>Live mysql and php of Uibo skn matrimoni sites working to pre company. <a href="https://sknmandapam.com/matrimony/index.php" target="_blank">Visit Site</a></p>
-                </div>
-            </div>
-
-              <div class="slide">
-                <div class="iframe-widget">
-                    <iframe src="https://rentspot.uiboinfotech.com/user.php" title="rendal system App" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
-                </div>
-                <div class="slide-info">
-                    <p>Live mysql and php of Uibo rendal App working to pre company. <a href="https://rentspot.uiboinfotech.com/user.php" target="_blank">Visit Site</a></p>
-                </div>
-            </div>
-
-
-            <div class="slide">
-                <div class="iframe-widget">
-                    <iframe src="https://68db8cf6af6ed0619eaf9c0d--frolicking-salmiakki-0b6f86.netlify.app/admin/" title="rendal system App" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
-                </div>
-                <div class="slide-info">
-                    <p>Live  HTML ,CSS,JS CRUD OF STUDENTS DETAILS <a href="https://68db8cf6af6ed0619eaf9c0d--frolicking-salmiakki-0b6f86.netlify.app/admin/" target="_blank">Visit Site</a></p>
+                    <p><strong>Portfolio Website</strong> - Personal portfolio showcasing my work and skills. <a href="https://chandrasekarweb.netlify.app/" target="_blank">Visit Site</a></p>
                 </div>
             </div>
         </div>
-
-        
         
         <div class="slider-controls">
             <button class="slider-btn" id="prevBtn">← Previous</button>
@@ -567,35 +653,35 @@
             <div style="flex-basis: 200px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <h3 style="color: #007bff;">HTML & CSS</h3>
                 <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                    Expert in creating responsive and visually appealing web pages using HTML and CSS.
+                    Expert in creating responsive and visually appealing web pages using HTML and CSS, ensuring cross-browser compatibility and mobile-first designs.
                 </p>
             </div>
 
             <div style="flex-basis: 200px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <h3 style="color: #007bff;">Bootstrap</h3>
                 <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                    Proficient in building responsive websites using Bootstrap framework.
+                    Proficient in building responsive websites using the Bootstrap framework, accelerating the development of feature-rich and mobile-friendly layouts.
                 </p>
             </div>
 
             <div style="flex-basis: 200px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <h3 style="color: #007bff;">SQL</h3>
                 <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                    Solid understanding of SQL for database design and management.
+                    Solid understanding of SQL for database design, querying, and management. Experienced with relational databases for optimizing and managing data flow.
                 </p>
             </div>
 
             <div style="flex-basis: 200px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="color: #007bff;">Python Basic</h3>
+                <h3 style="color: #007bff;">Python Basics</h3>
                 <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                    Basic experience in Python programming for backend development.
+                    Foundational experience in Python programming for backend development, automation, and building scalable applications with a focus on clean and maintainable code.
                 </p>
             </div>
 
             <div style="flex-basis: 250px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <h3 style="color: #007bff;">PHP</h3>
                 <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                    Experienced in server-side scripting with PHP for dynamic web applications.
+                    Experienced in server-side scripting with PHP, capable of developing dynamic web applications, integrating with databases, and managing server-side logic to enhance functionality.
                 </p>
             </div>
         </div>
@@ -604,19 +690,19 @@
 
 <section id="certificates">
     <h2>Certificates</h2>
-    <p>Here are some certificates I have earned.</p>
+    <p>Here are some of the certificates I have earned throughout my learning journey.</p>
     <div class="certificate-gallery">
         <div class="certificate">
-            <img src="certificate/Java.png" alt="Certificate 1">
+            <img src="certificate/Java.png" alt="Java Certificate">
             <p>JAVA</p>
         </div>
         <div class="certificate">
-            <img src="certificate/Reactjs.png" alt="Certificate 2">
+            <img src="certificate/Reactjs.png" alt="React JS Certificate">
             <p>REACT JS</p>
         </div>
         <div class="certificate">
-            <img src="certificate/CHAT GPT.png" alt="Certificate 3">
-            <p>CHATGPT BASIC</p>
+            <img src="certificate/CHAT GPT.png" alt="ChatGPT Certificate">
+            <p>CHATGPT BASICS</p>
         </div>
     </div>
 </section>
@@ -630,13 +716,13 @@
 <section id="contact" style="padding: 60px 20px; background-color: #e9ecef; text-align: center;">
     <h2 style="font-size: 40px; color: #343a40; margin-bottom: 20px; font-weight: 700;">Contact Me</h2>
     <p style="font-size: 18px; color: #495057; line-height: 1.8; margin-bottom: 30px;">
-        I'd love to hear from you! Feel free to reach out through any of the methods below.
+        I'd love to hear from you! Whether you have questions, feedback, or just want to connect, feel free to reach out through any of the methods below.
     </p>
     
     <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
         <div style="margin-bottom: 20px;">
             <p style="font-size: 18px; color: #007bff; margin-bottom: 5px;"><strong>Email:</strong></p>
-            <a href="mailto:chandrasekarcse321@gmail.com" style="color: #007bff; text-decoration: none; font-size: 16px;">
+            <a href="mailto:chandrasekarcse421@gmail.com" style="color: #007bff; text-decoration: none; font-size: 16px;">
                 chandrasekarcse421@gmail.com
             </a>
         </div>
@@ -654,7 +740,7 @@
 </section>
 
 <footer>
-    <p>&copy; 2024 <span style="color:green;">CHANDRASEKAR.D</span>. All rights reserved.</p>
+    <p>&copy; 2025 <span style="color:green;">CHANDRASEKAR.D</span>. All rights reserved.</p>
     <a href="resume/Chandrasekar.D.pdf" download class="download-button">Download My Resume</a>
 </footer>
 
@@ -662,6 +748,7 @@
     // Improved Navbar Toggle
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
+    const projectsDropdown = document.getElementById('projectsDropdown');
 
     hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -669,11 +756,23 @@
         hamburger.classList.toggle('active');
     });
 
+    // Mobile dropdown toggle
+    if (window.innerWidth <= 768) {
+        projectsDropdown.addEventListener('click', function(e) {
+            if (e.target.classList.contains('dropdown-toggle')) {
+                e.preventDefault();
+                this.classList.toggle('active');
+            }
+        });
+    }
+
     // Close menu when clicking on a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', function() {
-            navLinks.classList.remove('open');
-            hamburger.classList.remove('active');
+            if (!this.classList.contains('dropdown-toggle')) {
+                navLinks.classList.remove('open');
+                hamburger.classList.remove('active');
+            }
         });
     });
 
@@ -806,4 +905,3 @@
 
 </body>
 </html>
-
