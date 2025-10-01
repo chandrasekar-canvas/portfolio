@@ -1,6 +1,3 @@
-
-<!-- Navbar -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,668 +6,11 @@
     <title>CHANDRASEKAR.D - Portfolio</title>
     <link rel="icon" href="resume/sekar.png" type="image/x-icon">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-        }
-
-        /* Navbar styles */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #333;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav h1 {
-            color: white;
-            font-size: 24px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style-type: none;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links li {
-            margin-left: 20px;
-            position: relative;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 8px 12px;
-            transition: background-color 0.3s ease;
-            display: block;
-        }
-
-        .nav-links a:hover {
-            background-color: #007bff;
-            border-radius: 5px;
-        }
-
-        /* Dropdown styles */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .dropdown-toggle::after {
-            content: '▼';
-            font-size: 12px;
-            transition: transform 0.3s;
-        }
-
-        .dropdown:hover .dropdown-toggle::after {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #444;
-            min-width: 220px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            margin-top: 8px;
-            overflow: hidden;
-            z-index: 1000;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-            animation: fadeIn 0.3s;
-        }
-
-        .dropdown-menu a {
-            padding: 12px 16px;
-            border-left: 3px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #007bff;
-            border-left: 3px solid #0056b3;
-            padding-left: 20px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Hamburger menu styles */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active div:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active div:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: #333;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                text-align: center;
-            }
-
-            .nav-links.open {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 10px 0;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .dropdown-menu {
-                position: static;
-                display: none;
-                background-color: #555;
-                margin: 0;
-                box-shadow: none;
-            }
-
-            .dropdown.active .dropdown-menu {
-                display: block;
-            }
-
-            .dropdown-toggle::after {
-                content: '▼';
-            }
-
-            .dropdown.active .dropdown-toggle::after {
-                transform: rotate(180deg);
-            }
-        }
-
-        /* Section styles */
-        section {
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        #home {
-            background-color: #f0f4f8;
-        }
-
-        #about {
-            background-color: #ddd;
-        }
-
-        #projects {
-            background-color: #bbb;
-        }
-
-        #skills {
-            background-color: #999;
-        }
-
-        #contact {
-            background-color: #777;
-        }
-
-        /* Button styles */
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Slider Container */
-        .slider-container {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .iframe-widget {
-            width: 100%;
-            max-width: 900px;
-            height: 600px;
-            margin: 12px auto;
-            border-radius: 14px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-            overflow: auto;
-            background: #fff;
-            position: relative;
-        }
-
-        .iframe-widget iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            display: block;
-            transform-origin: 0 0;
-        }
-
-        @media (max-width: 768px) {
-            .iframe-widget {
-                max-width: 95vw;
-                height: 70vh;
-                min-height: 400px;
-            }
-            
-            .iframe-widget iframe {
-                width: 100%;
-                height: 100%;
-            }
-        }
-
-        .slide-info {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
-
-        .slide-info a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .slide-info a:hover {
-            text-decoration: underline;
-        }
-
-        /* Slider Controls */
-        .slider-controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .slider-btn {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .slider-btn:hover {
-            background-color: #0056b3;
-        }
-
-        .slider-btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        /* Slider Dots */
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #ccc;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .dot.active {
-            background-color: #007bff;
-        }
-
-        /* Resume section styles */
-        .resume-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .resume-container h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .resume-container iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
-            margin-bottom: 20px;
-        }
-
-        .download-button {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            transition: background-color 0.3s;
-        }
-
-        .download-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Certificates section */
-        #certificates {
-            background-color: #eee;
-            padding: 60px 20px;
-        }
-
-        .certificate-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .certificate {
-            width: 300px;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .certificate img {
-            width: 100%;
-            height: auto;
-        }
-
-        .certificate p {
-            padding: 10px;
-            text-align: center;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        #home h2 {
-            font-size: 36px;
-            color: #007bff;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        #home p {
-            font-size: 20px;
-            color: #333;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        footer {
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        /* Eye Icon Styles */
-        .eye-icon-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 999;
-        }
-
-        .eye-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-
-        .eye-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .eye-icon svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            }
-            50% {
-                box-shadow: 0 4px 25px rgba(102, 126, 234, 0.7);
-            }
-        }
-
-        /* Modal/Popup Styles */
-        .intro-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .intro-modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.4s ease;
-            color: white;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .modal-close:hover {
-            transform: rotate(90deg);
-            color: #ff6347;
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-header img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 4px solid white;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-header h2 {
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-
-        .modal-header p {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-
-        .modal-body {
-            text-align: left;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        .modal-body p {
-            margin-bottom: 15px;
-        }
-
-        .modal-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-
-        .stat-item p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        @media (max-width: 768px) {
-            .eye-icon-container {
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .eye-icon {
-                width: 50px;
-                height: 50px;
-            }
-
-            .modal-content {
-                padding: 30px 20px;
-            }
-
-            .modal-header h2 {
-                font-size: 24px;
-            }
-
-            .modal-stats {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .iframe-widget { 
-                max-width: 98vw;
-                height: 65vh;
-                min-height: 350px;
-                margin: 8px auto;
-            }
-        }
-        
-        /* Slider responsive adjustments */
-        @media (max-width: 768px) {
-            .slider-container {
-                padding: 10px;
-            }
-            
-            .slider-controls {
-                gap: 10px;
-            }
-            
-            .slider-btn {
-                padding: 10px 16px;
-                font-size: 14px;
-            }
-            
-            .slide-info {
-                font-size: 16px;
-                padding: 0 10px;
-            }
-        }
+        *{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Arial',sans-serif;line-height:1.6;}nav{display:flex;justify-content:space-between;align-items:center;padding:20px;background-color:#333;position:sticky;top:0;z-index:1000;}nav h1{color:white;font-size:24px;}.nav-links{display:flex;list-style-type:none;transition:all 0.3s ease;}.nav-links li{margin-left:20px;position:relative;}.nav-links a{color:white;text-decoration:none;font-size:18px;padding:8px 12px;transition:background-color 0.3s ease;display:block;}.nav-links a:hover{background-color:#007bff;border-radius:5px;}.dropdown{position:relative;}.dropdown-toggle{cursor:pointer;display:flex;align-items:center;gap:5px;}.dropdown-toggle::after{content:'▼';font-size:12px;transition:transform 0.3s;}.dropdown:hover .dropdown-toggle::after{transform:rotate(180deg);}.dropdown-menu{display:none;position:absolute;top:100%;left:0;background-color:#444;min-width:220px;box-shadow:0 8px 16px rgba(0,0,0,0.3);border-radius:8px;margin-top:8px;overflow:hidden;z-index:1000;}.dropdown:hover .dropdown-menu{display:block;animation:fadeIn 0.3s;}.dropdown-menu a{padding:12px 16px;border-left:3px solid transparent;transition:all 0.3s;}.dropdown-menu a:hover{background-color:#007bff;border-left:3px solid #0056b3;padding-left:20px;}@keyframes fadeIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}.hamburger{display:none;flex-direction:column;cursor:pointer;z-index:1001;}.hamburger div{width:25px;height:3px;background-color:white;margin:4px;transition:all 0.3s ease;}.hamburger.active div:nth-child(1){transform:rotate(-45deg) translate(-5px,6px);}.hamburger.active div:nth-child(2){opacity:0;}.hamburger.active div:nth-child(3){transform:rotate(45deg) translate(-5px,-6px);}@media (max-width:768px){.nav-links{display:none;flex-direction:column;width:100%;background-color:#333;position:absolute;top:70px;left:0;text-align:center;}.nav-links.open{display:flex;}.nav-links li{margin:10px 0;}.hamburger{display:flex;}.dropdown-menu{position:static;display:none;background-color:#555;margin:0;box-shadow:none;}.dropdown.active .dropdown-menu{display:block;}.dropdown-toggle::after{content:'▼';}.dropdown.active .dropdown-toggle::after{transform:rotate(180deg);}}section{padding:80px 20px;text-align:center;}#home{background-color:#f0f4f8;}#about{background-color:#ddd;}#projects{background-color:#bbb;}#skills{background-color:#999;}#contact{background-color:#777;}button{background-color:#007bff;color:white;padding:12px 20px;border:none;border-radius:5px;font-size:16px;cursor:pointer;transition:background-color 0.3s;}button:hover{background-color:#0056b3;}.slider-container{max-width:1200px;margin:60px auto;padding:20px;position:relative;overflow:hidden;}.slider-wrapper{display:flex;transition:transform 0.5s ease-in-out;}.slide{min-width:100%;display:flex;justify-content:center;align-items:center;flex-direction:column;}.iframe-widget{width:100%;max-width:900px;height:600px;margin:12px auto;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,0.12);overflow:auto;background:#fff;position:relative;}.iframe-widget iframe{width:100%;height:100%;border:0;display:block;transform-origin:0 0;}@media (max-width:768px){.iframe-widget{max-width:95vw;height:70vh;min-height:400px;}.iframe-widget iframe{width:100%;height:100%;}}.slide-info{margin-top:20px;font-size:18px;color:#333;}.slide-info a{color:#007bff;text-decoration:none;font-weight:bold;}.slide-info a:hover{text-decoration:underline;}.slider-controls{display:flex;justify-content:center;gap:20px;margin-top:30px;}.slider-btn{background-color:#007bff;color:white;border:none;padding:12px 24px;border-radius:5px;cursor:pointer;font-size:16px;transition:background-color 0.3s;}.slider-btn:hover{background-color:#0056b3;}.slider-btn:disabled{background-color:#ccc;cursor:not-allowed;}.slider-dots{display:flex;justify-content:center;gap:10px;margin-top:20px;}.dot{width:12px;height:12px;border-radius:50%;background-color:#ccc;cursor:pointer;transition:background-color 0.3s;}.dot.active{background-color:#007bff;}.resume-container{max-width:800px;margin:0 auto;background-color:white;padding:20px;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,0.1);}.resume-container h2{margin-bottom:20px;color:#333;}.resume-container iframe{width:100%;height:600px;border:none;margin-bottom:20px;}.download-button{display:inline-block;background-color:#007bff;color:white;padding:12px 20px;border:none;border-radius:5px;font-size:16px;cursor:pointer;text-decoration:none;text-align:center;transition:background-color 0.3s;}.download-button:hover{background-color:#0056b3;}#certificates{background-color:#eee;padding:60px 20px;}.certificate-gallery{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}.certificate{width:300px;height:auto;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.1);}.certificate img{width:100%;height:auto;}.certificate p{padding:10px;text-align:center;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}#home h2{font-size:36px;color:#007bff;animation:fadeIn 1.5s ease-in-out;}#home p{font-size:20px;color:#333;animation:fadeIn 2s ease-in-out;}footer{padding:20px;background-color:#333;color:white;text-align:center;margin-top:20px;}.eye-icon-container{position:fixed;bottom:30px;right:30px;z-index:999;}.eye-icon{width:60px;height:60px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 15px rgba(102,126,234,0.4);transition:all 0.3s ease;animation:pulse 2s infinite;}.eye-icon:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(102,126,234,0.6);}.eye-icon svg{width:30px;height:30px;fill:white;}@keyframes pulse{0%,100%{box-shadow:0 4px 15px rgba(102,126,234,0.4);}50%{box-shadow:0 4px 25px rgba(102,126,234,0.7);}}.intro-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1000;justify-content:center;align-items:center;animation:fadeIn 0.3s ease;}.intro-modal.active{display:flex;}.modal-content{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:40px;border-radius:20px;max-width:600px;max-height:85vh;width:90%;position:relative;box-shadow:0 10px 40px rgba(0,0,0,0.3);animation:slideUp 0.4s ease;color:white;overflow-y:auto;overflow-x:hidden;}.modal-content::-webkit-scrollbar{width:8px;}.modal-content::-webkit-scrollbar-track{background:rgba(255,255,255,0.1);border-radius:10px;}.modal-content::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.5);border-radius:10px;}.modal-content::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.7);}@keyframes slideUp{from{transform:translateY(100px);opacity:0;}to{transform:translateY(0);opacity:1;}}.modal-close{position:absolute;top:15px;right:20px;font-size:30px;cursor:pointer;color:white;transition:all 0.3s;}.modal-close:hover{transform:rotate(90deg);color:#ff6347;}.modal-header{text-align:center;margin-bottom:20px;}.modal-header img{width:100px;height:100px;border-radius:50%;border:4px solid white;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,0.2);}.modal-header h2{font-size:28px;margin-bottom:5px;}.modal-header p{font-size:18px;opacity:0.9;}.modal-body{text-align:left;line-height:1.8;font-size:16px;}.modal-body p{margin-bottom:15px;}.modal-stats{display:flex;justify-content:space-around;margin-top:25px;padding-top:20px;border-top:2px solid rgba(255,255,255,0.3);}.stat-item{text-align:center;}.stat-item h3{font-size:24px;margin-bottom:5px;}.stat-item p{font-size:14px;opacity:0.9;}@media (max-width:768px){.eye-icon-container{bottom:20px;right:20px;}.eye-icon{width:50px;height:50px;}.modal-content{padding:30px 20px;}.modal-header h2{font-size:24px;}.modal-stats{flex-direction:column;gap:15px;}}@media (max-width:400px){.iframe-widget{max-width:98vw;height:65vh;min-height:350px;margin:8px auto;}}@media (max-width:768px){.slider-container{padding:10px;}.slider-controls{gap:10px;}.slider-btn{padding:10px 16px;font-size:14px;}.slide-info{font-size:16px;padding:0 10px;}}
     </style>
 </head>
 <body>
+
 
 <nav>
     <h1 style="display: flex; align-items: center;">
@@ -688,21 +28,13 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         
-        <!-- Projects Dropdown -->
+       
         <li class="dropdown" id="projectsDropdown">
             <a href="#projects" class="dropdown-toggle">Projects</a>
             <div class="dropdown-menu">
                 <a href="#project-rentspot">RentSpot - Rental System</a>
                 <a href="#project-matrimony">Matrimony Website</a>
                 <a href="#live-projects">Live Project Demos</a>
-            </div>
-        </li>
-
-        <li class="dropdown" id="projectsDropdown">
-            <a href="#projects" class="dropdown-toggle">Learning</a>
-            <div class="dropdown-menu">
-                <a href="https://chandrasekarweb.netlify.app/sekar/portfolio/git">GIT & GITHUB - BASIC</a>
-                <a href="#">Upcomming...!</a>
             </div>
         </li>
         
@@ -713,7 +45,6 @@
         <li><a href="https://chandrasekarweb.netlify.app/">Logout</a></li>
     </ul>
 </nav>
-
 
 <section id="home">
     <h2 style="font-size: 36px; color: #007bff;">Welcome to My Portfolio!</h2>
@@ -733,11 +64,11 @@
     <div style="max-width:90%; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <p style="font-size: 18px; text-align:justify; color: #333; line-height: 1.6;">
             I'm <strong style="color: #ff6347;">Chandrasekar D</strong>, a dedicated <span style="color: #007bff; font-weight: bold;">Web Developer</span> with a passion for solving complex problems through technology. 
-            With a solid foundation in <strong>HTML, CSS, Bootstrap, SQL,</strong> and <strong>Python</strong>, I specialize in creating efficient, scalable, and user-centric applications.
+            With a solid foundation in <strong>HTML, CSS, Bootstrap, SQL,</strong> and <strong>Java</strong>, I specialize in creating efficient, scalable, and user-centric applications.
         </p>
 
         <p style="font-size: 18px; text-align:justify; color: #333; line-height: 1.6; margin-top: 20px;">
-            My journey into development began with my first project, <strong style="color: #ff6347;">Rent House</strong>, which sparked my love for coding and problem-solving. 
+            My journey into development began with my first project, <strong style="color: #ff6347;">Rental House</strong>, which sparked my love for coding and problem-solving. 
             Since then, I've continuously expanded my expertise across various programming languages and frameworks.
         </p>
 
@@ -756,7 +87,7 @@
     <h2 style="font-size: 36px; color: #007bff; text-align: center; margin-bottom: 20px;">My Projects</h2>
     
     <div style="max-width: 1000px; margin: 0 auto;">
-        <!-- Project 1 -->
+
         <div id="project-rentspot" style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <h3 style="color: #333;">1. RentSpot - A Rental System</h3>
             <p style="font-size: 18px; color: #666; line-height: 1.6;">
@@ -766,7 +97,7 @@
             </p>
         </div>
 
-        <!-- Project 2 -->
+        
         <div id="project-matrimony" style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <h3 style="color: #333;">2. Matrimony Website - Feature Updates and Maintenance</h3>
             <p style="font-size: 18px; color: #666; line-height: 1.6;">
@@ -778,33 +109,48 @@
     </div>
 </section>
 
-<!-- Live Projects Slider -->
+
 <section id="live-projects" style="background-color: #f7f9fc; padding: 60px 20px;">
     <h2 style="font-size: 36px; color: #007bff; text-align: center; margin-bottom: 40px;">Live Project Demos</h2>
     
     <div class="slider-container">
         <div class="slider-wrapper" id="sliderWrapper">
-            <!-- Slide 1 -->
+           
             <div class="slide">
                 <div class="iframe-widget">
                     <iframe src="https://wethercli.netlify.app/" title="Weather App" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
                 </div>
                 <div class="slide-info">
                     <p><strong>React Weather App</strong> - Real-time weather application built with React. <a href="https://wethercli.netlify.app/" target="_blank">Visit Site</a></p>
+
                 </div>
             </div>
             
-            <!-- Slide 2 - Matrimony Project -->
+           
             <div class="slide">
                 <div class="iframe-widget">
-                    <iframe src="YOUR_MATRIMONY_SITE_URL" title="Matrimony Website" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
+                    <iframe src="https://sknmandapam.com/matrimony/" title="Matrimony Website" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
                 </div>
                 <div class="slide-info">
-                    <p><strong>சான்றோர்குல நாடார் திருமண தகவல் மையம்</strong> - Matrimony Website (Previous Company Project). <a href="YOUR_MATRIMONY_SITE_URL" target="_blank">Visit Site</a></p>
+                    <p><strong>சான்றோர்குல நாடார் திருமண தகவல் மையம்</strong> - Matrimony Website  <a href="https://sknmandapam.com/matrimony/" target="_blank">Visit Site</a></p>
+                    <P style='text-align:justify'>
+                        I developed a Matrimony Web Application in the Matrimony domain. Users can create profiles, search matches, and send interest requests.<br>
+                        My Role is I worked as frontend developer, building interactive UI components, managing user data using Mysql, and integrating backend APIs.<br> 
+                        Tech Stack: HTML5, CSS, PHP, Git,SQL.<br>
+                        Features :
+
+User registration & profile creation
+
+Search & filter matches based on preferences
+
+Send & receive interest requests
+
+Responsive UI for desktop & mobile
+                    </P>
                 </div>
             </div>
             
-            <!-- Slide 3 - Portfolio -->
+          
             <div class="slide">
                 <div class="iframe-widget">
                     <iframe src="https://chandrasekarweb.netlify.app/" title="Portfolio" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe>
@@ -829,7 +175,7 @@
     
     <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
         <p style="font-size: 18px; color: #333; line-height: 1.6; margin-bottom: 30px;">
-            I have a diverse skill set in software development, from backend to frontend, as well as database management and full-stack development.
+            I have a diverse skill set in software development, from backend to frontend, as well as database management and web development .
         </p>
 
         <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
@@ -855,25 +201,38 @@
             </div>
 
             <div style="flex-basis: 200px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="color: #007bff;">Python Basics</h3>
+                <h3 style="color: #007bff;">Java Basics</h3>
                 <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                    Foundational experience in Python programming for backend development, automation, and building scalable applications with a focus on clean and maintainable code.
+                    Foundational experience in Java programming for backend development, automation, and building scalable applications with a focus on clean and maintainable code.
                 </p>
             </div>
 
-            <div style="flex-basis: 250px; padding: 20px; background-color: white; margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="color: #007bff;">PHP</h3>
-                <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                    Experienced in server-side scripting with PHP, capable of developing dynamic web applications, integrating with databases, and managing server-side logic to enhance functionality.
-                </p>
-            </div>
         </div>
     </div>
 </section>
 
 <section id="certificates">
+
+    
     <h2>Certificates</h2>
     <p>Here are some of the certificates I have earned throughout my learning journey.</p>
+
+    <div style="margin-bottom: 50px;">
+        <h3 style="font-size: 28px; color: #007bff; margin-bottom: 20px; text-align: center;">
+            💼 Professional Experience
+        </h3>
+        <div class="certificate-gallery">
+            <div class="certificate">
+                <img src="certificate/Appoinment.jpg" alt="Appointment Certificate" onerror="this.src='https://imgnot fount'">
+                <p><strong>Web Developer</strong><br>Company Appointment - 2023</p>
+            </div>
+            <div class="certificate">
+                <img src="certificate/Intership.jpg" alt="Internship Certificate" onerror="this.src='https://imgnot fount'">
+                <p><strong>Web Design Intern</strong><br>Internship Certificate - 2023</p>
+            </div>
+        </div>
+    </div>
+
     <div class="certificate-gallery">
         <div class="certificate">
             <img src="certificate/Java.png" alt="Java Certificate">
@@ -886,6 +245,15 @@
         <div class="certificate">
             <img src="certificate/CHAT GPT.png" alt="ChatGPT Certificate">
             <p>CHATGPT BASICS</p>
+        </div>
+        <div class="certificate">
+            <img src="certificate/Internship.jpg" alt="ChatGPT Certificate">
+            <p>Web Design Intership-2023</p>
+        </div>
+
+        <div class="certificate">
+            <img src="certificate/Appoinment.jpg" alt="ChatGPT Certificate">
+            <p>Web Design Appointment-2023</p>
         </div>
     </div>
 </section>
@@ -923,11 +291,11 @@
 </section>
 
 <footer>
-    <p>&copy; 2025 <span style="color:green;">CHANDRASEKAR.D</span>. All rights reserved.</p>
+    <p>&copy; 2024 <span style="color:green;">CHANDRASEKAR.D</span>. All rights reserved.</p>
     <a href="resume/Chandrasekar.D.pdf" download class="download-button">Download My Resume</a>
 </footer>
 
-<!-- Eye Icon Button -->
+
 <div class="eye-icon-container">
     <div class="eye-icon" id="eyeIcon" title="Know About Me">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -936,57 +304,112 @@
     </div>
 </div>
 
-<!-- Self Introduction Modal -->
+
 <div class="intro-modal" id="introModal">
     <div class="modal-content">
         <span class="modal-close" id="closeModal">&times;</span>
         
         <div class="modal-header">
-            <img src="resume/profile.png" alt="Chandrasekar D" onerror="this.src='https://via.placeholder.com/100'">
+            <img src="resume/profile.png" alt="Chandrasekar D" onerror="this.src='https://ERROR CHNDRASEKAR-PORTFOLIO'">
             <h2>Hi, I'm Chandrasekar D! 👋</h2>
-            <p>Full Stack Web Developer</p>
+            <p>full-stack Web Developer</p>
         </div>
         
         <div class="modal-body">
-            <p><strong>🎯 About Me:</strong></p>
+            <p><strong>🎯 Tell Me Your Self:</strong></p>
             <p>
-                I'm a passionate web developer with a strong foundation in both frontend and backend technologies. 
-                My journey in tech began with a curiosity to understand how websites work, and it has evolved into 
-                a career dedicated to creating meaningful digital experiences.
+                Hi, my name is Chandrasekar D. I completed my B.E. in Computer Science and Engineering from Mahendra Institute of Technology in 2022, with a GCPA of 7.2. I also completed an eight-month internship at UIBO Infotech, where I gained hands-on experience in web development and worked on four projects.
+
+I have good knowledge of HTML, CSS, JavaScript, ReactJs, and basic security concepts. During my learning, I developed a rental system project, and one project I’m particularly proud of is a matrimony web application. In that project, I implemented a feature to display clients’ horoscopes fully and allow downloads in image format. Aligning complex table structures and fetching dynamic data from the backend was challenging, but it helped me strengthen my problem-solving and front-end skills.
+
+I’m passionate about building user-friendly applications and continuously improving my skills. I am looking forward to starting my career as a software developer, contributing to the team, and growing along with the organization. I would describe myself as a quick learner and a collaborative team player.
+
+Thanking You.
+              
             </p>
             
-            <p><strong>💡 What Drives Me:</strong></p>
+            
+
+            <p><strong>1.Why do you want to change job?</strong></p>
             <p>
-                I believe in writing clean, efficient code and building applications that solve real-world problems. 
-                Every project is an opportunity to learn something new and push the boundaries of what's possible with technology.
+                I learned a lot from my previous company, but the growth opportunities were limited. I want to explore new challenges and improve my skills further, especially in React.js and frontend development. 
+                That’s why I am looking for a better opportunity where I can contribute more and grow in my career
+            </p>
+
+            <p><strong>2.Why should we hire you?</strong></p>
+            <p>
+                I have good knowledge in JavaScript, React.js and frontend development. I am a quick learner and willing to work hard. I believe I can adapt fast and contribute to your team. and I already have hands-on experience with during my 8 months of work. I also have practical knowledge of Git and responsive UI development.
+            </p>
+
+            <p><strong>3.Why should we hire you?</strong></p>
+            <p>
+                I had some personal reasons for the gap, but I did not waste the time. I used it to upskill myself in React.js and JavaScript and frontend tools. 
+                Now I am ready to work hard and continue my career without interruptions.
+            </p>
+            <p><strong>4.Why do you want to join our company?</strong></p>
+            <p>
+                I want to join your company because I value stability, good work culture, and growth. I see that your company provides training, teamwork and new opportunities, which perfectly match my career goals.
             </p>
             
-            <p><strong>🚀 My Approach:</strong></p>
+            <p>Every day Asking For question for me 🤖</p>
+<hr><hr>
+<hr>
+
+
+            <p><strong>💼 Key Achievements:</strong></p>
             <p>
-                I focus on user-centric design, performance optimization, and scalable architecture. Whether it's a 
-                rental management system or a matrimony platform, I ensure every solution is robust, intuitive, and impactful.
+                • Successfully developed and deployed RentSpot, a comprehensive rental management system<br>
+                • Contributed to enhancing a live Matrimony platform, improving user engagement by implementing new features<br>
+                • Built responsive, cross-browser compatible applications with focus on performance optimization
             </p>
             
+            <p><strong>🚀 What I Bring to Your Team:</strong></p>
+            <p>
+                • Strong problem-solving abilities and quick learning capability<br>
+                • Experience working in collaborative team environments<br>
+                • Commitment to writing clean, maintainable, and well-documented code<br>
+                • Passion for staying updated with latest web technologies and best practices
+            </p>
+            
+            <p><strong>🎓 Career Goal:</strong></p>
+            <p>
+                Seeking opportunities to contribute to innovative projects where I can leverage my technical skills 
+                while continuing to grow as a developer. Eager to work with dynamic teams that value creativity, 
+                collaboration, and continuous improvement.
+            </p>
+
+<hr>
+
+
             <div class="modal-stats">
                 <div class="stat-item">
-                    <h3>2+</h3>
-                    <p>Years Experience</p>
+                    <h3>8Month</h3>
+                    <p>Years Experience web design and developed</p>
                 </div>
                 <div class="stat-item">
                     <h3>5+</h3>
-                    <p>Projects Completed</p>
+                    <p>Technologies</p>
                 </div>
                 <div class="stat-item">
                     <h3>100%</h3>
-                    <p>Client Satisfaction</p>
+                    <p>Dedication</p>
                 </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 2px solid rgba(255, 255, 255, 0.3);">
+                <a href="./resume/Chandrasekar.D.pdf" download class="download-button" style="margin-right: 10px; display: inline-block; margin-bottom: 10px;">
+                    📄 Download Resume
+                </a>
+                <a href="#contact" class="download-button" onclick="document.getElementById('introModal').classList.remove('active'); document.body.style.overflow = 'auto';" style="display: inline-block; margin-bottom: 10px;">
+                    📧 Let's Connect
+                </a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // Improved Navbar Toggle
+   
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
     const projectsDropdown = document.getElementById('projectsDropdown');
@@ -997,7 +420,7 @@
         hamburger.classList.toggle('active');
     });
 
-    // Mobile dropdown toggle
+   
     if (window.innerWidth <= 768) {
         projectsDropdown.addEventListener('click', function(e) {
             if (e.target.classList.contains('dropdown-toggle')) {
@@ -1007,7 +430,7 @@
         });
     }
 
-    // Close menu when clicking on a link
+   
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', function() {
             if (!this.classList.contains('dropdown-toggle')) {
@@ -1017,7 +440,7 @@
         });
     });
 
-    // Close menu when clicking outside
+ 
     document.addEventListener('click', function(e) {
         if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
             navLinks.classList.remove('open');
@@ -1025,7 +448,7 @@
         }
     });
 
-    // Smooth scrolling
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1037,7 +460,7 @@
         });
     });
 
-    // Slider Functionality
+  
     const sliderWrapper = document.getElementById('sliderWrapper');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -1060,12 +483,12 @@
     function updateSlider() {
         sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
         
-        // Update dots
+    
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentSlide);
         });
 
-        // Update buttons
+        
         prevBtn.disabled = currentSlide === 0;
         nextBtn.disabled = currentSlide === totalSlides - 1;
     }
@@ -1089,10 +512,10 @@
         }
     });
 
-    // Initialize slider
+   
     updateSlider();
 
-    // Auto-slide (optional)
+ 
     let autoSlideInterval = setInterval(() => {
         if (currentSlide < totalSlides - 1) {
             currentSlide++;
@@ -1102,7 +525,7 @@
         updateSlider();
     }, 5000);
 
-    // Pause auto-slide on hover
+    
     document.querySelector('.slider-container').addEventListener('mouseenter', () => {
         clearInterval(autoSlideInterval);
     });
@@ -1118,7 +541,6 @@
         }, 5000);
     });
 
-    // WhatsApp greeting
     function getTimeBasedGreeting() {
         const now = new Date();
         const hours = now.getHours();
@@ -1143,36 +565,33 @@
         whatsappLink.href = `https://wa.me/916383924993?text=${encodeURIComponent(greeting)}`;
     });
 
-    // Self Introduction Modal
+
     const eyeIcon = document.getElementById('eyeIcon');
     const introModal = document.getElementById('introModal');
     const closeModal = document.getElementById('closeModal');
 
-    // Open modal
+  
     eyeIcon.addEventListener('click', () => {
         introModal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+       
     });
 
-    // Close modal on X button
+   
     closeModal.addEventListener('click', () => {
         introModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
     });
 
-    // Close modal on outside click
+ 
     introModal.addEventListener('click', (e) => {
         if (e.target === introModal) {
             introModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
         }
     });
 
-    // Close modal on ESC key
+  
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && introModal.classList.contains('active')) {
             introModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
         }
     });
 </script>
