@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>-CHANDRASEKAR.D-Git & GitHub Visual Guide</title>
-     <link rel="icon" href="resume/sekar.png" type="image/x-icon">
+    <title>Git & GitHub Visual Guide</title>
     <style>
         * {
             margin: 0;
@@ -35,13 +34,13 @@
         .nav-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
         
         .nav-btn {
-            padding: 12px 24px;
+            padding: 10px 20px;
             background: white;
             border: none;
             border-radius: 25px;
@@ -49,12 +48,14 @@
             font-weight: bold;
             transition: all 0.3s;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            font-size: 14px;
+            font-size: 13px;
         }
         
         .nav-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            background: #f093fb;
+            color: white;
         }
         
         .nav-btn.active {
@@ -62,7 +63,7 @@
             color: white;
         }
         
-        .diagram-container {
+        .section {
             background: white;
             border-radius: 15px;
             padding: 30px;
@@ -70,7 +71,7 @@
             display: none;
         }
         
-        .diagram-container.active {
+        .section.active {
             display: block;
             animation: fadeIn 0.5s;
         }
@@ -80,7 +81,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .diagram-title {
+        .section-title {
             color: #667eea;
             font-size: 1.8em;
             margin-bottom: 20px;
@@ -134,614 +135,329 @@
 </head>
 <body>
     <div class="container">
-        <h1> <button class="nav-btn"  ><a href='https://chandrasekarweb.netlify.app/sekar/portfolio/chandrasekar.html' style='text-decoration:none;'>🔙 Back To Portfolio 🔙</a></button>🚀 Git & GitHub Visual Learning Guide </h1>
+        <h1>🚀 Git & GitHub Complete Learning Guide</h1>
         
         <div class="nav-buttons">
-            <button class="nav-btn active" data-target="basic">Basic Concepts</button>
-            <button class="nav-btn" data-target="workflow">Git Workflow</button>
-            <button class="nav-btn" data-target="branching">Branching</button>
-            <button class="nav-btn" data-target="github">GitHub Flow</button>
-            <button class="nav-btn" data-target="collaboration">Collaboration</button>
-            <button class="nav-btn" data-target="beginners">Beginners Guide</button>
-            <button class="nav-btn" data-target="professional">Pro Tips</button>
-            <button class="nav-btn" data-target="projects">Project Do's & Don'ts</button>
-            <button class="nav-btn" data-target="troubleshooting" disabled>Troubleshooting</button>
-            <button class="nav-btn" data-target="interview" disabled>Interview Q&A</button>
-            <button class="nav-btn" data-target="cheatsheet" disabled>Quick Cheatsheet</button>
+            <button class="nav-btn active" onclick="showSection(0)">Basic Concepts</button>
+            <button class="nav-btn" onclick="showSection(1)">Git Workflow</button>
+            <button class="nav-btn" onclick="showSection(2)">Branching</button>
+            <button class="nav-btn" onclick="showSection(3)">GitHub Flow</button>
+            <button class="nav-btn" onclick="showSection(4)">Collaboration</button>
+            <button class="nav-btn" onclick="showSection(5)">Beginners Guide</button>
+            <button class="nav-btn" onclick="showSection(6)">Pro Tips</button>
+            <button class="nav-btn" onclick="showSection(7)">Projects</button>
+            <button class="nav-btn" onclick="showSection(8)">Troubleshooting</button>
+            <button class="nav-btn" onclick="showSection(9)">Interview Q&A</button>
+            <button class="nav-btn" onclick="showSection(10)">Cheatsheet</button>
         </div>
         
-        <!-- Basic Concepts -->
-        <div id="basic" class="diagram-container active">
-            <h2 class="diagram-title">📚 Git Basic Concepts</h2>
+        <!-- Section 0: Basic Concepts -->
+        <div class="section active">
+            <h2 class="section-title">📚 Git Basic Concepts</h2>
             
             <svg viewBox="0 0 800 400">
                 <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
                         <polygon points="0 0, 10 3, 0 6" fill="#333" />
                     </marker>
                 </defs>
                 
                 <rect x="50" y="50" width="150" height="100" fill="#ffebee" stroke="#e53935" stroke-width="3" rx="10"/>
-                <text x="125" y="85" text-anchor="middle" font-size="16" font-weight="bold" fill="#e53935">Working</text>
-                <text x="125" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="#e53935">Directory</text>
+                <text x="125" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#e53935">Working</text>
+                <text x="125" y="110" text-anchor="middle" font-size="16" font-weight="bold" fill="#e53935">Directory</text>
                 <text x="125" y="130" text-anchor="middle" font-size="12" fill="#666">Your Files 📁</text>
                 
                 <rect x="250" y="50" width="150" height="100" fill="#fff3e0" stroke="#fb8c00" stroke-width="3" rx="10"/>
-                <text x="325" y="85" text-anchor="middle" font-size="16" font-weight="bold" fill="#fb8c00">Staging</text>
-                <text x="325" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="#fb8c00">Area</text>
-                <text x="325" y="130" text-anchor="middle" font-size="12" fill="#666">Ready ✓</text>
+                <text x="325" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#fb8c00">Staging</text>
+                <text x="325" y="110" text-anchor="middle" font-size="16" font-weight="bold" fill="#fb8c00">Area</text>
                 
                 <rect x="450" y="50" width="150" height="100" fill="#e8f5e9" stroke="#43a047" stroke-width="3" rx="10"/>
-                <text x="525" y="85" text-anchor="middle" font-size="16" font-weight="bold" fill="#43a047">Local</text>
-                <text x="525" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="#43a047">Repository</text>
-                <text x="525" y="130" text-anchor="middle" font-size="12" fill="#666">Commits 💾</text>
+                <text x="525" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#43a047">Local Repo</text>
                 
                 <rect x="250" y="250" width="150" height="100" fill="#e3f2fd" stroke="#1e88e5" stroke-width="3" rx="10"/>
-                <text x="325" y="285" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e88e5">Remote</text>
-                <text x="325" y="305" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e88e5">Repository</text>
-                <text x="325" y="330" text-anchor="middle" font-size="12" fill="#666">GitHub ☁️</text>
+                <text x="325" y="290" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e88e5">Remote</text>
+                <text x="325" y="310" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e88e5">GitHub ☁️</text>
                 
-                <line x1="200" y1="100" x2="250" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-                <text x="225" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb8c00">git add</text>
+                <line x1="200" y1="100" x2="250" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+                <text x="225" y="90" text-anchor="middle" font-size="12" font-weight="bold">git add</text>
                 
-                <line x1="400" y1="100" x2="450" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-                <text x="425" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#43a047">git commit</text>
+                <line x1="400" y1="100" x2="450" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+                <text x="425" y="90" text-anchor="middle" font-size="12" font-weight="bold">commit</text>
                 
-                <line x1="525" y1="150" x2="400" y2="250" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-                <text x="480" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e88e5">git push</text>
+                <line x1="525" y1="150" x2="400" y2="250" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+                <text x="480" y="200" text-anchor="middle" font-size="12" font-weight="bold">push</text>
                 
-                <line x1="250" y1="300" x2="200" y2="150" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-                <text x="180" y="225" text-anchor="middle" font-size="12" font-weight="bold" fill="#7b1fa2">git pull</text>
+                <line x1="250" y1="300" x2="200" y2="150" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+                <text x="180" y="225" text-anchor="middle" font-size="12" font-weight="bold">pull</text>
             </svg>
             
             <div class="explanation">
                 <h3>Understanding the Four Areas:</h3>
-                <p><strong>1. Working Directory:</strong> Where you edit your files. These are untracked changes.</p>
-                <p><strong>2. Staging Area:</strong> Prepared changes ready for commit. Preview of next commit.</p>
-                <p><strong>3. Local Repository:</strong> Your computer's Git history with all commits.</p>
-                <p><strong>4. Remote Repository:</strong> Server-hosted repository (GitHub) for collaboration.</p>
+                <p><strong>1. Working Directory:</strong> Where you edit files - untracked changes</p>
+                <p><strong>2. Staging Area:</strong> Prepared changes ready for commit</p>
+                <p><strong>3. Local Repository:</strong> Your computer's Git history</p>
+                <p><strong>4. Remote Repository:</strong> GitHub server for collaboration</p>
             </div>
             
             <div class="command-box">
 git add filename.txt        # Move to staging<br>
-git commit -m "message"     # Save to local repo<br>
-git push origin main        # Upload to remote<br>
-git pull origin main        # Download from remote
+git commit -m "message"     # Save to local<br>
+git push origin main        # Upload to GitHub<br>
+git pull origin main        # Download updates
             </div>
         </div>
         
-        <!-- Git Workflow -->
-        <div id="workflow" class="diagram-container">
-            <h2 class="diagram-title">🔄 Complete Git Workflow</h2>
-            
-            <svg viewBox="0 0 800 500">
-                <defs>
-                    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                        <polygon points="0 0, 10 3, 0 6" fill="#333" />
-                    </marker>
-                </defs>
-                
-                <circle cx="100" cy="100" r="40" fill="#e3f2fd" stroke="#1e88e5" stroke-width="3"/>
-                <text x="100" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e88e5">Init</text>
-                
-                <circle cx="300" cy="100" r="40" fill="#fff3e0" stroke="#fb8c00" stroke-width="3"/>
-                <text x="300" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="#fb8c00">Edit</text>
-                
-                <circle cx="500" cy="100" r="40" fill="#fff9c4" stroke="#fbc02d" stroke-width="3"/>
-                <text x="500" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="#f57f17">Stage</text>
-                
-                <circle cx="700" cy="100" r="40" fill="#e8f5e9" stroke="#43a047" stroke-width="3"/>
-                <text x="700" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="#43a047">Commit</text>
-                
-                <circle cx="700" cy="300" r="40" fill="#f3e5f5" stroke="#8e24aa" stroke-width="3"/>
-                <text x="700" y="305" text-anchor="middle" font-size="16" font-weight="bold" fill="#8e24aa">Push</text>
-                
-                <circle cx="100" cy="300" r="40" fill="#fce4ec" stroke="#c2185b" stroke-width="3"/>
-                <text x="100" y="305" text-anchor="middle" font-size="16" font-weight="bold" fill="#c2185b">Pull</text>
-                
-                <line x1="140" y1="100" x2="260" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead2)"/>
-                <text x="200" y="85" text-anchor="middle" font-size="11" fill="#666">git init</text>
-                
-                <line x1="340" y1="100" x2="460" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead2)"/>
-                <text x="400" y="85" text-anchor="middle" font-size="11" fill="#666">modify files</text>
-                
-                <line x1="540" y1="100" x2="660" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead2)"/>
-                <text x="600" y="85" text-anchor="middle" font-size="11" fill="#666">git add</text>
-                
-                <line x1="700" y1="140" x2="700" y2="260" stroke="#333" stroke-width="2" marker-end="url(#arrowhead2)"/>
-                <text x="720" y="200" text-anchor="start" font-size="11" fill="#666">git push</text>
-                
-                <line x1="660" y1="300" x2="140" y2="300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead2)"/>
-                <text x="400" y="285" text-anchor="middle" font-size="11" fill="#666">git pull / clone</text>
-            </svg>
-            
+        <!-- Section 1: Workflow -->
+        <div class="section">
+            <h2 class="section-title">🔄 Git Workflow</h2>
             <div class="explanation">
-                <h3>Step-by-Step Process:</h3>
-                <p><strong>1. Initialize:</strong> Create new Git repository with git init</p>
-                <p><strong>2. Edit:</strong> Make changes to your files</p>
-                <p><strong>3. Stage:</strong> Select changes to include in commit</p>
-                <p><strong>4. Commit:</strong> Save snapshot with descriptive message</p>
-                <p><strong>5. Push:</strong> Upload commits to remote server</p>
-                <p><strong>6. Pull:</strong> Download latest changes from remote</p>
+                <h3>Complete Git Workflow:</h3>
+                <p><strong>Step 1:</strong> Initialize - Create Git repository</p>
+                <p><strong>Step 2:</strong> Edit - Make changes to files</p>
+                <p><strong>Step 3:</strong> Stage - Select changes to commit</p>
+                <p><strong>Step 4:</strong> Commit - Save snapshot</p>
+                <p><strong>Step 5:</strong> Push - Upload to GitHub</p>
+                <p><strong>Step 6:</strong> Pull - Get latest updates</p>
             </div>
             
             <div class="command-box">
-git init                           # Initialize repository<br>
-git add .                          # Stage all changes<br>
-git commit -m "Initial commit"     # Commit changes<br>
-git remote add origin URL          # Link remote repo<br>
-git push -u origin main            # Push to remote<br>
-git pull origin main               # Get latest changes
+git init                      # Start new repo<br>
+git add .                     # Stage all files<br>
+git commit -m "First commit"  # Commit<br>
+git remote add origin URL     # Connect to GitHub<br>
+git push -u origin main       # Push<br>
+git pull origin main          # Pull updates
             </div>
             
             <div class="key-point">
-                <strong>💡 Key Concept:</strong> Git workflow is cyclical. After pulling, you edit, stage, commit, and push again.
+                <strong>💡 Tip:</strong> Commit often! Small, frequent commits are better than large ones.
             </div>
         </div>
         
-        <!-- Branching -->
-        <div id="branching" class="diagram-container">
-            <h2 class="diagram-title">🌿 Git Branching Strategy</h2>
+        <!-- Section 2: Branching -->
+        <div class="section">
+            <h2 class="section-title">🌿 Branching Strategy</h2>
             
-            <svg viewBox="0 0 800 450">
-                <defs>
-                    <marker id="arrowhead3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                        <polygon points="0 0, 10 3, 0 6" fill="#333" />
-                    </marker>
-                </defs>
+            <svg viewBox="0 0 800 350">
+                <line x1="50" y1="175" x2="750" y2="175" stroke="#333" stroke-width="4"/>
+                <text x="400" y="205" text-anchor="middle" font-size="16" font-weight="bold">main branch</text>
                 
-                <line x1="50" y1="225" x2="750" y2="225" stroke="#333" stroke-width="4"/>
-                <text x="400" y="255" text-anchor="middle" font-size="16" font-weight="bold">main branch</text>
+                <circle cx="100" cy="175" r="12" fill="#4caf50"/>
+                <text x="100" y="155" text-anchor="middle" font-size="11">C1</text>
                 
-                <circle cx="100" cy="225" r="15" fill="#4caf50"/>
-                <text x="100" y="200" text-anchor="middle" font-size="12">C1</text>
+                <circle cx="250" cy="175" r="12" fill="#4caf50"/>
+                <text x="250" y="155" text-anchor="middle" font-size="11">C2</text>
                 
-                <circle cx="250" cy="225" r="15" fill="#4caf50"/>
-                <text x="250" y="200" text-anchor="middle" font-size="12">C2</text>
+                <circle cx="550" cy="175" r="12" fill="#4caf50"/>
+                <text x="550" y="155" text-anchor="middle" font-size="11">C5</text>
                 
-                <circle cx="550" cy="225" r="15" fill="#4caf50"/>
-                <text x="550" y="200" text-anchor="middle" font-size="12">C5</text>
+                <circle cx="700" cy="175" r="12" fill="#4caf50"/>
+                <text x="700" y="155" text-anchor="middle" font-size="11">C6</text>
                 
-                <circle cx="700" cy="225" r="15" fill="#4caf50"/>
-                <text x="700" y="200" text-anchor="middle" font-size="12">C6</text>
+                <path d="M 250 175 Q 300 135 350 95" stroke="#2196f3" stroke-width="3" fill="none"/>
+                <line x1="350" y1="95" x2="500" y2="95" stroke="#2196f3" stroke-width="3"/>
+                <path d="M 500 95 Q 525 135 550 175" stroke="#2196f3" stroke-width="3" fill="none"/>
                 
-                <path d="M 250 225 Q 300 185 350 125" stroke="#2196f3" stroke-width="3" fill="none"/>
-                <line x1="350" y1="125" x2="500" y2="125" stroke="#2196f3" stroke-width="3"/>
-                <path d="M 500 125 Q 525 175 550 225" stroke="#2196f3" stroke-width="3" fill="none"/>
+                <circle cx="350" cy="95" r="12" fill="#2196f3"/>
+                <text x="350" y="75" text-anchor="middle" font-size="11">C3</text>
                 
-                <circle cx="350" cy="125" r="15" fill="#2196f3"/>
-                <text x="350" y="100" text-anchor="middle" font-size="12">C3</text>
+                <circle cx="450" cy="95" r="12" fill="#2196f3"/>
+                <text x="450" y="75" text-anchor="middle" font-size="11">C4</text>
                 
-                <circle cx="450" cy="125" r="15" fill="#2196f3"/>
-                <text x="450" y="100" text-anchor="middle" font-size="12">C4</text>
-                
-                <text x="400" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#2196f3">feature branch</text>
-                
-                <path d="M 550 225 Q 600 275 650 325" stroke="#ff9800" stroke-width="3" fill="none"/>
-                <circle cx="650" cy="325" r="15" fill="#ff9800"/>
-                <text x="650" y="355" text-anchor="middle" font-size="12">C7</text>
-                <path d="M 650 325 Q 675 275 700 225" stroke="#ff9800" stroke-width="3" fill="none"/>
-                
-                <text x="650" y="385" text-anchor="middle" font-size="16" font-weight="bold" fill="#ff9800">bugfix branch</text>
+                <text x="400" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#2196f3">feature branch</text>
             </svg>
             
             <div class="explanation">
-                <h3>Branching Concepts:</h3>
-                <p><strong>Branch:</strong> Independent line of development. Like a parallel universe for experiments.</p>
-                <p><strong>main/master:</strong> Default primary branch with production-ready code.</p>
-                <p><strong>Feature Branches:</strong> Created for new features without affecting main.</p>
-                <p><strong>Merge:</strong> Combining changes from one branch into another.</p>
+                <h3>Why Use Branches?</h3>
+                <p><strong>Isolation:</strong> Work on features without affecting main code</p>
+                <p><strong>Parallel Development:</strong> Multiple features at same time</p>
+                <p><strong>Safe Experiments:</strong> Try new ideas safely</p>
+                <p><strong>Team Collaboration:</strong> Everyone works on their own branch</p>
             </div>
             
             <div class="command-box">
-git branch                         # List branches<br>
-git branch feature-login           # Create new branch<br>
-git checkout feature-login         # Switch to branch<br>
-git checkout -b new-feature        # Create and switch<br>
-git merge feature-login            # Merge into current<br>
-git branch -d feature-login        # Delete branch
-            </div>
-            
-            <div class="key-point">
-                <strong>⚠️ Best Practice:</strong> Always create new branch for each feature. Keep main stable!
+git branch                    # List branches<br>
+git branch feature-name       # Create branch<br>
+git checkout feature-name     # Switch branch<br>
+git checkout -b new-branch    # Create & switch<br>
+git merge feature-name        # Merge branch<br>
+git branch -d feature-name    # Delete branch
             </div>
         </div>
         
-        <!-- GitHub Flow -->
-        <div id="github" class="diagram-container">
-            <h2 class="diagram-title">🐙 GitHub Collaboration Flow</h2>
-            
-            <svg viewBox="0 0 800 550">
-                <defs>
-                    <marker id="arrowhead4" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                        <polygon points="0 0, 10 3, 0 6" fill="#333" />
-                    </marker>
-                </defs>
-                
-                <rect x="300" y="30" width="200" height="80" fill="#f0f0f0" stroke="#333" stroke-width="2" rx="10"/>
-                <text x="400" y="60" text-anchor="middle" font-size="16" font-weight="bold">Original Repo</text>
-                <text x="400" y="85" text-anchor="middle" font-size="13" fill="#666">owner/repo</text>
-                
-                <rect x="50" y="180" width="200" height="80" fill="#e3f2fd" stroke="#1e88e5" stroke-width="2" rx="10"/>
-                <text x="150" y="210" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e88e5">Your Fork</text>
-                <text x="150" y="235" text-anchor="middle" font-size="13" fill="#666">you/repo</text>
-                
-                <rect x="550" y="180" width="200" height="80" fill="#fff3e0" stroke="#fb8c00" stroke-width="2" rx="10"/>
-                <text x="650" y="210" text-anchor="middle" font-size="16" font-weight="bold" fill="#fb8c00">Local Clone</text>
-                <text x="650" y="235" text-anchor="middle" font-size="13" fill="#666">Your PC</text>
-                
-                <rect x="300" y="330" width="200" height="80" fill="#e8f5e9" stroke="#43a047" stroke-width="2" rx="10"/>
-                <text x="400" y="360" text-anchor="middle" font-size="16" font-weight="bold" fill="#43a047">Push Changes</text>
-                <text x="400" y="385" text-anchor="middle" font-size="13" fill="#666">to your fork</text>
-                
-                <rect x="300" y="470" width="200" height="60" fill="#f3e5f5" stroke="#8e24aa" stroke-width="2" rx="10"/>
-                <text x="400" y="495" text-anchor="middle" font-size="16" font-weight="bold" fill="#8e24aa">Pull Request</text>
-                <text x="400" y="515" text-anchor="middle" font-size="12" fill="#666">Merge request</text>
-                
-                <line x1="380" y1="110" x2="200" y2="180" stroke="#1e88e5" stroke-width="2" marker-end="url(#arrowhead4)"/>
-                <text x="280" y="140" font-size="13" fill="#1e88e5" font-weight="bold">1. Fork</text>
-                
-                <line x1="250" y1="220" x2="550" y2="220" stroke="#fb8c00" stroke-width="2" marker-end="url(#arrowhead4)"/>
-                <text x="400" y="210" font-size="13" fill="#fb8c00" font-weight="bold">2. Clone</text>
-                
-                <line x1="550" y1="260" x2="400" y2="330" stroke="#43a047" stroke-width="2" marker-end="url(#arrowhead4)"/>
-                <text x="480" y="300" font-size="13" fill="#43a047" font-weight="bold">3. Push</text>
-                
-                <line x1="400" y1="410" x2="400" y2="470" stroke="#8e24aa" stroke-width="2" marker-end="url(#arrowhead4)"/>
-                <text x="420" y="445" font-size="13" fill="#8e24aa" font-weight="bold">4. PR</text>
-                
-                <line x1="420" y1="110" x2="420" y2="470" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowhead4)" stroke-dasharray="5,5"/>
-                <text x="550" y="290" font-size="13" fill="#4caf50" font-weight="bold">5. Merge ✓</text>
-            </svg>
+        <!-- Section 3: GitHub Flow -->
+        <div class="section">
+            <h2 class="section-title">🐙 GitHub Collaboration</h2>
             
             <div class="explanation">
-                <h3>GitHub Collaboration Steps:</h3>
-                <p><strong>1. Fork:</strong> Create your copy of repository on GitHub</p>
-                <p><strong>2. Clone:</strong> Download your fork to local computer</p>
-                <p><strong>3. Make Changes:</strong> Edit, commit, push to your fork</p>
-                <p><strong>4. Pull Request:</strong> Ask owner to review and merge</p>
-                <p><strong>5. Merge:</strong> Owner accepts and merges your changes</p>
+                <h3>Fork & Pull Request Workflow:</h3>
+                <p><strong>Step 1: Fork</strong> - Create your copy on GitHub</p>
+                <p><strong>Step 2: Clone</strong> - Download to your computer</p>
+                <p><strong>Step 3: Branch</strong> - Create feature branch</p>
+                <p><strong>Step 4: Code</strong> - Make your changes</p>
+                <p><strong>Step 5: Push</strong> - Upload to your fork</p>
+                <p><strong>Step 6: PR</strong> - Request to merge into original</p>
+                <p><strong>Step 7: Review</strong> - Owner reviews your code</p>
+                <p><strong>Step 8: Merge</strong> - Your code gets accepted!</p>
             </div>
             
             <div class="command-box">
-# Fork on GitHub (use Fork button)<br>
+# 1. Fork on GitHub (click Fork button)<br>
+# 2. Clone your fork<br>
 git clone https://github.com/YOU/repo.git<br>
 cd repo<br>
+<br>
+# 3. Create feature branch<br>
 git checkout -b my-feature<br>
-# Make changes...<br>
+<br>
+# 4. Make changes and commit<br>
 git add .<br>
-git commit -m "Add feature"<br>
+git commit -m "Add awesome feature"<br>
+<br>
+# 5. Push to your fork<br>
 git push origin my-feature<br>
-# Create Pull Request on GitHub
+<br>
+# 6. Create Pull Request on GitHub
             </div>
         </div>
         
-        <!-- Collaboration -->
-        <div id="collaboration" class="diagram-container">
-            <h2 class="diagram-title">👥 Team Collaboration</h2>
-            
-            <svg viewBox="0 0 800 450">
-                <defs>
-                    <marker id="arrowhead5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                        <polygon points="0 0, 10 3, 0 6" fill="#333" />
-                    </marker>
-                </defs>
-                
-                <rect x="300" y="50" width="200" height="80" fill="#263238" stroke="#000" stroke-width="2" rx="10"/>
-                <text x="400" y="80" text-anchor="middle" font-size="18" font-weight="bold" fill="white">GitHub Repo</text>
-                <text x="400" y="105" text-anchor="middle" font-size="14" fill="#90caf9">origin/main</text>
-                
-                <circle cx="150" cy="250" r="60" fill="#e3f2fd" stroke="#1e88e5" stroke-width="3"/>
-                <text x="150" y="245" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e88e5">Dev 1</text>
-                <text x="150" y="265" text-anchor="middle" font-size="12" fill="#666">Alice</text>
-                
-                <circle cx="400" cy="350" r="60" fill="#fff3e0" stroke="#fb8c00" stroke-width="3"/>
-                <text x="400" y="345" text-anchor="middle" font-size="16" font-weight="bold" fill="#fb8c00">Dev 2</text>
-                <text x="400" y="365" text-anchor="middle" font-size="12" fill="#666">Bob</text>
-                
-                <circle cx="650" cy="250" r="60" fill="#e8f5e9" stroke="#43a047" stroke-width="3"/>
-                <text x="650" y="245" text-anchor="middle" font-size="16" font-weight="bold" fill="#43a047">Dev 3</text>
-                <text x="650" y="265" text-anchor="middle" font-size="12" fill="#666">Charlie</text>
-                
-                <line x1="200" y1="230" x2="320" y2="140" stroke="#1e88e5" stroke-width="2" marker-end="url(#arrowhead5)"/>
-                <line x1="330" y1="130" x2="210" y2="220" stroke="#1e88e5" stroke-width="2" marker-end="url(#arrowhead5)"/>
-                <text x="260" y="165" font-size="11" fill="#1e88e5">push/pull</text>
-                
-                <line x1="400" y1="290" x2="400" y2="130" stroke="#fb8c00" stroke-width="2" marker-end="url(#arrowhead5)"/>
-                <line x1="410" y1="140" x2="410" y2="280" stroke="#fb8c00" stroke-width="2" marker-end="url(#arrowhead5)"/>
-                <text x="430" y="210" font-size="11" fill="#fb8c00">push/pull</text>
-                
-                <line x1="600" y1="230" x2="480" y2="140" stroke="#43a047" stroke-width="2" marker-end="url(#arrowhead5)"/>
-                <line x1="470" y1="130" x2="590" y2="220" stroke="#43a047" stroke-width="2" marker-end="url(#arrowhead5)"/>
-                <text x="540" y="165" font-size="11" fill="#43a047">push/pull</text>
-            </svg>
+        <!-- Section 4: Collaboration -->
+        <div class="section">
+            <h2 class="section-title">👥 Team Collaboration</h2>
             
             <div class="explanation">
-                <h3>Team Collaboration Scenarios:</h3>
-                <p><strong>Scenario 1: Simple Sync</strong><br>
-                Alice pushes → Bob pulls → Everyone synchronized</p>
-                
-                <p><strong>Scenario 2: Merge Conflicts</strong><br>
-                Alice and Bob edit same file → Bob pushes first → Alice must pull, resolve conflicts, then push</p>
-                
-                <p><strong>Scenario 3: Feature Branches</strong><br>
-                Each dev works on separate branches → Submit Pull Requests → Merge after review</p>
+                <h3>Working in a Team:</h3>
+                <p><strong>Rule 1:</strong> Always pull before you start working</p>
+                <p><strong>Rule 2:</strong> Commit frequently with clear messages</p>
+                <p><strong>Rule 3:</strong> Push regularly to share your work</p>
+                <p><strong>Rule 4:</strong> Create Pull Requests for review</p>
+                <p><strong>Rule 5:</strong> Communicate with your team</p>
+                <p><strong>Rule 6:</strong> Never force push to shared branches</p>
             </div>
             
             <div class="command-box">
-# Collaboration commands<br>
-git pull origin main               # Get latest<br>
-git push origin main               # Share changes<br>
-git fetch origin                   # Check updates<br>
+# Start your day<br>
+git pull origin main<br>
 <br>
-# Resolve conflicts<br>
-git pull origin main               # Conflict!<br>
-# Edit files manually<br>
+# Work on feature<br>
+git checkout -b feature/login<br>
+# ... code code code ...<br>
 git add .<br>
-git commit -m "Resolve conflict"<br>
-git push origin main
-            </div>
-            
-            <div class="key-point">
-                <strong>🤝 Team Rules:</strong> Always pull before starting work. Use descriptive commit messages. Review code before merging. Communicate with team!
+git commit -m "Add login page"<br>
+<br>
+# Share your work<br>
+git push origin feature/login<br>
+<br>
+# Handle conflicts<br>
+git pull origin main  # Conflict!<br>
+# Fix conflicts manually<br>
+git add .<br>
+git commit -m "Resolve conflicts"<br>
+git push
             </div>
         </div>
         
-        <!-- Beginners Guide -->
-        <div id="beginners" class="diagram-container">
-            <h2 class="diagram-title">🎓 Beginners Guide to Git</h2>
+        <!-- Section 5: Beginners -->
+        <div class="section">
+            <h2 class="section-title">🎓 Beginners Guide</h2>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 15px; color: white;">
-                    <h3 style="color: white; margin-bottom: 15px; font-size: 1.5em;">✅ DO These Things</h3>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <strong style="display: block; margin-bottom: 8px;">1. Write Clear Commit Messages</strong>
-                        <code style="font-size: 12px; display: block; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-top: 8px;">
-                            ✓ "Add user login feature"<br>
-                            ✓ "Fix navigation bug in mobile"<br>
-                            ✓ "Update README with setup steps"
-                        </code>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <strong style="display: block; margin-bottom: 8px;">2. Commit Often, Push Regularly</strong>
-                        <p style="font-size: 13px; margin-top: 8px;">Save your work frequently. Don't wait until everything is perfect!</p>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <strong style="display: block; margin-bottom: 8px;">3. Always Pull Before You Start</strong>
-                        <code style="font-size: 12px; display: block; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-top: 8px;">
-                            git pull origin main
-                        </code>
-                        <p style="font-size: 13px; margin-top: 8px;">Get latest changes before starting work!</p>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <strong style="display: block; margin-bottom: 8px;">4. Use .gitignore File</strong>
-                        <p style="font-size: 13px; margin-top: 8px;">Don't commit sensitive files, large files, or temporary files</p>
-                        <code style="font-size: 12px; display: block; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-top: 8px;">
-                            node_modules/<br>
-                            .env<br>
-                            *.log<br>
-                            .DS_Store
-                        </code>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
-                        <strong style="display: block; margin-bottom: 8px;">5. Check Status Before Commit</strong>
-                        <code style="font-size: 12px; display: block; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-top: 8px;">
-                            git status<br>
-                            git diff
-                        </code>
-                        <p style="font-size: 13px; margin-top: 8px;">Review what you're about to commit!</p>
-                    </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px; border-radius: 15px; color: white;">
+                    <h3 style="color: white; margin-bottom: 15px;">✅ DO These Things</h3>
+                    <ul style="line-height: 2; font-size: 14px;">
+                        <li>✓ Write clear commit messages</li>
+                        <li>✓ Commit often, push regularly</li>
+                        <li>✓ Always pull before starting</li>
+                        <li>✓ Use .gitignore for sensitive files</li>
+                        <li>✓ Check status before committing</li>
+                        <li>✓ Create branches for features</li>
+                        <li>✓ Review code before pushing</li>
+                    </ul>
                 </div>
                 
-                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 25px; border-radius: 15px; color: white;">
-                    <h3 style="color: white; margin-bottom: 15px; font-size: 1.5em;">❌ DON'T Do These</h3>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <strong style="display: block; margin-bottom: 8px;">1. Bad Commit Messages</strong>
-                        <code style="font-size: 12px; display: block; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-top: 8px;">
-                            ✗ "update"<br>
-                            ✗ "asdf"<br>
-                            ✗ "fixed stuff"<br>
-                            ✗ "final version"
-                        </code>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <strong style="display: block; margin-bottom: 8px;">2. Commit Passwords or API Keys</strong>
-                        <p style="font-size: 13px; margin-top: 8px;">NEVER commit .env files, passwords, or secret keys. Use .gitignore!</p>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <strong style="display: block; margin-bottom: 8px;">3. Commit Large Binary Files</strong>
-                        <p style="font-size: 13px; margin-top: 8px;">Don't commit videos, large images, or compiled files. Use Git LFS if needed.</p>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <strong style="display: block; margin-bottom: 8px;">4. Force Push to Shared Branches</strong>
-                        <code style="font-size: 12px; display: block; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-top: 8px;">
-                            git push --force  # ⚠️ DANGEROUS!
-                        </code>
-                        <p style="font-size: 13px; margin-top: 8px;">This can destroy team members' work!</p>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
-                        <strong style="display: block; margin-bottom: 8px;">5. Work Directly on Main Branch</strong>
-                        <p style="font-size: 13px; margin-top: 8px;">Always create feature branches. Keep main stable!</p>
-                    </div>
+                <div style="background: linear-gradient(135deg, #f093fb, #f5576c); padding: 20px; border-radius: 15px; color: white;">
+                    <h3 style="color: white; margin-bottom: 15px;">❌ DON'T Do These</h3>
+                    <ul style="line-height: 2; font-size: 14px;">
+                        <li>✗ Bad messages like "update", "fix"</li>
+                        <li>✗ Commit passwords or API keys</li>
+                        <li>✗ Commit large binary files</li>
+                        <li>✗ Force push to shared branches</li>
+                        <li>✗ Work directly on main branch</li>
+                        <li>✗ Ignore merge conflicts</li>
+                        <li>✗ Commit node_modules/</li>
+                    </ul>
                 </div>
             </div>
+            
+            <div class="command-box" style="margin-top: 20px;">
+# First time setup<br>
+git config --global user.name "Your Name"<br>
+git config --global user.email "your@email.com"<br>
+<br>
+# Create .gitignore<br>
+echo "node_modules/" >> .gitignore<br>
+echo ".env" >> .gitignore<br>
+echo "*.log" >> .gitignore
+            </div>
+        </div>
+        
+        <!-- Section 6: Pro Tips -->
+        <div class="section">
+            <h2 class="section-title">🏆 Professional Tips</h2>
             
             <div class="explanation">
-                <h3>🎯 Your First Day with Git - Step by Step:</h3>
-                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 15px; border-left: 5px solid #667eea;">
-                    <p><strong>Step 1:</strong> Install Git from <a href="https://git-scm.com" target="_blank">git-scm.com</a></p>
-                    <p><strong>Step 2:</strong> Configure your identity</p>
-                    <div class="command-box" style="margin: 10px 0;">
-git config --global user.name "Your Name"<br>
-git config --global user.email "your@email.com"
-                    </div>
-                    <p><strong>Step 3:</strong> Create a GitHub account at <a href="https://github.com" target="_blank">github.com</a></p>
-                    <p><strong>Step 4:</strong> Create your first repository on GitHub</p>
-                    <p><strong>Step 5:</strong> Clone it to your computer and start coding!</p>
-                </div>
-            </div>
-            
-            <div class="key-point">
-                <strong>💡 Remember:</strong> Everyone makes mistakes with Git at first. Don't worry! You can almost always undo things. The important thing is to keep learning!
-            </div>
-        </div>
-        
-        <!-- Professional Tips -->
-        <div id="professional" class="diagram-container">
-            <h2 class="diagram-title">🏆 Professional Git Practices</h2>
-            
-            <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 30px; border-radius: 15px; margin: 20px 0; color: white;">
-                <h3 style="color: white; font-size: 1.6em; margin-bottom: 20px;">⚡ Advanced Techniques</h3>
+                <h3>Advanced Techniques:</h3>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px);">
-                        <h4 style="color: #fff; margin-bottom: 12px;">🎯 Semantic Commit Messages</h4>
-                        <p style="font-size: 13px; margin-bottom: 10px;">Use conventional commits format:</p>
-                        <div class="command-box" style="margin: 10px 0;">
+                <p><strong>1. Semantic Commits:</strong></p>
+                <div class="command-box">
 feat: add user authentication<br>
-fix: resolve login redirect bug<br>
-docs: update API documentation<br>
-style: format code with prettier<br>
-refactor: simplify user service<br>
-test: add unit tests for auth<br>
+fix: resolve login bug<br>
+docs: update README<br>
+style: format code<br>
+refactor: simplify function<br>
+test: add unit tests<br>
 chore: update dependencies
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px);">
-                        <h4 style="color: #fff; margin-bottom: 12px;">🌿 Git Flow Strategy</h4>
-                        <p style="font-size: 13px; margin-bottom: 10px;">Professional branching model:</p>
-                        <ul style="font-size: 13px; line-height: 2;">
-                            <li><strong>main:</strong> Production code</li>
-                            <li><strong>develop:</strong> Development branch</li>
-                            <li><strong>feature/*:</strong> New features</li>
-                            <li><strong>hotfix/*:</strong> Urgent fixes</li>
-                            <li><strong>release/*:</strong> Release prep</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px);">
-                        <h4 style="color: #fff; margin-bottom: 12px;">🔄 Interactive Rebase</h4>
-                        <p style="font-size: 13px; margin-bottom: 10px;">Clean up commit history:</p>
-                        <div class="command-box" style="margin: 10px 0;">
-git rebase -i HEAD~3<br>
-# Squash, reword, reorder commits<br>
-# Keep history clean & readable
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px);">
-                        <h4 style="color: #fff; margin-bottom: 12px;">🔍 Git Hooks</h4>
-                        <p style="font-size: 13px; margin-bottom: 10px;">Automate checks before commits:</p>
-                        <ul style="font-size: 13px; line-height: 2;">
-                            <li>Pre-commit: Run linters</li>
-                            <li>Pre-push: Run tests</li>
-                            <li>Commit-msg: Validate format</li>
-                        </ul>
-                    </div>
                 </div>
-            </div>
-            
-            <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 20px 0;">
-                <h3 style="color: #667eea; margin-bottom: 20px;">🛠️ Pro Commands You Should Know</h3>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div>
-                        <h4 style="color: #2196f3; margin-bottom: 10px;">Undo Mistakes</h4>
-                        <div class="command-box">
-# Undo last commit (keep changes)<br>
-git reset --soft HEAD~1<br>
-<br>
-# Discard local changes<br>
-git checkout -- file.txt<br>
-<br>
-# Revert a commit (safe)<br>
-git revert &lt;commit-hash&gt;
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h4 style="color: #4caf50; margin-bottom: 10px;">Stash Work</h4>
-                        <div class="command-box">
-# Save work temporarily<br>
-git stash<br>
-<br>
-# See stashed changes<br>
-git stash list<br>
-<br>
-# Apply stashed changes<br>
-git stash pop
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h4 style="color: #ff9800; margin-bottom: 10px;">Cherry Pick</h4>
-                        <div class="command-box">
-# Apply specific commit<br>
-git cherry-pick &lt;commit-hash&gt;<br>
-<br>
-# Useful for selective merges
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h4 style="color: #e91e63; margin-bottom: 10px;">Search History</h4>
-                        <div class="command-box">
-# Search in commit messages<br>
-git log --grep="bug"<br>
-<br>
-# Find who changed a line<br>
-git blame file.txt
-                        </div>
-                    </div>
+                <p><strong>2. Git Stash:</strong> Temporarily save work</p>
+                <div class="command-box">
+git stash              # Save changes<br>
+git stash list         # See stashes<br>
+git stash pop          # Apply & remove<br>
+git stash apply        # Apply & keep
                 </div>
-            </div>
-            
-            <div class="key-point">
-                <strong>🎓 Pro Tip:</strong> Use Git aliases to save time! Add to ~/.gitconfig:
-                <div class="command-box" style="margin-top: 10px;">
-[alias]<br>
-&nbsp;&nbsp;st = status<br>
-&nbsp;&nbsp;co = checkout<br>
-&nbsp;&nbsp;br = branch<br>
-&nbsp;&nbsp;cm = commit -m<br>
-&nbsp;&nbsp;lg = log --oneline --graph --all
+                
+                <p><strong>3. Interactive Rebase:</strong> Clean history</p>
+                <div class="command-box">
+git rebase -i HEAD~3   # Last 3 commits<br>
+# pick, squash, reword, edit
+                </div>
+                
+                <p><strong>4. Git Aliases:</strong> Save time</p>
+                <div class="command-box">
+git config --global alias.st status<br>
+git config --global alias.co checkout<br>
+git config --global alias.br branch<br>
+git config --global alias.cm "commit -m"
                 </div>
             </div>
         </div>
         
-        <!-- Project Best Practices -->
-        <div id="projects" class="diagram-container">
-            <h2 class="diagram-title">📦 Project Do's & Don'ts</h2>
+        <!-- Section 7: Projects -->
+        <div class="section">
+            <h2 class="section-title">📦 Project Best Practices</h2>
             
-            <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 30px; border-radius: 15px; margin: 20px 0;">
-                <h3 style="color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); font-size: 1.8em; margin-bottom: 25px;">✅ Project Setup Checklist</h3>
+            <div class="explanation">
+                <h3>Essential Files:</h3>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
-                    <div style="background: rgba(255,255,255,0.95); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                        <h4 style="color: #667eea; margin-bottom: 15px;">📄 README.md</h4>
-                        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-                            • Project description<br>
-                            • Installation steps<br>
-                            • Usage examples<br>
-                            • Contributing guide<br>
-                            • License info
-                        </p>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.95); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                        <h4 style="color: #667eea; margin-bottom: 15px;">🚫 .gitignore</h4>
-                        <div class="command-box" style="font-size: 11px;">
+                <p><strong>1. README.md</strong> - Project documentation</p>
+                <p style="margin-left: 20px; font-size: 14px;">• What the project does<br>
+                • How to install<br>
+                • How to use<br>
+                • How to contribute</p>
+                
+                <p><strong>2. .gitignore</strong> - Files to ignore</p>
+                <div class="command-box">
 node_modules/<br>
 .env<br>
 .venv/<br>
@@ -750,143 +466,255 @@ __pycache__/<br>
 .DS_Store<br>
 dist/<br>
 build/
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.95); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                        <h4 style="color: #667eea; margin-bottom: 15px;">📋 LICENSE</h4>
-                        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-                            • MIT (permissive)<br>
-                            • Apache 2.0<br>
-                            • GPL (copyleft)<br>
-                            • Choose one!
-                        </p>
-                    </div>
                 </div>
-            </div>
-            
-            <div style="margin: 30px 0;">
-                <h3 style="color: #667eea; margin-bottom: 20px; font-size: 1.6em;">⚠️ Common Project Mistakes</h3>
                 
-                <div style="display: grid; gap: 15px;">
-                    <div style="background: #ffebee; padding: 20px; border-radius: 10px; border-left: 5px solid #f44336;">
-                        <h4 style="color: #c62828; margin-bottom: 10px;">❌ Committing node_modules/</h4>
-                        <p style="color: #333; font-size: 14px;">This folder can be HUGE (100MB+). Always add to .gitignore!</p>
-                        <div class="command-box" style="margin-top: 10px;">
-# If already committed, remove it:<br>
-git rm -r --cached node_modules<br>
-echo "node_modules/" >> .gitignore<br>
-git commit -m "Remove node_modules"
-                        </div>
-                    </div>
-                    
-                    <div style="background: #fff3e0; padding: 20px; border-radius: 10px; border-left: 5px solid #ff9800;">
-                        <h4 style="color: #e65100; margin-bottom: 10px;">❌ Committing .env Files</h4>
-                        <p style="color: #333; font-size: 14px;">Contains sensitive API keys and passwords!</p>
-                        <div class="command-box" style="margin-top: 10px;">
-# Create .env.example instead:<br>
-DATABASE_URL=your_database_url_here<br>
-API_KEY=your_api_key_here<br>
-<br>
-# Add .env to .gitignore
-                        </div>
-                    </div>
-                    
-                    <div style="background: #f3e5f5; padding: 20px; border-radius: 10px; border-left: 5px solid #9c27b0;">
-                        <h4 style="color: #6a1b9a; margin-bottom: 10px;">❌ No Branch Protection</h4>
-                        <p style="color: #333; font-size: 14px;">Enable branch protection on GitHub for main branch:</p>
-                        <ul style="color: #333; font-size: 14px; margin-top: 10px; line-height: 2;">
-                            <li>Require pull request reviews</li>
-                            <li>Require status checks to pass</li>
-                            <li>Prevent force pushes</li>
-                            <li>Require signed commits</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-left: 5px solid #4caf50;">
-                        <h4 style="color: #2e7d32; margin-bottom: 10px;">✅ Good Project Structure</h4>
-                        <div class="command-box" style="margin-top: 10px;">
-project/<br>
-├── README.md<br>
-├── .gitignore<br>
-├── LICENSE<br>
-├── package.json / requirements.txt<br>
-├── src/<br>
-│   ├── components/<br>
-│   └── utils/<br>
-├── tests/<br>
-└── docs/
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: #e3f2fd; padding: 25px; border-radius: 15px; margin: 20px 0;">
-                <h3 style="color: #1976d2; margin-bottom: 20px;">🎯 Team Project Workflow</h3>
+                <p><strong>3. LICENSE</strong> - Usage rights</p>
+                <p style="margin-left: 20px; font-size: 14px;">• MIT (permissive)<br>
+                • Apache 2.0<br>
+                • GPL (copyleft)</p>
                 
-                <div style="display: flex; gap: 20px; align-items: center;">
-                    <div style="flex: 1;">
-                        <ol style="font-size: 15px; line-height: 2.5; color: #333;">
-                            <li><strong>Create Issue:</strong> Describe what you'll work on</li>
-                            <li><strong>Create Branch:</strong> git checkout -b feature/issue-123</li>
-                            <li><strong>Write Code:</strong> Make changes and test</li>
-                            <li><strong>Commit Often:</strong> Small, focused commits</li>
-                            <li><strong>Push Branch:</strong> git push origin feature/issue-123</li>
-                            <li><strong>Open PR:</strong> Request code review</li>
-                            <li><strong>Review & Merge:</strong> After approval</li>
-                            <li><strong>Delete Branch:</strong> Keep repo clean</li>
-                        </ol>
+                <h3 style="margin-top: 20px;">Common Mistakes:</h3>
+                <div class="key-point">
+                    <strong>❌ Mistake 1:</strong> Committing node_modules (can be 100MB+!)<br>
+                    <strong>✅ Solution:</strong> Add to .gitignore
+                </div>
+                
+                <div class="key-point">
+                    <strong>❌ Mistake 2:</strong> Committing .env files with passwords<br>
+                    <strong>✅ Solution:</strong> Add to .gitignore, use .env.example
+                </div>
+                
+                <div class="key-point">
+                    <strong>❌ Mistake 3:</strong> No branch protection<br>
+                    <strong>✅ Solution:</strong> Enable on GitHub Settings
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 8: Troubleshooting -->
+        <div class="section">
+            <h2 class="section-title">🚨 Troubleshooting</h2>
+            
+            <div class="explanation">
+                <h3>Common Problems & Solutions:</h3>
+                
+                <div class="key-point" style="background: #ffebee; border-color: #f44336;">
+                    <strong>Problem:</strong> "I committed to wrong branch!"<br>
+                    <div class="command-box" style="margin-top: 10px;">
+git log  # Copy commit hash<br>
+git checkout correct-branch<br>
+git cherry-pick &lt;hash&gt;<br>
+git checkout wrong-branch<br>
+git reset --hard HEAD~1
+                    </div>
+                </div>
+                
+                <div class="key-point" style="background: #fff3e0; border-color: #ff9800;">
+                    <strong>Problem:</strong> "Need to undo last commit!"<br>
+                    <div class="command-box" style="margin-top: 10px;">
+# Keep changes<br>
+git reset --soft HEAD~1<br>
+<br>
+# Discard changes<br>
+git reset --hard HEAD~1<br>
+<br>
+# Already pushed? Use revert<br>
+git revert HEAD
+                    </div>
+                </div>
+                
+                <div class="key-point" style="background: #f3e5f5; border-color: #9c27b0;">
+                    <strong>Problem:</strong> "Merge conflict!"<br>
+                    <div class="command-box" style="margin-top: 10px;">
+git pull  # Shows conflict<br>
+# Open file, find &lt;&lt;&lt;, ===, &gt;&gt;&gt; markers<br>
+# Edit file, keep what you want<br>
+# Remove markers<br>
+git add file.txt<br>
+git commit -m "Resolve conflict"<br>
+git push
+                    </div>
+                </div>
+                
+                <div class="key-point" style="background: #e8f5e9; border-color: #4caf50;">
+                    <strong>Problem:</strong> "Deleted file by mistake!"<br>
+                    <div class="command-box" style="margin-top: 10px;">
+# If not committed yet<br>
+git checkout -- filename.txt<br>
+<br>
+# If already committed<br>
+git log --all -- filename.txt<br>
+git checkout &lt;hash&gt; -- filename.txt
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 9: Interview -->
+        <div class="section">
+            <h2 class="section-title">💼 Interview Questions</h2>
+            
+            <div class="explanation">
+                <h3>Top Git Interview Questions:</h3>
+                
+                <div class="key-point">
+                    <strong>Q1: What is Git?</strong><br>
+                    <p style="margin-top: 10px; font-size: 14px;">Git is a distributed version control system for tracking changes in source code. It allows multiple developers to work together, maintains complete history, and enables branching/merging.</p>
+                </div>
+                
+                <div class="key-point">
+                    <strong>Q2: Git vs GitHub?</strong><br>
+                    <p style="margin-top: 10px; font-size: 14px;">Git is the tool (software on your PC). GitHub is the platform (cloud hosting service). Like Microsoft Word vs Google Docs.</p>
+                </div>
+                
+                <div class="key-point">
+                    <strong>Q3: git pull vs git fetch?</strong><br>
+                    <p style="margin-top: 10px; font-size: 14px;"><strong>fetch:</strong> Download changes only, don't merge<br>
+                    <strong>pull:</strong> Download AND merge automatically (fetch + merge)</p>
+                </div>
+                
+                <div class="key-point">
+                    <strong>Q4: What is a merge conflict?</strong><br>
+                    <p style="margin-top: 10px; font-size: 14px;">When two branches modify same part of file differently. Git can't auto-decide. You must manually choose which changes to keep.</p>
+                </div>
+                
+                <div class="key-point">
+                    <strong>Q5: git merge vs git rebase?</strong><br>
+                    <p style="margin-top: 10px; font-size: 14px;"><strong>merge:</strong> Creates merge commit, preserves history<br>
+                    <strong>rebase:</strong> Linear history, cleaner but rewrites commits<br>
+                    ⚠️ Never rebase shared branches!</p>
+                </div>
+                
+                <div class="key-point">
+                    <strong>Q6: What is HEAD?</strong><br>
+                    <p style="margin-top: 10px; font-size: 14px;">Pointer to current branch reference. Represents "where you are" in repository history.</p>
+                </div>
+                
+                <div class="key-point">
+                    <strong>Q7: Explain git stash</strong><br>
+                    <p style="margin-top: 10px; font-size: 14px;">Temporarily saves uncommitted changes so you can switch branches. Reapply them later with git stash pop.</p>
+                </div>
+                
+                <div class="key-point">
+                    <strong>Q8: What is .gitignore?</strong><br>
+                    <p style="margin-top: 10px; font-size: 14px;">File specifying which files/folders Git should ignore. Used for dependencies, build files, sensitive data.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 10: Cheatsheet -->
+        <div class="section">
+            <h2 class="section-title">📋 Quick Cheatsheet</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h3 style="color: #667eea;">🚀 Setup & Config</h3>
+                    <div class="command-box">
+git config --global user.name "Name"<br>
+git config --global user.email "email"<br>
+git init<br>
+git clone &lt;url&gt;
                     </div>
                     
-                    <div style="flex: 1; background: white; padding: 20px; border-radius: 10px;">
-                        <h4 style="color: #1976d2; margin-bottom: 15px;">📝 PR Template</h4>
-                        <div class="command-box">
-## What does this PR do?<br>
-Brief description<br>
-<br>
-## Changes made:<br>
-- Added feature X<br>
-- Fixed bug Y<br>
-<br>
-## Testing:<br>
-- [ ] Tested locally<br>
-- [ ] Added tests<br>
-<br>
-Closes #123
-                        </div>
+                    <h3 style="color: #667eea; margin-top: 20px;">📝 Basic</h3>
+                    <div class="command-box">
+git status<br>
+git add file.txt<br>
+git add .<br>
+git commit -m "message"<br>
+git log<br>
+git log --oneline
+                    </div>
+                    
+                    <h3 style="color: #667eea; margin-top: 20px;">🌿 Branching</h3>
+                    <div class="command-box">
+git branch<br>
+git branch name<br>
+git checkout name<br>
+git checkout -b name<br>
+git merge name<br>
+git branch -d name
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: #667eea;">🔄 Remote</h3>
+                    <div class="command-box">
+git remote add origin &lt;url&gt;<br>
+git remote -v<br>
+git fetch origin<br>
+git pull origin main<br>
+git push origin main<br>
+git push -u origin main
+                    </div>
+                    
+                    <h3 style="color: #667eea; margin-top: 20px;">↩️ Undo</h3>
+                    <div class="command-box">
+git reset HEAD file<br>
+git checkout -- file<br>
+git reset --soft HEAD~1<br>
+git reset --hard HEAD~1<br>
+git revert &lt;hash&gt;<br>
+git clean -fd
+                    </div>
+                    
+                    <h3 style="color: #667eea; margin-top: 20px;">📦 Stash</h3>
+                    <div class="command-box">
+git stash<br>
+git stash list<br>
+git stash pop<br>
+git stash apply<br>
+git stash drop<br>
+git stash clear
                     </div>
                 </div>
             </div>
             
-            <div class="key-point">
-                <strong>🏆 Golden Rule:</strong> "Commit early, commit often, push regularly, and always communicate with your team!"
+            <div style="margin-top: 30px; background: linear-gradient(135deg, #667eea, #764ba2); padding: 25px; border-radius: 15px; color: white;">
+                <h3 style="color: white; margin-bottom: 15px;">🎯 Daily Workflow</h3>
+                <div class="command-box">
+git pull origin main<br>
+git checkout -b feature/new-thing<br>
+# ... code code code ...<br>
+git add .<br>
+git commit -m "Add new feature"<br>
+git push origin feature/new-thing<br>
+# Create Pull Request on GitHub
+                </div>
+            </div>
+            
+            <div class="key-point" style="margin-top: 20px;">
+                <strong>💡 Pro Tip:</strong> Practice these commands daily. Muscle memory comes with repetition! Keep this cheatsheet handy. 🚀
             </div>
         </div>
         
     </div>
     
     <script>
-        const buttons = document.querySelectorAll('.nav-btn');
-        const containers = document.querySelectorAll('.diagram-container');
-        
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                const target = this.getAttribute('data-target');
-                
-                // Remove active from all buttons
-                buttons.forEach(btn => btn.classList.remove('active'));
-                
-                // Remove active from all containers
-                containers.forEach(container => container.classList.remove('active'));
-                
-                // Add active to clicked button
-                this.classList.add('active');
-                
-                // Add active to target container
-                const targetContainer = document.getElementById(target);
-                if (targetContainer) {
-                    targetContainer.classList.add('active');
-                }
+        function showSection(index) {
+            // Get all sections and buttons
+            const sections = document.querySelectorAll('.section');
+            const buttons = document.querySelectorAll('.nav-btn');
+            
+            // Hide all sections
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
-        });
+            
+            // Remove active from all buttons
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected section
+            sections[index].classList.add('active');
+            
+            // Activate clicked button
+            buttons[index].classList.add('active');
+            
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
+</body>
+</html>
