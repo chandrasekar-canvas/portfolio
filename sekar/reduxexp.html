@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redux Complete Tutorial - Tamil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        /* Grid Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Collapsible Section */
+        .collapsible {
+            margin-bottom: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .collapsible:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .collapsible-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-header:hover {
+            opacity: 0.9;
+            padding-left: 25px;
+        }
+
+        .collapsible-header .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .collapsible-header .arrow {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: #f9f9f9;
+        }
+
+        .collapsible.active .collapsible-content {
+            max-height: 2000px;
+            padding: 20px;
+        }
+
+        /* Step Box Styles */
+        .step-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-box:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-box.highlight {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(253, 203, 110, 0.5);
+            border-left-color: #fdcb6e;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(253, 203, 110, 0.5);
+            }
+            50% {
+                box-shadow: 0 10px 40px rgba(253, 203, 110, 0.8);
+            }
+        }
+
+        .step-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 5px;
+        }
+
+        .step-description {
+            color: #636e72;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #2d3748;
+            color: #68d391;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin-top: 10px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-block .comment {
+            color: #a0aec0;
+        }
+
+        .code-block .keyword {
+            color: #f687b3;
+        }
+
+        .code-block .string {
+            color: #fbd38d;
+        }
+
+        /* Details Expandable */
+        details {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+        }
+
+        details summary {
+            font-weight: bold;
+            color: #667eea;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        details[open] summary {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        details p {
+            color: #636e72;
+            line-height: 1.6;
+            margin-top: 5px;
+        }
+
+        /* Current State Display */
+        .state-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .state-display .fruit-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .state-display .count {
+            font-size: 4em;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .state-display .label {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        /* Cart Display */
+        .cart-display {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .cart-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #1e88e5;
+            margin-bottom: 15px;
+        }
+
+        .cart-item {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .cart-item:hover {
+            transform: translateX(5px);
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+        }
+
+        /* Activity Log */
+        .log-container {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .log-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .log-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .log-container::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 10px;
+        }
+
+        .log-item {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid;
+            animation: slideInRight 0.4s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .log-message {
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .log-time {
+            font-size: 0.85em;
+            color: #666;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+
+        .empty-log {
+            text-align: center;
+            padding: 60px 20px;
+            color: #95a5a6;
+        }
+
+        .empty-log-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 5px solid #4caf50;
+        }
+
+        .info-box-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+
+        .info-box-content {
+            color: #1b5e20;
+            line-height: 1.6;
+        }
+
+        /* Color variants for different steps */
+        .color-red {
+            background-color: rgba(255, 107, 107, 0.2);
+            border-left-color: #ff6b6b;
+        }
+
+        .color-teal {
+            background-color: rgba(78, 205, 196, 0.2);
+            border-left-color: #4ecdc4;
+        }
+
+        .color-green {
+            background-color: rgba(149, 225, 211, 0.2);
+            border-left-color: #95e1d3;
+        }
+
+        .color-pink {
+            background-color: rgba(243, 129, 129, 0.2);
+            border-left-color: #f38181;
+        }
+
+        .color-purple {
+            background-color: rgba(170, 150, 218, 0.2);
+            border-left-color: #aa96da;
+        }
+
+        .color-yellow {
+            background-color: rgba(252, 186, 211, 0.2);
+            border-left-color: #fcbad3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .state-display {
+                padding: 30px 20px;
+            }
+
+            .state-display .count {
+                font-size: 3em;
+            }
+
+            .btn {
+                padding: 15px 20px;
+                font-size: 1em;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style='display:flex; align-items:self-start; justify-content:space-between; background:#2ecc71; padding:5px; border-radius:10px;'>
+            <button class="btn btn-info"><a href="./introredux.html">Redux Intro</a></button>
+            <h1>Redux flow Game</h1>
+            <button class="btn btn-info"><a href="./reduxexp.html">Redux Explanation Game</a></button>
+        </div>
+        <marguee ><h3 style='margin-top:10px; text-align:center;'> Hi Guys I am <b style='color:#e74c3c' class="highlight">Chandrsekar.D</b> My Creativity Cracy wipe Coding. please Understand First i think Help for this concept.</h3></marguee>
+        <!-- Header -->
+        <div class="header">
+            <h1>🎯 Redux Complete Tutorial</h1>
+            <p>Step-by-step-ஆ Redux-ஐ கற்போம்! Click பண்ணி sections-ஐ explore பண்ணுங்க!</p>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Left Column - Redux Flow & Code -->
+            <div>
+                <!-- Redux Flow Steps -->
+                <div class="card">
+                    <div class="card-title">
+                        <span>🔄</span>
+                        Redux Flow - 6 Steps
+                    </div>
+
+                    <div class="collapsible active">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span><span class="icon">📮</span> Redux Flow விளக்கம்</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <!-- Step 1 -->
+                            <div class="step-box" id="step1">
+                                <div class="step-icon">📦</div>
+                                <div class="step-title">1. Component (பெட்டி)</div>
+                                <div class="step-description">User button click பண்றாங்க</div>
+                                <details>
+                                    <summary>விளக்கம் பாரு...</summary>
+                                    <p>Component-ல user ஏதாவது action செய்யுறாங்க. Button click, form submit, etc. இது தான் starting point!</p>
+                                </details>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="step-box" id="step2">
+                                <div class="step-icon">✍️</div>
+                                <div class="step-title">2. Action (அஞ்சல் அட்டை)</div>
+                                <div class="step-description">என்ன செய்யணும்னு எழுதுது</div>
+                                <div class="code-block">
+{ type: 'ADD_FRUIT' }
+                                </div>
+                                <details>
+                                    <summary>விளக்கம் பாரு...</summary>
+                                    <p>Action ஒரு plain JavaScript object. அதுல 'type' மற்றும் optional-ஆ 'payload' இருக்கும்.</p>
+                                </details>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="step-box" id="step3">
+                                <div class="step-icon">🚶‍♂️</div>
+                                <div class="step-title">3. Dispatch (தபால்காரர்)</div>
+                                <div class="step-description">Action-ஐ Store-க்கு எடுத்துக்கிட்டு போறார்</div>
+                                <div class="code-block">
+store.dispatch(action)
+                                </div>
+                                <details>
+                                    <summary>விளக்கம் பாரு...</summary>
+                                    <p>dispatch() function action-ஐ store-க்கு அனுப்பும். இது Redux-ல state மாத்த ஒரே வழி!</p>
+                                </details>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="step-box" id="step4">
+                                <div class="step-icon">📚</div>
+                                <div class="step-title">4. Reducer (விதி புத்தகம்)</div>
+                                <div class="step-description">Action-ஐ படிச்சு state-ஐ மாத்துது</div>
+                                <div class="code-block">
+<span class="keyword">case</span> 'ADD_FRUIT': <span class="keyword">return</span> fruits + <span class="string">1</span>
+                                </div>
+                                <details>
+                                    <summary>விளக்கம் பாரு...</summary>
+                                    <p>Reducer ஒரு pure function. Previous state-ஐயும் action-ஐயும் வாங்கி, new state return பண்ணும்.</p>
+                                </details>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div class="step-box" id="step5">
+                                <div class="step-icon">🏛️</div>
+                                <div class="step-title">5. Store (அஞ்சல் அலுவலகம்)</div>
+                                <div class="step-description">புதிய state save ஆகுது</div>
+                                <details>
+                                    <summary>விளக்கம் பாரு...</summary>
+                                    <p>Store reducer-ல இருந்து வர புதிய state-ஐ save பண்ணுது. இது application-ல single source of truth!</p>
+                                </details>
+                            </div>
+
+                            <!-- Step 6 -->
+                            <div class="step-box" id="step6">
+                                <div class="step-icon">✨</div>
+                                <div class="step-title">6. UI Update (Screen மாறும்)</div>
+                                <div class="step-description">Component-க்கு புதிய value தெரியும்</div>
+                                <details>
+                                    <summary>விளக்கம் பாரு...</summary>
+                                    <p>Store மாறினதும் subscribe பண்ணிருக்க components-க்கு notification போகும். React re-render ஆகும்!</p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Examples -->
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-title">
+                        <span>💻</span>
+                        Code Examples
+                    </div>
+
+                    <!-- Store Setup -->
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span><span class="icon">🏛️</span> 1. Store Setup</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="code-block">
+<span class="keyword">const</span> store = <span class="keyword">new</span> SimpleStore(fruitReducer);
+
+<span class="comment">// Store-ல 3 main methods:</span>
+store.getState()    <span class="comment">// Current state-ஐ படிக்க</span>
+store.dispatch()    <span class="comment">// Action அனுப்ப</span>
+store.subscribe()   <span class="comment">// Changes-க்கு listen பண்ண</span>
+                            </div>
+                            <div class="info-box">
+                                <div class="info-box-title">💡 புரிஞ்சுக்க:</div>
+                                <div class="info-box-content">Store தான் எல்லா data-வும் வைக்குற இடம். ஒரு app-க்கு ஒரே ஒரு store தான்!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reducer Function -->
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span><span class="icon">📚</span> 2. Reducer Function</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="code-block">
+<span class="keyword">function</span> fruitReducer(state = initialState, action) {
+  <span class="keyword">switch</span>(action.type) {
+    <span class="keyword">case</span> <span class="string">'ADD_FRUIT'</span>:
+      <span class="keyword">return</span> { 
+        ...state, 
+        fruits: state.fruits + <span class="string">1</span>
+      };
+    <span class="keyword">case</span> <span class="string">'REMOVE_FRUIT'</span>:
+      <span class="keyword">return</span> { 
+        ...state, 
+        fruits: state.fruits - <span class="string">1</span>
+      };
+    <span class="keyword">default</span>:
+      <span class="keyword">return</span> state;
+  }
+}
+                            </div>
+                            <div class="info-box">
+                                <div class="info-box-title">💡 முக்கியம்:</div>
+                                <div class="info-box-content">Reducer pure function ஆக இருக்கணும். Previous state-ஐ மாத்தாம புதுசா return பண்ணணும்!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Creator -->
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span><span class="icon">✍️</span> 3. Action Creator</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="code-block">
+<span class="comment">// Simple action creator</span>
+<span class="keyword">const</span> addFruit = () => ({ 
+  type: <span class="string">'ADD_FRUIT'</span>
+});
+
+<span class="comment">// Action creator with payload</span>
+<span class="keyword">const</span> addToCart = (item) => ({ 
+  type: <span class="string">'ADD_TO_CART'</span>, 
+  payload: item 
+});
+
+<span class="comment">// Usage:</span>
+dispatch(addFruit());
+dispatch(addToCart(<span class="string">'🍎 Apple'</span>));
+                            </div>
+                            <div class="info-box">
+                                <div class="info-box-title">💡 Tips:</div>
+                                <div class="info-box-content">Action creators action objects-ஐ return பண்ற functions. இது code-ஐ reusable ஆக்கும்!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dispatch -->
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span><span class="icon">🚶‍♂️</span> 4. Dispatch Example</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="code-block">
+<span class="comment">// Direct dispatch</span>
+store.dispatch({ type: <span class="string">'ADD_FRUIT'</span> });
+
+<span class="comment">// With action creator</span>
+<span class="keyword">const</span> action = addFruit();
+store.dispatch(action);
+
+<span class="comment">// With payload</span>
+store.dispatch({
+  type: <span class="string">'ADD_TO_CART'</span>,
+  payload: <span class="string">'🍎 Apple'</span>
+});
+                            </div>
+                            <div class="info-box">
+                                <div class="info-box-title">💡 Remember:</div>
+                                <div class="info-box-content">dispatch() ஒரே வழி state-ஐ மாத்த. நேரடியா state modify பண்ணக்கூடாது!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Live Demo -->
+            <div>
+                <!-- Current State -->
+                <div class="card">
+                    <div class="card-title">
+                        <span>🏛️</span>
+                        Current Store State
+                    </div>
+                    <div class="state-display">
+                        <div class="fruit-icon">🍎</div>
+                        <div class="count" id="fruitCount">10</div>
+                        <div class="label">Fruits Available</div>
+                    </div>
+
+                    <div class="cart-display" id="cartDisplay" style="display: none;">
+                        <div class="cart-title">🛒 Cart Items: <span id="cartCount">0</span></div>
+                        <div id="cartItems"></div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-title">
+                        <span>🎮</span>
+                        Try Actions
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="handleAddFruit()" id="addBtn">
+                            <span>▶️</span>
+                            <span>Add Fruit (Step-by-Step)</span>
+                        </button>
+                        <button class="btn btn-danger" onclick="handleRemoveFruit()" id="removeBtn">
+                            <span>➖</span>
+                            <span>Remove Fruit</span>
+                        </button>
+                        <button class="btn btn-info" onclick="handleAddToCart()">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="handleReset()">
+                            <span>🔄</span>
+                            <span>Reset All</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Activity Log -->
+                <div class="card" style="margin-top: 20px;">
+                    <div class="collapsible active">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span><span class="icon">📋</span> Activity Log (Real-time)</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="log-container" id="logContainer">
+                                <div class="empty-log">
+                                    <div class="empty-log-icon">👆</div>
+                                    <p><strong>Button click பண்ணுங்க!</strong></p>
+                                    <p>Process-ஐ step-by-step பாருங்க!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // REDUX IMPLEMENTATION
+        // ============================================
+        
+        const initialState = {
+            fruits: 10,
+            cart: []
+        };
+
+        let state = { ...initialState };
+        let logs = [];
+        let isAnimating = false;
+        let currentStep = null;
+
+        // Reducer Function
+        function fruitReducer(state, action) {
+            switch(action.type) {
+                case 'ADD_FRUIT':
+                    return { ...state, fruits: state.fruits + 1 };
+                case 'REMOVE_FRUIT':
+                    return { ...state, fruits: state.fruits - 1 };
+                case 'ADD_TO_CART':
+                    return { ...state, cart: [...state.cart, action.payload] };
+                case 'RESET':
+                    return { ...initialState };
+                default:
+                    return state;
+            }
+        }
+
+        // Simple Store
+        const store = {
+            getState: () => state,
+            dispatch: (action) => {
+                state = fruitReducer(state, action);
+                updateUI();
+            }
+        };
+
+        // ============================================
+        // UI UPDATE FUNCTIONS
+        // ============================================
+
+        function updateUI() {
+            // Update fruit count
+            document.getElementById('fruitCount').textContent = state.fruits;
+            
+            // Update cart
+            const cartDisplay = document.getElementById('cartDisplay');
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            
+            if (state.cart.length > 0) {
+                cartDisplay.style.display = 'block';
+                cartCount.textContent = state.cart.length;
+                cartItems.innerHTML = state.cart.map((item, idx) => 
+                    `<div class="cart-item">${item}</div>`
+                ).join('');
+            } else {
+                cartDisplay.style.display = 'none';
+            }
+
+            // Update remove button state
+            document.getElementById('removeBtn').disabled = state.fruits === 0;
+        }
+
+        // ============================================
+        // LOGGING FUNCTIONS
+        // ============================================
+
+        function addLog(step, message, color) {
+            const time = new Date().toLocaleTimeString();
+            logs.unshift({ step, message, color, time });
+            
+            if (logs.length > 15) logs.pop();
+            
+            renderLogs();
+        }
+
+        function renderLogs() {
+            const container = document.getElementById('logContainer');
+            
+            if (logs.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-log">
+                        <div class="empty-log-icon">👆</div>
+                        <p><strong>Button click பண்ணுங்க!</strong></p>
+                        <p>Process-ஐ step-by-step பாருங்க!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = logs.map(log => `
+                <div class="log-item" style="background-color: ${log.color}30; border-left-color: ${log.color}">
+                    <div class="log-message">${log.message}</div>
+                    <div class="log-time">${log.time}</div>
+                </div>
+            `).join('');
+        }
+
+        // ============================================
+        // STEP HIGHLIGHTING
+        // ============================================
+
+        function highlightStep(stepNum) {
+            // Remove previous highlights
+            for (let i = 1; i <= 6; i++) {
+                const step = document.getElementById(`step${i}`);
+                if (step) step.classList.remove('highlight');
+            }
+
+            // Add new highlight
+            if (stepNum) {
+                const step = document.getElementById(`step${stepNum}`);
+                if (step) {
+                    step.classList.add('highlight');
+                    step.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }
+            
+            currentStep = stepNum;
+        }
+
+        // ============================================
+        // ACTION HANDLERS
+        // ============================================
+
+        function handleAddFruit() {
+            if (isAnimating) return;
+            
+            isAnimating = true;
+            const addBtn = document.getElementById('addBtn');
+            addBtn.classList.add('loading');
+            addBtn.disabled = true;
+
+            // Step 1: Component
+            highlightStep(1);
+            addLog(1, '📦 Component: "எனக்கு ஒரு fruit add பண்ணணும்!"', '#ff6b6b');
+
+            setTimeout(() => {
+                // Step 2: Action
+                highlightStep(2);
+                const action = { type: 'ADD_FRUIT' };
+                addLog(2, `✍️ Action Created: ${JSON.stringify(action)}`, '#4ecdc4');
+
+                setTimeout(() => {
+                    // Step 3: Dispatch
+                    highlightStep(3);
+                    addLog(3, '🚶‍♂️ Dispatcher: "Action-ஐ Store-க்கு கொண்டு போறேன்!"', '#95e1d3');
+
+                    setTimeout(() => {
+                        // Step 4: Reducer
+                        highlightStep(4);
+                        addLog(4, '📚 Reducer: "ADD_FRUIT கண்டுபிடிச்சேன்! State-ஐ மாத்துறேன்!"', '#f38181');
+
+                        setTimeout(() => {
+                            // Step 5: Store Update
+                            store.dispatch(action);
+                            highlightStep(5);
+                            addLog(5, `🏛️ Store Updated: Fruits = ${state.fruits}`, '#aa96da');
+
+                            setTimeout(() => {
+                                // Step 6: UI Update
+                                highlightStep(6);
+                                addLog(6, '✨ UI Re-render: Screen-ல புதிய value காட்டுது!', '#fcbad3');
+
+                                setTimeout(() => {
+                                    highlightStep(null);
+                                    isAnimating = false;
+                                    addBtn.classList.remove('loading');
+                                    addBtn.disabled = false;
+                                }, 1000);
+                            }, 500);
+                        }, 500);
+                    }, 500);
+                }, 500);
+            }, 500);
+        }
+
+        function handleRemoveFruit() {
+            if (state.fruits > 0) {
+                addLog(1, '📦 Component: "ஒரு fruit குறைக்கணும்!"', '#ff6b6b');
+                const action = { type: 'REMOVE_FRUIT' };
+                addLog(2, `✍️ Action: ${JSON.stringify(action)}`, '#4ecdc4');
+                store.dispatch(action);
+                addLog(5, `🏛️ Store: Fruits = ${state.fruits}`, '#aa96da');
+            }
+        }
+
+        function handleAddToCart() {
+            const item = `🍎 Apple #${state.cart.length + 1}`;
+            addLog(1, `📦 Component: "${item} cart-ல போடணும்!"`, '#ff6b6b');
+            const action = { type: 'ADD_TO_CART', payload: item };
+            store.dispatch(action);
+            addLog(5, '🏛️ Store: Cart updated!', '#aa96da');
+        }
+
+        function handleReset() {
+            addLog(1, '📦 Component: "எல்லாத்தையும் reset பண்ணணும்!"', '#ff6b6b');
+            store.dispatch({ type: 'RESET' });
+            logs = [];
+            renderLogs();
+            addLog(5, '🏛️ Store: Reset to initial state!', '#aa96da');
+        }
+
+        // ============================================
+        // COLLAPSIBLE TOGGLE
+        // ============================================
+
+        function toggleCollapsible(header) {
+            const collapsible = header.parentElement;
+            collapsible.classList.toggle('active');
+        }
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+
+        window.onload = function() {
+            updateUI();
+            renderLogs();
+        };
+    </script>
+</body>
+</html>
