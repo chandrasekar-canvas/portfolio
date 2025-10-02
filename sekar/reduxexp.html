@@ -566,6 +566,10 @@
                 transform: rotate(360deg);
             }
         }
+       #iam:hover {
+  cursor: pointer;
+  color: blue;
+}
     </style>
 </head>
 <body>
@@ -575,8 +579,13 @@
             <h1>Redux flow Game</h1>
             <button class="btn btn-info"  style='font-size:10px;'><a href="./reduxexp.html">Redux Explanation Game</a></button>
         </div>
-        <marguee ><h3 style='margin-top:10px; text-align:center;'> Hi Guys I am <b style='color:#e74c3c' class="highlight">Chandrsekar.D</b> My Creativity Cracy wipe Coding. please Understand First i think Help for this concept.</h3></marguee>
+        <marguee ><h3 style='margin-top:10px; text-align:center;'> Hi Guys I am <b style='color:#e74c3c' id="iam" id="iam" onmouseenter=" window.location.href = './portfolio/chandrasekar.html' class="highlight">Chandrsekar.D</b> My Creativity Cracy wipe Coding. please Understand First i think Help for this concept.</h3></marguee>
         <!-- Header -->
+        <script>
+document.getElementById('iam').addEventListener('mouseenter', function() {
+  window.location.href = './portfolio/chandrasekar.html';
+});
+</script>
         <div class="header">
             <h1>🎯 Redux Complete Tutorial</h1>
             <p>Step-by-step-ஆ Redux-ஐ கற்போம்! Click பண்ணி sections-ஐ explore பண்ணுங்க!</p>
@@ -1094,3 +1103,4 @@ store.dispatch({
 </body>
 
 </html>
+
