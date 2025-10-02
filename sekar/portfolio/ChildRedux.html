@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redux Animation - குழந்தைகளுக்கு</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .scene {
+            position: relative;
+            height: 400px;
+            background: #f0f4ff;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+            border: 3px solid #667eea;
+        }
+        .store {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        .store-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .store-label {
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .child {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .child:hover {
+            transform: scale(1.1);
+        }
+        .child1 { top: 50px; left: 50px; background: #ff6b6b; }
+        .child2 { top: 50px; right: 50px; background: #4ecdc4; }
+        .child3 { bottom: 50px; left: 50px; background: #95e1d3; }
+        .child4 { bottom: 50px; right: 50px; background: #f38181; }
+        
+        .chocolate {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            font-size: 1.5em;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+        .chocolate.flying {
+            opacity: 1;
+            animation: flyToChild 1.5s ease-in-out forwards;
+        }
+        @keyframes flyToChild {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(var(--mid-x), var(--mid-y)) scale(1.5) rotate(360deg);
+            }
+            100% {
+                transform: translate(var(--end-x), var(--end-y)) scale(0.5);
+                opacity: 0;
+            }
+        }
+        .counter {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .btn-child1 { background: #ff6b6b; color: white; }
+        .btn-child2 { background: #4ecdc4; color: white; }
+        .btn-child3 { background: #95e1d3; color: #333; }
+        .btn-child4 { background: #f38181; color: white; }
+        .btn-reset { background: #667eea; color: white; }
+        
+        .explanation {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #667eea;
+        }
+        .explanation h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .explanation p {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .store.active {
+            animation: pulse 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div>
+         <button class="btn btn-reset" "><a href="./E-Commerce-Redux.html">🔄 Back </a></button>
+      </div>
+        <h1>🍫 Redux - சாக்லேட் Store 🍫</h1>
+        
+        <div class="counter">
+            மொத்த சாக்லேட்: <span id="chocolateCount">10</span>
+        </div>
+        
+        <div class="scene">
+            <div class="store" id="store">
+                <div class="store-icon">🏪</div>
+                <div class="store-label">Store</div>
+            </div>
+            
+            <div class="child child1" onclick="giveChocolate(1)" title="குழந்தை 1">
+                👧
+            </div>
+            <div class="child child2" onclick="giveChocolate(2)" title="குழந்தை 2">
+                👦
+            </div>
+            <div class="child child3" onclick="giveChocolate(3)" title="குழந்தை 3">
+                👶
+            </div>
+            <div class="child child4" onclick="giveChocolate(4)" title="குழந்தை 4">
+                🧒
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-child1" onclick="giveChocolate(1)">குழந்தை 1 - சாக்லேட் வேணும்</button>
+            <button class="btn btn-child2" onclick="giveChocolate(2)">குழந்தை 2 - சாக்லேட் வேணும்</button>
+            <button class="btn btn-child3" onclick="giveChocolate(3)">குழந்தை 3 - சாக்லேட் வேணும்</button>
+            <button class="btn btn-child4" onclick="giveChocolate(4)">குழந்தை 4 - சாக்லேட் வேணும்</button>
+            <button class="btn btn-reset" onclick="resetStore()">🔄 மறுபடியும் நிரப்பு</button>
+        </div>
+        
+        <div class="explanation">
+            <h3>🎯 இது எப்படி வேலை செய்யுது?</h3>
+            <p>
+                <strong>1. Store (கடை):</strong> நடுவில இருக்கு - எல்லா சாக்லேட்டும் இங்கதான்!<br>
+                <strong>2. குழந்தைகள்:</strong> நாலு பேரும் சாக்லேட் வேணும்னு கேக்குறாங்க<br>
+                <strong>3. Action:</strong> பட்டன் அழுத்தினா = "சாக்லேட் வேணும்" Action அனுப்பும்<br>
+                <strong>4. Reducer:</strong> Store-ல இருந்து ஒரு சாக்லேட் எடுத்து குழந்தைக்கு குடுக்கும்<br>
+                <strong>5. State Update:</strong> மொத்த எண்ணிக்கை குறையும்!
+            </p>
+            <p style="margin-top: 15px; font-style: italic; color: #667eea;">
+                💡 <strong>Redux-ல கூட இப்படித்தான்!</strong> எல்லா data-யும் ஒரே Store-ல வெச்சு, எல்லா component-களும் அங்கேர்ந்து எடுத்துக்கும்!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let chocolateCount = 10;
+        
+        function giveChocolate(childNum) {
+            if (chocolateCount <= 0) {
+                alert('சாக்லேட் முடிஞ்சுடுச்சு! 😢 மறுபடி நிரப்புங்க!');
+                return;
+            }
+            
+            // Animate store
+            const store = document.getElementById('store');
+            store.classList.add('active');
+            setTimeout(() => store.classList.remove('active'), 500);
+            
+            // Create chocolate element
+            const chocolate = document.createElement('div');
+            chocolate.className = 'chocolate';
+            chocolate.textContent = '🍫';
+            chocolate.style.left = '50%';
+            chocolate.style.top = '50%';
+            
+            // Calculate target position
+            const child = document.querySelector(`.child${childNum}`);
+            const childRect = child.getBoundingClientRect();
+            const scene = document.querySelector('.scene');
+            const sceneRect = scene.getBoundingClientRect();
+            
+            const endX = childRect.left - sceneRect.left + 25 - scene.offsetWidth/2;
+            const endY = childRect.top - sceneRect.top + 25 - scene.offsetHeight/2;
+            
+            chocolate.style.setProperty('--mid-x', `${endX/2}px`);
+            chocolate.style.setProperty('--mid-y', `${endY/2}px`);
+            chocolate.style.setProperty('--end-x', `${endX}px`);
+            chocolate.style.setProperty('--end-y', `${endY}px`);
+            
+            scene.appendChild(chocolate);
+            
+            setTimeout(() => {
+                chocolate.classList.add('flying');
+            }, 10);
+            
+            setTimeout(() => {
+                chocolate.remove();
+            }, 1500);
+            
+            // Update Redux state (chocolate count)
+            chocolateCount--;
+            document.getElementById('chocolateCount').textContent = chocolateCount;
+            
+            // Animate child
+            child.style.transform = 'scale(1.2) rotate(15deg)';
+            setTimeout(() => {
+                child.style.transform = '';
+            }, 300);
+        }
+        
+        function resetStore() {
+            chocolateCount = 10;
+            document.getElementById('chocolateCount').textContent = chocolateCount;
+            
+            const store = document.getElementById('store');
+            store.style.transform = 'translate(-50%, -50%) scale(1.2)';
+            setTimeout(() => {
+                store.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
