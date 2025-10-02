@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Redux - பெரிய Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        /* Main Layout */
+        .app-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        /* Redux Store - Center */
+        .redux-store {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 25px;
+            color: white;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .store-title {
+            font-size: 1.8em;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .store-icon {
+            font-size: 4em;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .state-display {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            backdrop-filter: blur(10px);
+        }
+        .state-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 1.1em;
+        }
+        .state-value {
+            font-weight: bold;
+            background: rgba(255,255,255,0.3);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        /* Components */
+        .component-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .component-title {
+            font-size: 1.3em;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .component-icon {
+            font-size: 1.5em;
+        }
+        
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .product-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .product-item:hover {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .product-price {
+            color: #28a745;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        /* Cart Section */
+        .cart-items {
+            margin: 15px 0;
+        }
+        .cart-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 8px 0;
+            border: 2px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-total {
+            background: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        
+        /* User Section */
+        .user-info {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            margin: 10px 0;
+        }
+        .user-field {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Action Buttons */
+        .action-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px 0;
+        }
+        .btn-add {
+            background: #667eea;
+            color: white;
+        }
+        .btn-remove {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-login {
+            background: #28a745;
+            color: white;
+        }
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Animation for data flow */
+        .data-particle {
+            position: fixed;
+            font-size: 2em;
+            pointer-events: none;
+            z-index: 1000;
+            animation: flowToStore 1s ease-out forwards;
+        }
+        @keyframes flowToStore {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--target-x), var(--target-y)) scale(0.3);
+            }
+        }
+        
+        /* Action Logger */
+        .action-logger {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .action-log {
+            margin: 5px 0;
+            padding: 8px;
+            background: rgba(0,255,0,0.1);
+            border-left: 3px solid #00ff00;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* Explanation Section */
+        .explanation {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        .explanation h3 {
+            color: #d84315;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .explanation-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .explanation-card h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 1024px) {
+            .app-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div>
+        <button><a class="action-btn btn-login" href="chandrasekar.html">Back</a></button>
+      </div>
+        <header>
+            <h1>🛒 E-Commerce Shopping App - Redux Example</h1>
+            <p class="subtitle">பெரிய Real-world Project எப்படி Redux use பண்ணுது பாருங்க!</p>
+        </header>
+        
+        <div class="app-layout">
+            <!-- Left Side - Products -->
+            <div class="component-card">
+                <div class="component-title">
+                    <span class="component-icon">🛍️</span>
+                    Products Component
+                </div>
+                <p style="color: #666; margin-bottom: 15px;">useSelector - Products பார்க்கும்</p>
+                <div class="products-grid">
+                    <div class="product-item" onclick="addToCart('Mobile', 15000)">
+                        <div style="font-size: 2em; text-align: center;">📱</div>
+                        <div class="product-name">Mobile Phone</div>
+                        <div class="product-price">₹15,000</div>
+                        <button class="action-btn btn-add" style="margin-top: 10px;">Add to Cart</button>
+                    </div>
+                    <div class="product-item" onclick="addToCart('Laptop', 45000)">
+                        <div style="font-size: 2em; text-align: center;">💻</div>
+                        <div class="product-name">Laptop</div>
+                        <div class="product-price">₹45,000</div>
+                        <button class="action-btn btn-add" style="margin-top: 10px;">Add to Cart</button>
+                    </div>
+                    <div class="product-item" onclick="addToCart('Headphones', 2000)">
+                        <div style="font-size: 2em; text-align: center;">🎧</div>
+                        <div class="product-name">Headphones</div>
+                        <div class="product-price">₹2,000</div>
+                        <button class="action-btn btn-add" style="margin-top: 10px;">Add to Cart</button>
+                    </div>
+                    <div class="product-item" onclick="addToCart('Watch', 8000)">
+                        <div style="font-size: 2em; text-align: center;">⌚</div>
+                        <div class="product-name">Smart Watch</div>
+                        <div class="product-price">₹8,000</div>
+                        <button class="action-btn btn-add" style="margin-top: 10px;">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center - Redux Store -->
+            <div class="redux-store">
+                <div class="store-title">🏪 REDUX STORE</div>
+                <div class="store-icon">⚡</div>
+                
+                <div class="state-display">
+                    <h4>Current State:</h4>
+                    <div class="state-item">
+                        <span>Cart Items:</span>
+                        <span class="state-value" id="stateCartCount">0</span>
+                    </div>
+                    <div class="state-item">
+                        <span>Total Amount:</span>
+                        <span class="state-value" id="stateTotalAmount">₹0</span>
+                    </div>
+                    <div class="state-item">
+                        <span>User Logged In:</span>
+                        <span class="state-value" id="stateUserStatus">No</span>
+                    </div>
+                    <div class="state-item">
+                        <span>Username:</span>
+                        <span class="state-value" id="stateUsername">Guest</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; text-align: center; color: white;">
+                    <p>📤 Actions Dispatched: <span id="actionCount" style="font-weight: bold; font-size: 1.5em;">0</span></p>
+                </div>
+            </div>
+            
+            <!-- Right Side - Cart & User -->
+            <div>
+                <!-- Cart Component -->
+                <div class="component-card" style="margin-bottom: 20px;">
+                    <div class="component-title">
+                        <span class="component-icon">🛒</span>
+                        Cart Component
+                    </div>
+                    <p style="color: #666; margin-bottom: 15px;">useSelector - Cart பார்க்கும்</p>
+                    <div class="cart-items" id="cartItems">
+                        <p style="text-align: center; color: #999;">Cart Empty</p>
+                    </div>
+                    <div class="cart-total">
+                        Total: <span id="cartTotal">₹0</span>
+                    </div>
+                    <button class="action-btn btn-remove" onclick="clearCart()" style="margin-top: 10px;">Clear Cart</button>
+                </div>
+                
+                <!-- User Component -->
+                <div class="component-card">
+                    <div class="component-title">
+                        <span class="component-icon">👤</span>
+                        User Component
+                    </div>
+                    <p style="color: #666; margin-bottom: 15px;">useSelector - User பார்க்கும்</p>
+                    <div class="user-info">
+                        <div class="user-field">
+                            <span>Status:</span>
+                            <span id="userStatus" style="font-weight: bold; color: #dc3545;">Not Logged In</span>
+                        </div>
+                        <div class="user-field">
+                            <span>Name:</span>
+                            <span id="userName" style="font-weight: bold;">Guest</span>
+                        </div>
+                    </div>
+                    <button class="action-btn btn-login" onclick="toggleLogin()">Login as Kumar</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Logger -->
+        <div class="action-logger">
+            <div style="color: #00ff00; font-weight: bold; margin-bottom: 10px;">⚡ ACTION LOGGER (Real-time Redux Actions):</div>
+            <div id="actionLogger"></div>
+        </div>
+        
+        <!-- Explanation -->
+        <div class="explanation">
+            <h3>🎯 இந்த பெரிய App-ல Redux எப்படி வேலை செய்யுது:</h3>
+            <div class="explanation-grid">
+                <div class="explanation-card">
+                    <h4>1️⃣ Redux Store</h4>
+                    <p>ஒரே ஒரு Store-ல எல்லா data-யும் இருக்கு:</p>
+                    <ul style="margin-top: 8px; padding-left: 20px;">
+                        <li>Cart items</li>
+                        <li>Total price</li>
+                        <li>User info</li>
+                        <li>Products</li>
+                    </ul>
+                </div>
+                
+                <div class="explanation-card">
+                    <h4>2️⃣ Multiple Components</h4>
+                    <p>பல components இருக்கு:</p>
+                    <ul style="margin-top: 8px; padding-left: 20px;">
+                        <li>Products Component</li>
+                        <li>Cart Component</li>
+                        <li>User Component</li>
+                    </ul>
+                    <p style="margin-top: 5px;"><strong>எல்லாரும் ஒரே Store பார்க்குறாங்க!</strong></p>
+                </div>
+                
+                <div class="explanation-card">
+                    <h4>3️⃣ useSelector</h4>
+                    <p>Store-ல இருந்து data எடுக்கும்:</p>
+                    <code style="background: #f0f0f0; padding: 5px; border-radius: 5px; display: block; margin-top: 5px;">
+                        const cart = useSelector(state => state.cart)
+                    </code>
+                </div>
+                
+                <div class="explanation-card">
+                    <h4>4️⃣ useDispatch</h4>
+                    <p>Actions அனுப்பும்:</p>
+                    <code style="background: #f0f0f0; padding: 5px; border-radius: 5px; display: block; margin-top: 5px;">
+                        dispatch({type: 'ADD_TO_CART', payload: item})
+                    </code>
+                </div>
+                
+                <div class="explanation-card">
+                    <h4>5️⃣ Reducers</h4>
+                    <p>Actions-ஐ பார்த்து state update பண்ணும்:</p>
+                    <ul style="margin-top: 8px; padding-left: 20px;">
+                        <li>ADD_TO_CART</li>
+                        <li>REMOVE_FROM_CART</li>
+                        <li>USER_LOGIN</li>
+                    </ul>
+                </div>
+                
+                <div class="explanation-card">
+                    <h4>6️⃣ Real-time Updates</h4>
+                    <p>ஒரு இடத்துல மாத்தினா, எல்லா இடத்துலும் மாறும்!</p>
+                    <p style="margin-top: 5px; color: #28a745; font-weight: bold;">இதான் Redux-ஓட Power! 💪</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Redux State (Simplified)
+        let state = {
+            cart: [],
+            totalAmount: 0,
+            user: {
+                isLoggedIn: false,
+                name: 'Guest'
+            }
+        };
+        
+        let actionCounter = 0;
+        
+        // Reducer Function
+        function reducer(action) {
+            actionCounter++;
+            document.getElementById('actionCount').textContent = actionCounter;
+            
+            logAction(action);
+            
+            switch(action.type) {
+                case 'ADD_TO_CART':
+                    const existing = state.cart.find(item => item.name === action.payload.name);
+                    if (existing) {
+                        existing.quantity++;
+                    } else {
+                        state.cart.push({...action.payload, quantity: 1});
+                    }
+                    state.totalAmount += action.payload.price;
+                    break;
+                    
+                case 'REMOVE_FROM_CART':
+                    const index = state.cart.findIndex(item => item.name === action.payload);
+                    if (index !== -1) {
+                        state.totalAmount -= state.cart[index].price * state.cart[index].quantity;
+                        state.cart.splice(index, 1);
+                    }
+                    break;
+                    
+                case 'CLEAR_CART':
+                    state.cart = [];
+                    state.totalAmount = 0;
+                    break;
+                    
+                case 'USER_LOGIN':
+                    state.user.isLoggedIn = true;
+                    state.user.name = action.payload;
+                    break;
+                    
+                case 'USER_LOGOUT':
+                    state.user.isLoggedIn = false;
+                    state.user.name = 'Guest';
+                    break;
+            }
+            
+            updateUI();
+        }
+        
+        // Log Actions
+        function logAction(action) {
+            const logger = document.getElementById('actionLogger');
+            const log = document.createElement('div');
+            log.className = 'action-log';
+            const time = new Date().toLocaleTimeString();
+            log.innerHTML = `[${time}] <strong>${action.type}</strong> ${action.payload ? '→ ' + JSON.stringify(action.payload) : ''}`;
+            logger.insertBefore(log, logger.firstChild);
+            
+            if (logger.children.length > 10) {
+                logger.removeChild(logger.lastChild);
+            }
+        }
+        
+        // Create animation particle
+        function createParticle(emoji, startX, startY) {
+            const particle = document.createElement('div');
+            particle.className = 'data-particle';
+            particle.textContent = emoji;
+            particle.style.left = startX + 'px';
+            particle.style.top = startY + 'px';
+            
+            const store = document.querySelector('.redux-store');
+            const storeRect = store.getBoundingClientRect();
+            const targetX = storeRect.left + storeRect.width/2 - startX;
+            const targetY = storeRect.top + storeRect.height/2 - startY;
+            
+            particle.style.setProperty('--target-x', targetX + 'px');
+            particle.style.setProperty('--target-y', targetY + 'px');
+            
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1000);
+        }
+        
+        // Actions
+        function addToCart(name, price) {
+            const btn = event.target;
+            const rect = btn.getBoundingClientRect();
+            createParticle('📦', rect.left, rect.top);
+            
+            reducer({
+                type: 'ADD_TO_CART',
+                payload: { name, price }
+            });
+        }
+        
+        function removeFromCart(name) {
+            reducer({
+                type: 'REMOVE_FROM_CART',
+                payload: name
+            });
+        }
+        
+        function clearCart() {
+            reducer({ type: 'CLEAR_CART' });
+        }
+        
+        function toggleLogin() {
+            if (state.user.isLoggedIn) {
+                reducer({ type: 'USER_LOGOUT' });
+            } else {
+                const btn = event.target;
+                const rect = btn.getBoundingClientRect();
+                createParticle('👤', rect.left, rect.top);
+                
+                reducer({
+                    type: 'USER_LOGIN',
+                    payload: 'Kumar'
+                });
+            }
+        }
+        
+        // Update UI (like React re-render)
+        function updateUI() {
+            // Update Redux Store Display
+            document.getElementById('stateCartCount').textContent = state.cart.length;
+            document.getElementById('stateTotalAmount').textContent = '₹' + state.totalAmount.toLocaleString();
+            document.getElementById('stateUserStatus').textContent = state.user.isLoggedIn ? 'Yes' : 'No';
+            document.getElementById('stateUsername').textContent = state.user.name;
+            
+            // Update Cart Component
+            const cartItems = document.getElementById('cartItems');
+            if (state.cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #999;">Cart Empty</p>';
+            } else {
+                cartItems.innerHTML = state.cart.map(item => `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong> x${item.quantity}
+                            <div style="color: #28a745; font-weight: bold;">₹${(item.price * item.quantity).toLocaleString()}</div>
+                        </div>
+                        <button onclick="removeFromCart('${item.name}')" style="background: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Remove</button>
+                    </div>
+                `).join('');
+            }
+            document.getElementById('cartTotal').textContent = '₹' + state.totalAmount.toLocaleString();
+            
+            // Update User Component
+            document.getElementById('userStatus').textContent = state.user.isLoggedIn ? 'Logged In ✅' : 'Not Logged In ❌';
+            document.getElementById('userStatus').style.color = state.user.isLoggedIn ? '#28a745' : '#dc3545';
+            document.getElementById('userName').textContent = state.user.name;
+            
+            const loginBtn = event.target;
+            if (loginBtn && loginBtn.classList.contains('btn-login')) {
+                loginBtn.textContent = state.user.isLoggedIn ? 'Logout' : 'Login as Kumar';
+            }
+        }
+    </script>
+</body>
+</html>
