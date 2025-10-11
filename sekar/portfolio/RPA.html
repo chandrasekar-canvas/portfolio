@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPA Online Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            animation: fadeIn 1s;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-icon {
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .platform-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+            cursor: pointer;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+        
+        .platform-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .platform-logo {
+            font-size: 3em;
+            margin-right: 15px;
+        }
+        
+        .platform-name {
+            flex: 1;
+        }
+        
+        .platform-name h3 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        
+        .platform-tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            display: inline-block;
+        }
+        
+        .platform-details {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-list {
+            margin: 15px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .feature-icon {
+            color: #48bb78;
+            margin-right: 10px;
+            font-size: 1.2em;
+            margin-top: 2px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .cert-path {
+            background: white;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cert-level {
+            display: inline-block;
+            background: #f093fb;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .cert-title {
+            font-size: 1.3em;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .cert-details {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .practice-site {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .practice-site:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .practice-site h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #667eea;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 30px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -33px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+        
+        .timeline-content {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .timeline-title {
+            color: #2d3748;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .highlight-box h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #48bb78;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 5px;
+        }
+        
+        .pro-tip {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        
+        .pro-tip strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 RPA Free Online Learning & Certifications</h1>
+            <p>இலவசமா கத்துங்க, Certificate வாங்குங்க, Career Start பண்ணுங்க!</p>
+        </div>
+
+        <!-- UiPath Academy -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">🎯</span>
+                UiPath Academy - #1 Choice!
+            </div>
+            
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">🤖</div>
+                        <div class="platform-name">
+                            <h3>UiPath Academy</h3>
+                            <span class="platform-tag">100% இலவசம்</span>
+                        </div>
+                    </div>
+                    <div class="platform-details">
+                        <p><strong>Website:</strong> academy.uipath.com</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Video tutorials தமிழ் subtitles-உடன்</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Hands-on practice exercises</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Quizzes & assignments</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Free certifications!</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Real project scenarios</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="window.open('https://academy.uipath.com', '_blank')">
+                        Start Learning →
+                    </button>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">🎓</div>
+                        <div class="platform-name">
+                            <h3>Learning Paths</h3>
+                            <span class="platform-tag">Structured</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">1. RPA Developer Foundation</div>
+                                <p>⏱️ 12-15 மணி நேரம் | 📚 Basics to Intermediate</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">2. RPA Developer Advanced</div>
+                                <p>⏱️ 20-25 மணி நேரம் | 🚀 Advanced Concepts</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">3. Orchestrator</div>
+                                <p>⏱️ 8-10 மணி நேரம் | ☁️ Deployment & Management</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>🏆 Free Certifications Available:</h3>
+                <div class="badge">RPA Developer Foundation</div>
+                <div class="badge">RPA Developer Advanced</div>
+                <div class="badge">RPA Solution Architect</div>
+                <div class="badge">Automation Developer Associate</div>
+                <p style="margin-top: 15px;">இந்த certificates Resume-ல போட்டா interview-க்கு direct call வரும்! 💯</p>
+            </div>
+        </div>
+
+        <!-- Certification Details -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">📜</span>
+                Certification Path
+            </div>
+            
+            <div class="cert-path">
+                <span class="cert-level">LEVEL 1 - Beginner</span>
+                <div class="cert-title">🎯 UiPath RPA Associate (UiRPA)</div>
+                <div class="cert-details">
+                    <p><strong>Duration:</strong> 30-40 மணி நேரம் preparation</p>
+                    <p><strong>Exam:</strong> 90 நிமிடங்கள், 60 MCQ questions</p>
+                    <p><strong>Fee:</strong> <span style="color: #48bb78; font-weight: bold;">முற்றிலும் இலவசம்! 🎉</span></p>
+                    <p><strong>Topics:</strong> Variables, Recording, Selectors, Excel, Email, Orchestrator basics</p>
+                    <p><strong>Pass Mark:</strong> 70%</p>
+                    <div class="pro-tip">
+                        <strong>💡 Pro Tip:</strong>
+                        Academy courses முடிச்சதும் practice tests எடுங்க. 2-3 attempts-ல pass ஆயிடலாம்!
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cert-path">
+                <span class="cert-level">LEVEL 2 - Advanced</span>
+                <div class="cert-title">🚀 UiPath Advanced RPA Developer (UiARD)</div>
+                <div class="cert-details">
+                    <p><strong>Duration:</strong> 60-80 மணி நேரம் preparation</p>
+                    <p><strong>Exam:</strong> 120 நிமிடங்கள், Practical + Theory</p>
+                    <p><strong>Fee:</strong> $150 (ஆனா worth it! 💪)</p>
+                    <p><strong>Topics:</strong> REFramework, Queue Management, Exception Handling, Orchestrator Advanced, Best Practices</p>
+                    <p><strong>Pass Mark:</strong> 70%</p>
+                    <div class="pro-tip">
+                        <strong>💡 Pro Tip:</strong>
+                        Real projects செய்த experience இருந்தா இந்த exam easy-ஆ pass பண்ணலாம். 6 மாசம் practice பண்ணிட்டு எழுதுங்க.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cert-path">
+                <span class="cert-level">LEVEL 3 - Professional</span>
+                <div class="cert-title">👑 UiPath Certified Professional (UCP)</div>
+                <div class="cert-details">
+                    <p><strong>Duration:</strong> 1+ வருடம் experience + preparation</p>
+                    <p><strong>Exam:</strong> Complex scenarios & Architecture</p>
+                    <p><strong>Fee:</strong> $200</p>
+                    <p><strong>Salary Impact:</strong> ₹8-15 Lakhs/year 🤑</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Platforms -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">🌐</span>
+                மற்ற Free Learning Platforms
+            </div>
+            
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">⚙️</div>
+                        <div class="platform-name">
+                            <h3>Automation Anywhere</h3>
+                            <span class="platform-tag">Free Training</span>
+                        </div>
+                    </div>
+                    <div class="platform-details">
+                        <p><strong>Website:</strong> university.automationanywhere.com</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Automation Anywhere University</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Free certification: RPA Professional</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>IQ Bot training (AI-powered)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">💼</div>
+                        <div class="platform-name">
+                            <h3>Blue Prism</h3>
+                            <span class="platform-tag">Corporate</span>
+                        </div>
+                    </div>
+                    <div class="platform-details">
+                        <p><strong>Website:</strong> learn.blueprism.com</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Blue Prism Learning Edition (Free)</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Banking sector-ல popular</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Developer & Architect certifications</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">📚</div>
+                        <div class="platform-name">
+                            <h3>Coursera</h3>
+                            <span class="platform-tag">Audit Free</span>
+                        </div>
+                    </div>
+                    <div class="platform-details">
+                        <p><strong>Course:</strong> RPA Specialization</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>"Audit" option-ல free-ஆ பாக்கலாம்</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Certificate-க்கு payment தேவை</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>UiPath + Automation Anywhere</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">▶️</div>
+                        <div class="platform-name">
+                            <h3>YouTube Channels</h3>
+                            <span class="platform-tag">100% Free</span>
+                        </div>
+                    </div>
+                    <div class="platform-details">
+                        <p><strong>Top Channels:</strong></p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">📺</span>
+                                <span>Mukesh Kala - UiPath Tutorials</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📺</span>
+                                <span>Anders Jensen - Advanced Topics</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📺</span>
+                                <span>RPA Tools - Project Examples</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📺</span>
+                                <span>Tamil RPA Tutorials கூட available!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Websites -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">💻</span>
+                Practice Websites & Challenges
+            </div>
+            
+            <div class="practice-site">
+                <h3>🎯 ACME System 1 (UiPath Training Site)</h3>
+                <p><strong>URL:</strong> acme-test.uipath.com</p>
+                <p>Invoice processing, Work Items management practice பண்ணலாம். UiPath Academy courses-ல இதை use பண்ணுவாங்க.</p>
+                <div class="pro-tip" style="background: rgba(255,255,255,0.2); border-color: white; color: white;">
+                    <strong>💡 Use Case:</strong>
+                    Invoice download, data entry, report generation - real-world scenarios practice பண்ணுங்க!
+                </div>
+            </div>
+            
+            <div class="practice-site" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                <h3>🌐 RPAChallenge.com</h3>
+                <p><strong>URL:</strong> rpachallenge.com</p>
+                <p>Excel data-ஐ web form-ல fill பண்றது. Timing challenge! உங்க bot எவ்வளவு fast-னு test பண்ணுங்க.</p>
+                <div class="pro-tip" style="background: rgba(255,255,255,0.2); border-color: white; color: white;">
+                    <strong>💡 Challenge:</strong>
+                    10 records-ஐ 1 நிமிஷத்துல fill பண்ண try பண்ணுங்க. Leaderboard-ல உங்க name போடுங்க!
+                </div>
+            </div>
+            
+            <div class="practice-site" style="background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%);">
+                <h3>🏪 Demo E-commerce Sites</h3>
+                <p><strong>Sites:</strong> demoqa.com, the-internet.herokuapp.com</p>
+                <p>Form automation, login testing, data scraping practice பண்ணலாம். Safe environment!</p>
+            </div>
+        </div>
+
+        <!-- Weekly Practice Plan -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">📅</span>
+                Weekly Online Practice Plan
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Monday - Wednesday</div>
+                        <p><strong>🎓 UiPath Academy:</strong> 1-2 courses complete பண்ணுங்க</p>
+                        <p><strong>⏱️ Time:</strong> Daily 1.5 மணி நேரம்</p>
+                        <p>Video பாத்துட்டு உடனே practice பண்ணுங்க Studio-ல</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Thursday - Friday</div>
+                        <p><strong>💻 Hands-on Practice:</strong> ACME System or RPAChallenge</p>
+                        <p><strong>⏱️ Time:</strong> Daily 2 மணி நேரம்</p>
+                        <p>கத்துக்கிட்டதை practice பண்ணி master பண்ணுங்க</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Weekend (Saturday)</div>
+                        <p><strong>🎯 Mini Project:</strong> End-to-end workflow create பண்ணுங்க</p>
+                        <p><strong>⏱️ Time:</strong> 3-4 மணி நேரம்</p>
+                        <p>Week-ல கத்துக்கிட்ட எல்லாத்தையும் ஒரு project-ல combine பண்ணுங்க</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Sunday</div>
+                        <p><strong>📝 Documentation & Review:</strong> Project document பண்ணுங்க</p>
+                        <p><strong>⏱️ Time:</strong> 1-2 மணி நேரம்</p>
+                        <p>GitHub-ல upload பண்ணுங்க, README எழுதுங்க</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Strategy -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">🎯</span>
+                3-Month Certification Plan
+            </div>
+            
+            <div class="highlight-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <h3>🚀 Month 1: Foundation (0-4 weeks)</h3>
+                <div class="feature-list" style="color: white;">
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>UiPath Academy: RPA Developer Foundation course complete</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>Daily 2 மணி நேரம் practice</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>5-6 mini projects complete பண்ணுங்க</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>Practice tests: 3-4 attempts</span>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; font-size: 1.1em;">🏆 <strong>Target:</strong> UiPath RPA Associate Certification</p>
+            </div>
+            
+            <div class="highlight-box" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                <h3>🔥 Month 2: Intermediate (5-8 weeks)</h3>
+                <div class="feature-list" style="color: white;">
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>Orchestrator, Queue management practice</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>Real-world projects: Invoice processing, Data entry</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>Community Forum-ல active-ஆ participate</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>GitHub portfolio build பண்ணுங்க</span>
+                    </div>
+                </div>
+            </div>
+            
+                            <div class="highlight-box" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                <h3>💎 Month 3: Advanced (9-12 weeks)</h3>
+                <div class="feature-list" style="color: white;">
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>REFramework-ல 2-3 complex projects</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>Exception handling, logging mastery</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>Interview preparation start பண்ணுங்க</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>Advanced certification-க்கு prepare பண்ணுங்க</span>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; font-size: 1.1em;">💼 <strong>Ready for:</strong> Entry-level RPA Developer jobs!</p>
+            </div>
+        </div>
+
+        <!-- Community Resources -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">👥</span>
+                Community & Support
+            </div>
+            
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">💬</div>
+                        <div class="platform-name">
+                            <h3>UiPath Community Forum</h3>
+                            <span class="platform-tag">Active 24/7</span>
+                        </div>
+                    </div>
+                    <div class="platform-details">
+                        <p><strong>URL:</strong> forum.uipath.com</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Doubts கேட்டா 1-2 மணி நேரத்துல reply வரும்</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Solution code கூட share பண்ணுவாங்க</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Real-world problems & solutions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">🗨️</div>
+                        <div class="platform-name">
+                            <h3>Reddit & Discord</h3>
+                            <span class="platform-tag">Global Community</span>
+                        </div>
+                    </div>
+                    <div class="platform-details">
+                        <p><strong>Subreddits:</strong></p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">📱</span>
+                                <span>r/rpa - General RPA discussions</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📱</span>
+                                <span>r/uipath - UiPath specific</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📱</span>
+                                <span>RPA Discord servers - Real-time help</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">📘</div>
+                        <div class="platform-name">
+                            <h3>LinkedIn Learning</h3>
+                            <span class="platform-tag">1 Month Free</span>
+                        </div>
+                    </div>
+                    <div class="platform-details">
+                        <p><strong>Free Trial:</strong> 1 மாசம்</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>RPA fundamentals courses</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>Business process automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span>LinkedIn-ல certificate display ஆகும்</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-logo">📚</div>
+                        <div class="platform-name">
+                            <h3>Udemy Courses</h3>
+                            <span class="platform-tag">Sale-ல ₹499</span>
+                        </div>
+                    </div>
+                    <div class="platform-details">
+                        <p><strong>Top Courses:</strong></p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">⭐</span>
+                                <span>RPA UiPath Complete Course (Tamil subtitles)</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⭐</span>
+                                <span>Sale time-ல ₹3000 courses ₹499-க்கு!</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⭐</span>
+                                <span>Lifetime access + Certificate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Task Tracker -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">✅</span>
+                Daily Online Task Checklist
+            </div>
+            
+            <div class="cert-path">
+                <div class="cert-title">📋 Morning Routine (1 மணி நேரம்)</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">☑️</span>
+                        <span>UiPath Academy-ல 1-2 lessons complete பண்ணுங்க</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">☑️</span>
+                        <span>Notes எடுங்க - Important concepts highlight பண்ணுங்க</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">☑️</span>
+                        <span>Quiz attempt பண்ணுங்க - Knowledge test பண்ணுங்க</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cert-path">
+                <div class="cert-title">💻 Evening Practice (1.5 மணி நேரம்)</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">☑️</span>
+                        <span>Studio open பண்ணி morning-ல கத்துக்கிட்டதை practice பண்ணுங்க</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">☑️</span>
+                        <span>ACME System / RPAChallenge-ல exercise செய்யுங்க</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">☑️</span>
+                        <span>Forum-ல ஒரு doubt கேளுங்க அல்லது யாராவது doubt-க்கு answer பண்ணுங்க</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cert-path">
+                <div class="cert-title">🌙 Night Review (30 நிமிடங்கள்)</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">☑️</span>
+                        <span>Today என்ன கத்துக்கிட்டோம்-னு revise பண்ணுங்க</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">☑️</span>
+                        <span>Tomorrow என்ன பண்றதுன்னு plan பண்ணுங்க</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">☑️</span>
+                        <span>YouTube-ல related videos பாருங்க (optional)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pro Tips -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">💡</span>
+                Success Tips & Tricks
+            </div>
+            
+            <div class="pro-tip">
+                <strong>🎯 Certification Strategy:</strong>
+                UiPath RPA Associate exam எழுதுறதுக்கு முன்னாடி minimum 3 practice tests எடுங்க. 80%+ score வந்தா ready!
+            </div>
+            
+            <div class="pro-tip">
+                <strong>📝 Documentation Habit:</strong>
+                ஒவ்வொரு project-யும் README file-உடன் GitHub-ல upload பண்ணுங்க. Interview-ல show பண்ணலாம்!
+            </div>
+            
+            <div class="pro-tip">
+                <strong>🤝 Networking:</strong>
+                LinkedIn-ல RPA professionals-ஐ follow பண்ணுங்க. அவங்க posts-ல engage பண்ணுங்க. Job opportunities கிடைக்கும்!
+            </div>
+            
+            <div class="pro-tip">
+                <strong>🎥 Screen Recording:</strong>
+                உங்க bot work பண்றதை record பண்ணி LinkedIn-ல post பண்ணுங்க. Portfolio build ஆகும்!
+            </div>
+            
+            <div class="pro-tip">
+                <strong>⏰ Consistency > Intensity:</strong>
+                Daily 2 மணி நேரம் practice > Weekend-ல மட்டும் 10 மணி நேரம். Regular-ஆ பண்ணுங்க!
+            </div>
+            
+            <div class="pro-tip">
+                <strong>🔄 Teach Others:</strong>
+                Forum-ல beginners-க்கு help பண்ணுங்க. Teaching-ல உங்களுக்கே நல்லா புரியும்!
+            </div>
+        </div>
+
+        <!-- Final Motivation -->
+        <div class="highlight-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); text-align: center;">
+            <h2 style="font-size: 2em; margin-bottom: 15px;">🚀 இன்னைக்கே Start பண்ணுங்க!</h2>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">3 மாசத்துல RPA Developer ஆகலாம். 6 மாசத்துல Job Ready! 💪</p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+                <button class="btn-primary" onclick="window.open('https://academy.uipath.com', '_blank')" style="font-size: 1.1em; padding: 15px 30px;">
+                    🎓 Academy-ல Register பண்ணுங்க
+                </button>
+                <button class="btn-primary" onclick="window.open('https://forum.uipath.com', '_blank')" style="font-size: 1.1em; padding: 15px 30px;">
+                    💬 Forum Join பண்ணுங்க
+                </button>
+            </div>
+            <p style="margin-top: 25px; font-size: 1.1em;">
+                <strong>Remember:</strong> ஒவ்வொரு expert-ம் ஒரு beginner-ஆ தான் இருந்தாங்க! 
+                <br>உங்களாலும் முடியும்! 🌟
+            </p>
+        </div>
+    </div>
+</body>
+</html>
