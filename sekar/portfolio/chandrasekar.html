@@ -6,8 +6,173 @@
     <title>CHANDRASEKAR.D - Portfolio</title>
     <link rel="icon" href="resume/sekar.png" type="image/x-icon">
     <style>
-   
-        *{margin:0;padding:0;box-sizing:border-box; }
+
+
+        /* ✅ Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ✅ General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* ✅ Navbar */
+nav {
+  width: 100%; /* changed from 100vw */
+  background-color: #007bff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffeb3b;
+}
+
+/* ✅ Hero Section */
+#home {
+  width: 100%; /* changed from 100vw */
+  min-height: 80vh; /* replaced fixed height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f4f8ff;
+  padding: 60px 20px;
+}
+
+#home h1 {
+  font-size: 48px;
+  color: #222;
+}
+
+#home h2 {
+  font-size: 36px;
+  color: #007bff;
+}
+
+/* ✅ About Section */
+#about {
+  width: 100%;
+  padding: 60px 20px;
+  background-color: white;
+  text-align: center;
+}
+
+#about h2 {
+  font-size: 32px;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* ✅ Skills Section */
+.skills-section {
+  display: flex;
+  flex-wrap: wrap; /* added wrap */
+  justify-content: center;
+  gap: 20px;
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+}
+
+.skill-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ✅ Certificates */
+.certificate-gallery {
+  display: flex;
+  flex-wrap: wrap; /* added wrap */
+  justify-content: center;
+  gap: 20px;
+  padding: 60px 20px;
+}
+
+/* ✅ Iframe widget or project display */
+.iframe-widget {
+  width: 100%; /* changed from 100vw */
+  min-height: 300px; /* replaced fixed height */
+  border: none;
+}
+
+/* ✅ Footer */
+footer {
+  width: 100%;
+  background: #007bff;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* ✅ Unified Mobile Responsive Styles */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  #home h1 {
+    font-size: 32px;
+  }
+
+  #home h2 {
+    font-size: 24px;
+  }
+
+  #about h2 {
+    font-size: 26px;
+  }
+
+  .skills-section, .certificate-gallery {
+    padding: 40px 10px;
+  }
+
+  .skill-box {
+    width: 90%;
+  }
+}
+
+ 
+
+        /* *{margin:0;padding:0;box-sizing:border-box; }
         body{font-family:'Arial',sans-serif;line-height:1.6;}
         nav{ width:100vw;display:flex;justify-content:space-between;align-items:center;padding:20px;background-color:#333;position:sticky;top:0;z-index:1000;}
         nav h1{color:white;font-size:24px;}
@@ -37,7 +202,7 @@ p{
 }
 .content.expanded {
   max-height: 400px; 
-}
+} */
         </style>
 
 </head>
@@ -668,6 +833,7 @@ Thanking You.
 
 </body>
 </html>
+
 
 
 
