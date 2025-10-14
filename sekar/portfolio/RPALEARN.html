@@ -1,0 +1,1753 @@
+<div class="skill-card">
+                <h3>4. String Operations (மிக முக்கியம்)</h3>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">➕ String Concatenation (இணைக்கறது)</h4>
+                <div class="code-block">
+<span class="comment">' + operator use பண்ணி</span>
+<span class="keyword">Dim</span> <span class="variable">strFullName</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="variable">strFirstName</span> <span class="operator">+</span> <span class="string">" "</span> <span class="operator">+</span> <span class="variable">strLastName</span>
+<span class="comment">' Result: "Kumar Raja"</span>
+
+<span class="comment">' String.Format use பண்ணி (professional way)</span>
+<span class="keyword">Dim</span> <span class="variable">strMessage</span> <span class="operator">=</span> <span class="type">String</span>.<span class="function">Format</span>(<span class="string">"வணக்கம் {0}, உங்கள் ID: {1}"</span>, <span class="variable">strName</span>, <span class="variable">intID</span>)
+<span class="comment">' Result: "வணக்கம் Kumar, உங்கள் ID: 101"</span>
+
+<span class="comment">' Multiple values concatenation</span>
+<span class="keyword">Dim</span> <span class="variable">strFilePath</span> <span class="operator">=</span> <span class="string">"C:\Documents\"</span> <span class="operator">+</span> <span class="variable">strFileName</span> <span class="operator">+</span> <span class="string">".xlsx"</span>
+                </div>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">✂️ String Methods (Built-in functions)</h4>
+                <div class="code-block">
+<span class="comment">' UPPERCASE-க்கு convert பண்றது</span>
+<span class="keyword">Dim</span> <span class="variable">strUpper</span> <span class="operator">=</span> <span class="variable">strName</span>.<span class="function">ToUpper</span>()
+<span class="comment">' "kumar" → "KUMAR"</span>
+
+<span class="comment">' lowercase-க்கு convert பண்றது</span>
+<span class="keyword">Dim</span> <span class="variable">strLower</span> <span class="operator">=</span> <span class="variable">strName</span>.<span class="function">ToLower</span>()
+<span class="comment">' "KUMAR" → "kumar"</span>
+
+<span class="comment">' Starting & ending spaces remove பண்றது</span>
+<span class="keyword">Dim</span> <span class="variable">strTrim</span> <span class="operator">=</span> <span class="variable">strName</span>.<span class="function">Trim</span>()
+<span class="comment">' "  Kumar  " → "Kumar"</span>
+
+<span class="comment">' String length கண்டுபிடிக்க</span>
+<span class="keyword">Dim</span> <span class="variable">intLength</span> <span class="operator">=</span> <span class="variable">strName</span>.<span class="function">Length</span>
+<span class="comment">' "Kumar" → 5</span>
+
+<span class="comment">' Substring - குறிப்பிட்ட பகுதி எடுக்கறது</span>
+<span class="keyword">Dim</span> <span class="variable">strFirst3</span> <span class="operator">=</span> <span class="variable">strName</span>.<span class="function">Substring</span>(<span class="number">0</span>, <span class="number">3</span>)
+<span class="comment">' "Kumar" → "Kum" (0-ல இருந்து 3 characters)</span>
+
+<span class="keyword">Dim</span> <span class="variable">strLast4</span> <span class="operator">=</span> <span class="variable">strPhone</span>.<span class="function">Substring</span>(<span class="variable">strPhone</span>.<span class="function">Length</span> <span class="operator">-</span> <span class="number">4</span>)
+<span class="comment">' "9876543210" → "3210" (last 4 digits)</span>
+
+<span class="comment">' Replace - text-ஐ மாத்துறது</span>
+<span class="keyword">Dim</span> <span class="variable">strNew</span> <span class="operator">=</span> <span class="variable">strText</span>.<span class="function">Replace</span>(<span class="string">"old"</span>, <span class="string">"new"</span>)
+<span class="comment">' "old file name" → "new file name"</span>
+
+<span class="comment">' Contains - specific text இருக்கான்னு check பண்றது</span>
+<span class="keyword">If</span> <span class="variable">strEmail</span>.<span class="function">Contains</span>(<span class="string">"@"</span>) <span class="keyword">Then</span>
+    <span class="function">Log Message</span>: <span class="string">"Valid email format"</span>
+<span class="keyword">End If</span>
+
+<span class="comment">' StartsWith - குறிப்பிட்ட text-ல start ஆகுதான்னு check</span>
+<span class="keyword">If</span> <span class="variable">strInvoice</span>.<span class="function">StartsWith</span>(<span class="string">"INV-"</span>) <span class="keyword">Then</span>
+    <span class="function">Log Message</span>: <span class="string">"Valid invoice number"</span>
+<span class="keyword">End If</span>
+
+<span class="comment">' EndsWith - குறிப்பிட்ட text-ல end ஆகுதான்னு check</span>
+<span class="keyword">If</span> <span class="variable">strFileName</span>.<span class="function">EndsWith</span>(<span class="string">".pdf"</span>) <span class="keyword">Then</span>
+    <span class="function">Log Message</span>: <span class="string">"PDF file detected"</span>
+<span class="keyword">End If</span>
+                </div>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">✂️ Split - String-ஐ Array-ஆ split பண்றது</h4>
+                <div class="code-block">
+<span class="comment">' Full name-ஐ First & Last name-ஆ split பண்றது</span>
+<span class="keyword">Dim</span> <span class="variable">strFullName</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="string">"Kumar Raja"</span>
+<span class="keyword">Dim</span> <span class="variable">arrParts</span> <span class="operator">=</span> <span class="variable">strFullName</span>.<span class="function">Split</span>(<span class="string">" "</span>.<span class="function">ToCharArray</span>)
+
+<span class="keyword">Dim</span> <span class="variable">strFirstName</span> <span class="operator">=</span> <span class="variable">arrParts</span>(<span class="number">0</span>)  <span class="comment">' "Kumar"</span>
+<span class="keyword">Dim</span> <span class="variable">strLastName</span> <span class="operator">=</span> <span class="variable">arrParts</span>(<span class="number">1</span>)   <span class="comment">' "Raja"</span>
+
+<span class="comment">' Email-ல username & domain split பண்றது</span>
+<span class="keyword">Dim</span> <span class="variable">strEmail</span> <span class="operator">=</span> <span class="string">"kumar@company.com"</span>
+<span class="keyword">Dim</span> <span class="variable">arrEmail</span> <span class="operator">=</span> <span class="variable">strEmail</span>.<span class="function">Split</span>(<span class="string">"@"</span>.<span class="function">ToCharArray</span>)
+<span class="keyword">Dim</span> <span class="variable">strUsername</span> <span class="operator">=</span> <span class="variable">arrEmail</span>(<span class="number">0</span>)  <span class="comment">' "kumar"</span>
+<span class="keyword">Dim</span> <span class="variable">strDomain</span> <span class="operator">=</span> <span class="variable">arrEmail</span>(<span class="number">1</span>)    <span class="comment">' "company.com"</span>
+
+<span class="comment">' CSV data split பண்றது</span>
+<span class="keyword">Dim</span> <span class="variable">strCSVLine</span> <span class="operator">=            <div class="skill-card">
+                <h3>2. Control Flow - Conditions (If-Else)</h3>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">✅ Simple If-Else</h4>
+                <div class="code-block">
+<span class="comment">' Age-ஐ வச்சி Major/Minor check பண்றது</span>
+<span class="keyword">If</span> <span class="variable">intAge</span> <span class="operator">>=</span> <span class="number">18</span> <span class="keyword">Then</span>
+    <span class="function">Log Message</span>: <span class="string">"Major"</span>
+<span class="keyword">Else</span>
+    <span class="function">Log Message</span>: <span class="string">"Minor"</span>
+<span class="keyword">End If</span>
+                </div>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">🔀 Multiple Conditions (ElseIf)</h4>
+                <div class="code-block">
+<span class="comment">' Status-ஐ வச்சி different actions செய்றது</span>
+<span class="keyword">If</span> <span class="variable">strStatus</span> <span class="operator">=</span> <span class="string">"Approved"        
+        <!-- Experience Level Section -->
+        <div id="experience" class="content-section">
+            <h2>📈 Experience Level-படி தெரிஞ்சிருக்க வேண்டியவை</h2>
+            
+            <div class="skill-card">
+                <h3>🌱 0-1 Year (Fresher / Junior Developer)</h3>
+                <h4>கண்டிப்பா தெரிஞ்சிருக்கணும்:</h4>
+                <ul class="checklist">
+                    <li><strong>One RPA Tool:</strong> UiPath அல்லது Automation Anywhere முழுசா கத்துருங்க</li>
+                    <li><strong>Basic Programming:</strong> VB.NET/C# basic syntax</li>
+                    <li><strong>Excel Automation:</strong> Read, Write, Filter, Sort - உங்க கண்ணை மூடிக்கிட்டு செய்யணும்</li>
+                    <li><strong>Email Automation:</strong> Send, Receive, Extract attachments</li>
+                    <li><strong>Web Scraping:</strong> Data extraction from websites</li>
+                    <li><strong>Basic Selectors:</strong> UI elements-ஐ identify பண்றது</li>
+                    <li><strong>DataTable:</strong> Filter, Sort, Join operations</li>
+                    <li><strong>String Operations:</strong> Split, Trim, Replace, Substring</li>
+                    <li><strong>If-Else, Loops:</strong> Control flow complete-ஆ தெரியணும்</li>
+                    <li><strong>Try-Catch:</strong> Error handling basics</li>
+                </ul>
+                
+                <h4>செய்ய வேண்டிய Projects:</h4>
+                <ul>
+                    <li>Excel data-ஐ web form-ல enter பண்றது</li>
+                    <li>Email attachments download பண்ணி rename பண்றது</li>
+                    <li>Website-ல இருந்து data scrape பண்ணி Excel-ல save பண்றது</li>
+                    <li>Multiple Excel files-ஐ consolidate பண்றது</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <strong>💡 Interview-ல கேப்பாங்க:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>"Excel-ல duplicate rows எப்படி remove பண்றீங்க?"</li>
+                        <li>"Dynamic selector என்றால் என்ன?"</li>
+                        <li>"Email-ல specific subject line இருந்தா மட்டும் attachment download பண்றது எப்படி?"</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>🚀 1-2 Years (Developer)</h3>
+                <h4>கூடுதலா தெரிஞ்சிருக்கணும்:</h4>
+                <ul class="checklist">
+                    <li><strong>REFramework:</strong> UiPath Robotic Enterprise Framework முழுசா புரிஞ்சிருக்கணும்</li>
+                    <li><strong>Orchestrator:</strong> Bot deployment, scheduling, monitoring</li>
+                    <li><strong>Queue Management:</strong> Transaction items handle பண்றது</li>
+                    <li><strong>OCR:</strong> PDF/Image-ல இருந்து text extract பண்றது</li>
+                    <li><strong>API Integration:</strong> REST APIs call பண்றது</li>
+                    <li><strong>Database:</strong> SQL queries write பண்ணி DB operations செய்றது</li>
+                    <li><strong>Version Control:</strong> Git/TFS use பண்றது</li>
+                    <li><strong>Config File:</strong> Settings.xlsx or Config.xlsx use பண்றது</li>
+                    <li><strong>Logging:</strong> Detailed logs maintain பண்றது</li>
+                    <li><strong>SAP/Citrix Automation:</strong> Computer Vision use பண்றது</li>
+                </ul>
+                
+                <h4>Handle பண்ண வேண்டிய Projects:</h4>
+                <ul>
+                    <li>Invoice processing with OCR</li>
+                    <li>SAP automation with transaction codes</li>
+                    <li>Multi-bot orchestration</li>
+                    <li>API-based data synchronization</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <strong>💡 Interview-ல கேப்பாங்க:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>"REFramework-ல Init state-ல என்ன நடக்கும்?"</li>
+                        <li>"Transaction item என்றால் என்ன? Queue-ல எப்படி add பண்றீங்க?"</li>
+                        <li>"OCR accuracy improve பண்ண என்ன செய்வீங்க?"</li>
+                        <li>"Production-ல bot fail ஆச்சுன்னா என்ன பண்றீங்க?"</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>⭐ 2-4 Years (Senior Developer / Lead)</h3>
+                <h4>Expert Level Skills:</h4>
+                <ul class="checklist">
+                    <li><strong>Solution Design:</strong> PDD (Process Design Document) create பண்றது</li>
+                    <li><strong>Architecture:</strong> Reusable framework design பண்றது</li>
+                    <li><strong>Multiple Tools:</strong> UiPath + Automation Anywhere + Power Automate</li>
+                    <li><strong>AI/ML Integration:</strong> Document Understanding, AI Center</li>
+                    <li><strong>Performance Optimization:</strong> Bot speed improve பண்றது</li>
+                    <li><strong>Security:</strong> Credential Vault, Encryption implementation</li>
+                    <li><strong>Code Review:</strong> மத்தவங்க code review பண்ணுறது</li>
+                    <li><strong>Mentoring:</strong> Junior developers-க்கு train பண்றது</li>
+                    <li><strong>Estimation:</strong> Project timeline & effort estimate பண்றது</li>
+                    <li><strong>Client Communication:</strong> Requirements gathering, demos</li>
+                </ul>
+                
+                <h4>Responsibilities:</h4>
+                <ul>
+                    <li>Complex automation projects முழுக்க handle பண்றது</li>
+                    <li>2-3 member team-ஐ lead பண்றது</li>
+                    <li>Technical decisions எடுக்கறது</li>
+                    <li>Best practices implement பண்றது</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <h3>👑 4+ Years (Architect / Manager)</h3>
+                <h4>Leadership & Strategic Skills:</h4>
+                <ul class="checklist">
+                    <li><strong>COE Setup:</strong> Center of Excellence establish பண்றது</li>
+                    <li><strong>Governance:</strong> Standards, policies define பண்றது</li>
+                    <li><strong>ROI Analysis:</strong> Business value calculate பண்றது</li>
+                    <li><strong>Tool Selection:</strong> எந்த project-க்கு என்ன tool use பண்றதுன்னு decide பண்றது</li>
+                    <li><strong>Vendor Management:</strong> Tool vendors-உடன் negotiate பண்றது</li>
+                    <li><strong>Process Mining:</strong> Automation opportunities identify பண்றது</li>
+                    <li><strong>Change Management:</strong> Organization-wide adoption ensure பண்றது</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Interview Section -->
+        <div id="interview" class="content-section">
+            <h2>🎤 Interview Preparation - மிக முக்கியம்!</h2>
+            
+            <h3>Top 30 Interview Questions & Answers</h3>
+            
+            <div class="interview-qa">
+                <strong>Q1: RPA என்றால் என்ன? உங்க சொந்த வார்த்தையில் explain பண்ணுங்க.</strong>
+                <p><strong>Answer:</strong> RPA என்றால் Robotic Process Automation. இது repetitive-ஆ manual-ஆ செய்யற computer-based வேலைகளை software robot மூலமா automate பண்றது. Example-க்கு data entry, email processing, report generation போன்ற வேலைகள். இதோட main benefit 24/7 வேலை செய்யும், error-free-ஆ இருக்கும், மற்றும் வேகமா வேலை முடிக்கும்.</p>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q2: Attended vs Unattended Bot difference என்ன?</strong>
+                <p><strong>Answer:</strong></p>
+                <ul>
+                    <li><strong>Attended Bot:</strong> மனுஷன் computer-ல இருக்கும்போது run ஆகும். User trigger பண்ணணும். Desktop automation-க்கு use பண்றோம். Example: Customer service agent-க்கு help பண்ற bot.</li>
+                    <li><strong>Unattended Bot:</strong> மனுஷன் இல்லாம தானா run ஆகும். Schedule பண்ணலாம். Server-ல run ஆகும். Example: தினமும் காலை 6 மணிக்கு report generate பண்ற bot.</li>
+                </ul>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q3: Selector என்றால் என்ன? Dynamic selector என்றால் என்ன?</strong>
+                <p><strong>Answer:</strong> Selector என்றால் UI element-ஐ identify பண்ற XML code. அதுல element-ஓட properties இருக்கும் - like id, name, class, title.</p>
+                <p><strong>Dynamic Selector:</strong> Element properties change ஆகும்போது use பண்றோம். Wildcard (*) use பண்ணுவோம். Example:</p>
+                <div class="code-block" style="margin-top: 10px;">
+&lt;html title='Invoice - *' /&gt;
+&lt;webctrl id='txtAmount' tag='input' /&gt;</div>
+                <p>இங்க Invoice number change ஆனாலும் selector work ஆகும்.</p>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q4: DataTable-ல duplicate rows எப்படி remove பண்றீங்க?</strong>
+                <p><strong>Answer:</strong> Remove Duplicate Rows activity use பண்ணுவோம். அல்லது LINQ use பண்ணலாம்:</p>
+                <div class="code-block" style="margin-top: 10px;">
+dtUnique = dtOriginal.DefaultView.ToTable(True, "Column1", "Column2")</div>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q5: REFramework என்றால் என்ன? அதுல என்ன states இருக்கும்?</strong>
+                <p><strong>Answer:</strong> REFramework என்றால் Robotic Enterprise Framework. இது UiPath-ஓட standard template. Large projects-க்கு use பண்றோம்.</p>
+                <p><strong>4 Main States:</strong></p>
+                <ul>
+                    <li><strong>Init:</strong> Initial setup - Config file read, applications open</li>
+                    <li><strong>Get Transaction Data:</strong> Queue-ல இருந்து transaction item வாங்குறது</li>
+                    <li><strong>Process Transaction:</strong> Main business logic execute ஆகும்</li>
+                    <li><strong>End Process:</strong> Applications close, cleanup work</li>
+                </ul>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q6: Exception handling எப்படி பண்றீங்க?</strong>
+                <p><strong>Answer:</strong> Try-Catch blocks use பண்றோம்:</p>
+                <ul>
+                    <li><strong>System Exception:</strong> Application crash, network issues</li>
+                    <li><strong>Business Exception:</strong> Data validation fail, business rule violation</li>
+                </ul>
+                <p>REFramework-ல automatic-ஆ retry mechanism இருக்கும். Config file-ல max retry count set பண்ணுவோம். Failed items-ஐ queue-ல "Failed" status-ஆ mark பண்ணும்.</p>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q7: Orchestrator என்றால் என்ன? அதுல என்ன செய்யலாம்?</strong>
+                <p><strong>Answer:</strong> Orchestrator என்றால் centralized management platform. இங்க bots-ஐ control பண்றோம்:</p>
+                <ul>
+                    <li><strong>Robot Management:</strong> Bots-ஐ deploy பண்றது, manage பண்றது</li>
+                    <li><strong>Scheduling:</strong> Bots-ஐ schedule பண்றது</li>
+                    <li><strong>Queue Management:</strong> Transaction items manage பண்றது</li>
+                    <li><strong>Monitoring:</strong> Bot execution monitor பண்றது, logs பார்க்கறது</li>
+                    <li><strong>Asset Management:</strong> Credentials, config values store பண்றது</li>
+                </ul>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q8: OCR என்றால் என்ன? எந்த OCR engines தெரியும்?</strong>
+                <p><strong>Answer:</strong> OCR என்றால் Optical Character Recognition. Image அல்லது PDF-ல இருந்து text extract பண்றது.</p>
+                <p><strong>OCR Engines:</strong></p>
+                <ul>
+                    <li><strong>Tesseract:</strong> Free, open source</li>
+                    <li><strong>Google OCR:</strong> Cloud-based, accurate</li>
+                    <li><strong>Microsoft OCR:</strong> Office documents-க்கு நல்லது</li>
+                    <li><strong>ABBYY:</strong> Very accurate, paid</li>
+                    <li><strong>UiPath Document Understanding:</strong> AI-powered, intelligent extraction</li>
+                </ul>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q9: Config file ஏன் use பண்றோம்?</strong>
+                <p><strong>Answer:</strong> Config file-ல (Excel) settings store பண்றோம்:</p>
+                <ul>
+                    <li>File paths, URLs, email addresses</li>
+                    <li>Application credentials reference</li>
+                    <li>Timeout values, retry counts</li>
+                    <li>Business rules, threshold values</li>
+                </ul>
+                <p><strong>Benefits:</strong> Hardcoding avoid பண்றோம், changes easy-ஆ பண்ணலாம், different environments-க்கு different configs use பண்ணலாம்.</p>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q10: Production-ல bot fail ஆச்சுன்னா என்ன பண்றீங்க?</strong>
+                <p><strong>Answer:</strong> Systematic approach follow பண்றோம்:</p>
+                <ol>
+                    <li><strong>Check Logs:</strong> Error message என்ன-ன்னு பார்க்கறது</li>
+                    <li><strong>Check Screenshot:</strong> எங்க fail ஆச்சுன்னு identify பண்றது</li>
+                    <li><strong>Application Status:</strong> Target application down-ஆ இருக்கா check பண்றது</li>
+                    <li><strong>Network Check:</strong> Connectivity issues-ஆ இருக்கா பார்க்கறது</li>
+                    <li><strong>Retry:</strong> Retry limit-க்குள்ள மறுபடியும் run பண்றது</li>
+                    <li><strong>Escalate:</strong> Solve ஆகலன்னா client-க்கு inform பண்றது</li>
+                    <li><strong>Fix & Redeploy:</strong> Code issue இருந்தா fix பண்ணி redeploy பண்றது</li>
+                </ol>
+            </div>
+            
+            <h3 style="margin-top: 40px;">Technical Coding Questions</h3>
+            
+            <div class="interview-qa">
+                <strong>Q11: Excel-ல specific column-ஐ வச்சி sort பண்றது எப்படி?</strong>
+                <div class="code-block" style="margin-top: 10px;">
+' Sort DataTable by Amount column (Descending)
+dtSorted = (From row In dtData.AsEnumerable()
+            Order By row.Field(Of Double)("Amount") Descending
+            Select row).CopyToDataTable()</div>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q12: Email-ல PDF attachment மட்டும் download பண்றது எப்படி?</strong>
+                <div class="code-block" style="margin-top: 10px;">
+For Each attachment In mailMessage.Attachments
+    If attachment.Name.EndsWith(".pdf") Then
+        attachment.Save("C:\Downloads\" + attachment.Name)
+    End If
+Next</div>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q13: String-ல specific position-ல இருக்கற character extract பண்றது எப்படி?</strong>
+                <div class="code-block" style="margin-top: 10px;">
+' Get 5th character
+strChar = strInput.Substring(4, 1)  ' Index starts from 0
+
+' Get last 4 characters
+strLast4 = strInput.Substring(strInput.Length - 4)</div>
+            </div>
+            
+            <h3 style="margin-top: 40px;">Scenario-Based Questions</h3>
+            
+            <div class="interview-qa">
+                <strong>Q14: Scenario: Website-ல data load ஆக time ஆகுது. எப்படி handle பண்றீங்க?</strong>
+                <p><strong>Answer:</strong></p>
+                <ul>
+                    <li><strong>Wait for Element:</strong> Element visible ஆகும் வரை wait பண்றது</li>
+                    <li><strong>Element Exists:</strong> Element exist ஆகுதான்னு check பண்றது</li>
+                    <li><strong>Find Element:</strong> Dynamic timeout கொடுத்து wait பண்றது</li>
+                    <li><strong>Retry Scope:</strong> Retry mechanism implement பண்றது</li>
+                </ul>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>Q15: Scenario: 1000 invoices process பண்றதுக்கு 5 hours ஆகுது. எப்படி optimize பண்றீங்க?</strong>
+                <p><strong>Answer:</strong></p>
+                <ul>
+                    <li><strong>Parallel Processing:</strong> Multiple bots parallel-ஆ run பண்றது</li>
+                    <li><strong>Bulk Operations:</strong> One-by-one-ஆ process பண்றதுக்கு பதிலா batch-ஆ process பண்றது</li>
+                    <li><strong>Remove Delays:</strong> Unnecessary waits remove பண்றது</li>
+                    <li><strong>API Integration:</strong> UI automation-க்கு பதிலா API use பண்றது (if possible)</li>
+                    <li><strong>Code Optimization:</strong> Loop-க்குள்ள unnecessary operations avoid பண்றது</li>
+                </ul>
+            </div>
+            
+            <div class="tip-box" style="margin-top: 30px;">
+                <strong>🎯 Interview-க்கு Ready ஆக Tips:</strong>
+                <ol style="margin-top: 10px;">
+                    <li><strong>Demo Project:</strong> GitHub-ல 2-3 projects upload பண்ணுங்க</li>
+                    <li><strong>Certification:</strong> UiPath RPA Associate certificate எடுங்க (Free-ஆ கிடைக்கும்)</li>
+                    <li><strong>Real Examples:</strong> எல்லா concept-க்கும் real-world example கொடுங்க</li>
+                    <li><strong>Confident-ஆ இருங்க:</strong> தெரியாதத "I don't know, but I can learn" னு சொல்லுங்க</li>
+                    <li><strong>Questions கேளுங்க:</strong> Interview முடிஞ்சதும் project, team பத்தி கேளுங்க</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Career Roadmap Section -->
+        <div id="roadmap" class="content-section">
+            <h2>🗺️ RPA Developer Career Roadmap</h2>
+            
+            <div class="project-card">
+                <h4>Month 1-2: Fundamentals</h4>
+                <ul class="checklist">
+                    <li>UiPath Community Edition install பண்ணுங்க</li>
+                    <li>UiPath Academy-ல free courses பண்ணுங்க</li>
+                    <li>Basic activities practice பண்ணுங்க (Click, Type, Read)</li>
+                    <li>Excel automation master பண்ணுங்க</li>
+                    <li>5-10 simple projects செய்யுங்க</li>
+                </ul>
+            </div>
+            
+            <div class="project-card">
+                <h4>Month 3-4: Intermediate Level</h4>
+                <ul class="checklist">
+                    <li>Web scraping கத்துக்கங்க</li>
+                    <li>Email automation master பண்ணுங்க</li>
+                    <li>PDF operations (read, extract)</li>
+                    <li>DataTable operations advanced-ஆ கத்துக்கங்க</li>
+                    <li>REFramework புரிஞ்சுக்கங்க</li>
+                    <li>10-15 medium projects செய்யுங்க</li>
+                </ul>
+            </div>
+            
+            <div class="project-card">
+                <h4>Month 5-6: Advanced & Certification</h4>
+                <ul class="checklist">
+                    <li>Orchestrator learn பண்ணுங்க</li>
+                    <li>OCR implementation</li>
+                    <li>API integration கத்துக்கங்க</li>
+                    <li>Git version control use பண்ணுங்க</li>
+                    <li><strong>UiPath RPA Associate Certification எடுங்க</strong></li>
+                    <li>GitHub-ல projects upload பண்ணுங்க</li>
+                    <li>LinkedIn profile update பண்ணுங்க</li>
+                </ul>
+            </div>
+            
+            <h2 style="margin-top: 40px;">💼 Job & Salary Expectations (India)</h2>
+            
+            <div class="skill-card">
+                <h3>Fresher (0-1 Year)</h3>
+                <p><strong>Salary Range:</strong> ₹3-5 LPA</p>
+                <p><strong>Companies:</strong> TCS, Wipro, Infosys, Cognizant, Capgemini</p>
+                <p><strong>Job Titles:</strong> RPA Developer, Junior RPA Developer, Automation Engineer</p>
+            </div>
+            
+            <div class="skill-card">
+                <h3>Developer (1-3 Years)</h3>
+                <p><strong>Salary Range:</strong> ₹5-10 LPA</p>
+                <p><strong>Companies:</strong> Deloitte, Accenture, EY, KPMG, Tech Mahindra</p>
+                <p><strong>Job Titles:</strong> RPA Developer, Senior RPA Developer</p>
+            </div>
+            
+            <div class="skill-card">
+                <h3>Senior Developer (3-5 Years)</h3>
+                <p><strong>Salary Range:</strong> ₹10-18 LPA</p>
+                <p><strong>Companies:</strong> Product companies, MNCs</p>
+                <p><strong>Job Titles:</strong> Lead RPA Developer, RPA Consultant</p>
+            </div>
+            
+            <div class="skill-card">
+                <h3>Architect (5+ Years)</h3>
+                <p><strong>Salary Range:</strong> ₹18-30 LPA+</p>
+                <p><strong>Job Titles:</strong> RPA Architect, RPA Manager, Automation Lead</p>
+            </div>
+            
+            <h2 style="margin-top: 40px;">📚 Learning Resources</h2>
+            
+            <div class="skill-card">
+                <h3>Free Resources</h3>
+                <ul class="checklist">
+                    <li><strong>UiPath Academy:</strong> academy.uipath.com - Free courses & certification</li>
+                    <li><strong>Automation Anywhere University:</strong> Free training programs</li>
+                    <li><strong>YouTube Channels:</strong> Mukesh Otwani, Naveen AutomationLabs</li>
+                    <li><strong>UiPath Forum:</strong> forum.uipath.com - Doubts clear பண்ணலாம்</li>
+                    <li><strong>GitHub:</strong> Sample projects download பண்ணி practice பண்ணலாம்</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <h3>Paid Resources (Optional)</h3>
+                <ul>
+                    <li><strong>Udemy:</strong> RPA courses (₹500-2000)</li>
+                    <li><strong>Coursera:</strong> Automation Specialization</li>
+                    <li><strong>LinkedIn Learning:</strong> RPA fundamentals</li>
+                </ul>
+            </div>
+            
+            <h2 style="margin-top: 40px;">🎯 Final Tips - Company-ல Success ஆக</h2>
+            
+            <div class="skill-card">
+                <h3>Technical Excellence</h3>
+                <ul class="checklist">
+                    <li><strong>Code Quality:</strong> Clean, readable code எழுதுங்க</li>
+                    <li><strong>Documentation:</strong> எல்லா process-க்கும் proper document maintain பண்ணுங்க</li>
+                    <li><strong>Testing:</strong> Deploy பண்றதுக்கு முன்னாடி thorough-ஆ test பண்ணுங்க</li>
+                    <li><strong>Error Handling:</strong> எல்லா possible errors-க்கும் handle பண்ணுங்க</li>
+                    <li><strong>Logging:</strong> Detailed logs maintain பண்ணுங்க - debug பண்ற்த்துக்கு help ஆகும்</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <h3>Soft Skills (மிக முக்கியம்)</h3>
+                <ul class="checklist">
+                    <li><strong>Communication:</strong> Client-உடன் clear-ஆ communicate பண்ணுங்க</li>
+                    <li><strong>Problem Solving:</strong> Issues-ஐ systematic-ஆ solve பண்ணுங்க</li>
+                    <li><strong>Time Management:</strong> Deadlines meet பண்ணுங்க</li>
+                    <li><strong>Team Work:</strong> Team-உடன் collaborate பண்ணுங்க</li>
+                    <li><strong>Learning Attitude:</strong> Continuous-ஆ புது technology கத்துங்க</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <h3>Project Management</h3>
+                <ul class="checklist">
+                    <li><strong>Requirements:</strong> Client requirements clearly புரிஞ்சுக்கங்க</li>
+                    <li><strong>Estimation:</strong> Realistic timeline கொடுங்க</li>
+                    <li><strong>Updates:</strong> Regular status updates கொடுங்க</li>
+                    <li><strong>Issues:</strong> Problems-ஐ early-ஆவே escalate பண்ணுங்க</li>
+                    <li><strong>Documentation:</strong> PDD, SDD properly maintain பண்ணுங்க</li>
+                </ul>
+            </div>
+            
+            <div class="tip-box" style="margin-top: 30px;">
+                <strong>⚡ Quick Success Mantra:</strong>
+                <ol style="margin-top: 10px; font-size: 1.1em;">
+                    <li><strong>Practice Daily:</strong> ரொம்ப ரொம்ப practice பண்ணுங்க - minimum 2-3 hours</li>
+                    <li><strong>Build Portfolio:</strong> GitHub-ல 10+ projects இருக்கணும்</li>
+                    <li><strong>Get Certified:</strong> UiPath RPA Associate certification must</li>
+                    <li><strong>Network:</strong> LinkedIn-ல RPA community-ல active-ஆ இருங்க</li>
+                    <li><strong>Stay Updated:</strong> Latest RPA trends follow பண்ணுங்க</li>
+                    <li><strong>Never Give Up:</strong> First attempt-லயே job கிடைக்காம இருக்கலாம், தொடர்ந்து try பண்ணுங்க</li>
+                </ol>
+            </div>
+            
+            <div class="project-card" style="margin-top: 30px;">
+                <h4>🚀 30-Day Challenge - Job Ready ஆகுங்க!</h4>
+                <p style="margin-bottom: 15px;"><strong>Week 1: Basics Master</strong></p>
+                <ul>
+                    <li>Day 1-2: UiPath install, UI automation basics</li>
+                    <li>Day 3-4: Excel automation (Read, Write, Filter)</li>
+                    <li>Day 5-7: 5 simple automation projects complete பண்ணுங்க</li>
+                </ul>
+                
+                <p style="margin: 15px 0;"><strong>Week 2: Intermediate Skills</strong></p>
+                <ul>
+                    <li>Day 8-10: Web scraping, Email automation</li>
+                    <li>Day 11-12: DataTable advanced operations</li>
+                    <li>Day 13-14: 5 medium projects complete பண்ணுங்க</li>
+                </ul>
+                
+                <p style="margin: 15px 0;"><strong>Week 3: Advanced & Real Projects</strong></p>
+                <ul>
+                    <li>Day 15-17: REFramework கத்துங்க</li>
+                    <li>Day 18-19: Orchestrator basics</li>
+                    <li>Day 20-21: 2 end-to-end real projects செய்யுங்க</li>
+                </ul>
+                
+                <p style="margin: 15px 0;"><strong>Week 4: Certification & Job Ready</strong></p>
+                <ul>
+                    <li>Day 22-25: UiPath certification preparation</li>
+                    <li>Day 26-27: Certificate exam எழுதுங்க</li>
+                    <li>Day 28-29: Resume & LinkedIn update</li>
+                    <li>Day 30: Job applications start பண்ணுங்க</li>
+                </ul>
+            </div>
+            
+            <h2 style="margin-top: 40px;">❓ Common Mistakes - தவிர்க்கவும்!</h2>
+            
+            <div class="interview-qa">
+                <strong>❌ Mistake 1: Hardcoding values</strong>
+                <p><strong>தவறு:</strong> File paths, URLs code-லயே directly எழுதுறது</p>
+                <p><strong>சரியானது:</strong> Config file use பண்ணி store பண்றது</p>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>❌ Mistake 2: No error handling</strong>
+                <p><strong>தவறு:</strong> Try-Catch போடாம code எழுதுறது</p>
+                <p><strong>சரியானது:</strong> எல்லா critical operations-க்கும் Try-Catch use பண்றது</p>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>❌ Mistake 3: No logging</strong>
+                <p><strong>தவறு:</strong> Debug பண்றதுக்கு logs இல்லாம code எழுதுறது</p>
+                <p><strong>சரியானது:</strong> Important steps-ல Log Message add பண்றது</p>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>❌ Mistake 4: Static selectors</strong>
+                <p><strong>தவறு:</strong> Dynamic elements-க்கு static selector use பண்றது</p>
+                <p><strong>சரியானது:</strong> Wildcard (*) use பண்ணி dynamic selectors create பண்றது</p>
+            </div>
+            
+            <div class="interview-qa">
+                <strong>❌ Mistake 5: No code reusability</strong>
+                <p><strong>தவறு:</strong> Same code-ஐ multiple இடத்தில் copy-paste பண்றது</p>
+                <p><strong>சரியானது:</strong> Reusable workflows create பண்றது (Invoke Workflow use பண்ணி)</p>
+            </div>
+            
+            <h2 style="margin-top: 40px;">🌟 Success Stories - Motivation</h2>
+            
+            <div class="skill-card">
+                <h3>கதை 1: Mechanical Engineer-ல இருந்து RPA Developer</h3>
+                <p><strong>Background:</strong> Mechanical Engineering graduate, no IT background</p>
+                <p><strong>Journey:</strong> 6 months self-learning, UiPath certified, 3 projects in GitHub</p>
+                <p><strong>Result:</strong> TCS-ல RPA Developer-ஆ join (₹4.5 LPA)</p>
+                <p><strong>Key:</strong> Consistent practice + good portfolio</p>
+            </div>
+            
+            <div class="skill-card">
+                <h3>கதை 2: Data Entry Operator-ல இருந்து RPA Developer</h3>
+                <p><strong>Background:</strong> 2 years data entry experience</p>
+                <p><strong>Journey:</strong> Evening time-ல RPA learn பண்ணாரு, automation projects செய்தாரு</p>
+                <p><strong>Result:</strong> Same company-லயே RPA team-க்கு switch (₹6 LPA)</p>
+                <p><strong>Key:</strong> Domain knowledge + automation skills combination</p>
+            </div>
+            
+            <h2 style="margin-top: 40px;">📞 Community & Support</h2>
+            
+            <div class="skill-card">
+                <h3>எங்க Help கேக்கலாம்?</h3>
+                <ul class="checklist">
+                    <li><strong>UiPath Forum:</strong> forum.uipath.com - நிறைய experts இருப்பாங்க</li>
+                    <li><strong>Stack Overflow:</strong> Technical doubts-க்கு</li>
+                    <li><strong>LinkedIn Groups:</strong> RPA Developers India, UiPath Community</li>
+                    <li><strong>Reddit:</strong> r/RPA, r/UiPath</li>
+                    <li><strong>Telegram Groups:</strong> RPA learning groups நிறைய இருக்கு</li>
+                </ul>
+            </div>
+        </div>
+        
+        <footer>
+            <h2 style="color: #667eea; margin-bottom: 20px;">🎯 உங்கள் RPA Journey இன்றே Start பண்ணுங்க!</h2>
+            <p style="font-size: 1.2em; margin-bottom: 15px;">
+                <strong>Remember:</strong> RPA Developer-ஆ ஆக coding genius-ஆ இருக்க வேண்டிய அவசியம் இல்லை. 
+                <span class="highlight">Consistent practice + Problem solving mindset + Willingness to learn</span> இருந்தா போதும்!
+            </p>
+            <p style="font-size: 1.1em; margin-top: 20px;">
+                💪 <strong>உங்களால் முடியும்! All the Best!</strong> 🚀
+            </p>
+            <p style="margin-top: 20px; color: #666;">
+                <em>இந்த guide-ஐ save பண்ணி regular-ஆ refer பண்ணுங்க. 
+                LinkedIn-ல share பண்ணி மத்தவங்களுக்கும் help பண்ணுங்க!</em>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-tabs button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Animate progress bars on page load
+        window.addEventListener('load', function() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        });
+        
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPA முழுமையான வழிகாட்டி - Freshers க்கான</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-tabs button {
+            padding: 15px 30px;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .nav-tabs button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .nav-tabs button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: #667eea;
+            margin: 30px 0 20px 0;
+            font-size: 2em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin: 25px 0 15px 0;
+            font-size: 1.5em;
+        }
+        
+        .skill-card {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .skill-level {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+        
+        .skill-level label {
+            min-width: 150px;
+            font-weight: bold;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 25px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+            transition: width 1s ease;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border: 1px solid #3e3e3e;
+        }
+        
+        .code-block .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+        
+        .code-block .keyword {
+            color: #569cd6;
+            font-weight: bold;
+        }
+        
+        .code-block .type {
+            color: #4ec9b0;
+            font-weight: bold;
+        }
+        
+        .code-block .string {
+            color: #ce9178;
+        }
+        
+        .code-block .number {
+            color: #b5cea8;
+        }
+        
+        .code-block .function {
+            color: #dcdcaa;
+        }
+        
+        .code-block .operator {
+            color: #d4d4d4;
+        }
+        
+        .code-block .variable {
+            color: #9cdcfe;
+        }
+        
+        .code-block .boolean {
+            color: #569cd6;
+        }
+        
+        .tip-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .tip-box strong {
+            color: #856404;
+        }
+        
+        .project-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .project-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.8;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .interview-qa {
+            background: #f0f7ff;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .interview-qa strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        footer {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .nav-tabs button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 RPA முழுமையான வழிகாட்டி</h1>
+            <p>Freshers க்கான Complete Guide - Company-ல் Project Handle பண்ண</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <button class="active" onclick="showSection('basics')">அடிப்படைகள்</button>
+            <button onclick="showSection('why-rpa')">Why RPA?</button>
+            <button onclick="showSection('future')">Future & Career</button>
+            <button onclick="showSection('tools')">Tools & Skills</button>
+            <button onclick="showSection('projects')">Project Types</button>
+            <button onclick="showSection('coding')">Coding Skills</button>
+            <button onclick="showSection('experience')">Experience Level</button>
+            <button onclick="showSection('interview')">Interview Tips</button>
+            <button onclick="showSection('roadmap')">Career Roadmap</button>
+        </div>
+        
+        <!-- அடிப்படைகள் Section -->
+        <div id="basics" class="content-section active">
+            <h2>📚 RPA என்றால் என்ன?</h2>
+            <div class="skill-card">
+                <h3>Robotic Process Automation (RPA)</h3>
+                <p><strong>எளிய வார்த்தையில்:</strong> மனிதர்கள் computer-ல செய்யும் repetitive வேலைகளை software robot மூலம் automatic-ஆ செய்வது தான் RPA.</p>
+                
+                <h4 style="margin-top: 20px;">உதாரணம்:</h4>
+                <ul>
+                    <li>தினமும் 100 invoices-ஐ manually Excel-ல enter பண்றது</li>
+                    <li>Email வந்தா attachment download பண்ணி folder-ல save பண்றது</li>
+                    <li>Multiple websites-ல data collect பண்ணி report உருவாக்குறது</li>
+                    <li>HR-ல employee onboarding process முழுக்க automate பண்றது</li>
+                </ul>
+            </div>
+            
+            <h2>🎯 RPA ஏன் முக்கியம்?</h2>
+            <div class="skill-card">
+                <ul class="checklist">
+                    <li><strong>24/7 வேலை செய்யும்:</strong> Robot-க்கு休む் தேவையில்லை</li>
+                    <li><strong>Error இல்லாமல்:</strong> 100% accuracy guarantee</li>
+                    <li><strong>வேகமாக:</strong> மனிதர்களை விட 3-5 மடங்கு வேகம்</li>
+                    <li><strong>Cost Saving:</strong> Company-க்கு நிறைய பணம் மிச்சம்</li>
+                    <li><strong>Scalability:</strong> எவ்வளவு வேலை வந்தாலும் handle பண்ணலாம்</li>
+                </ul>
+            </div>
+            
+            <div class="tip-box">
+                <strong>💡 முக்கிய குறிப்பு:</strong> RPA Developer-ஆக நீங்கள் மூன்று விஷயங்களை செய்வீர்கள்:
+                <ol style="margin-top: 10px;">
+                    <li><strong>Analyze:</strong> Manual process-ஐ புரிஞ்சுக்கிட்டு எப்படி automate பண்றதுன்னு plan பண்றது</li>
+                    <li><strong>Develop:</strong> RPA tool use பண்ணி robot build பண்றது</li>
+                    <li><strong>Deploy:</strong> Production-ல robot-ஐ run பண்ணி monitor பண்றது</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Tools & Skills Section -->
+        <div id="tools" class="content-section">
+            <h2>🛠️ முக்கிய RPA Tools</h2>
+            
+            <div class="skill-card">
+                <h3>1. UiPath (Most Popular) ⭐</h3>
+                <p><strong>சிறப்பு:</strong> மிகவும் user-friendly, drag-and-drop interface</p>
+                <ul>
+                    <li><strong>Language:</strong> VB.NET (Visual Basic)</li>
+                    <li><strong>Free Version:</strong> UiPath Community Edition</li>
+                    <li><strong>Market Share:</strong> 35-40%</li>
+                    <li><strong>சரியானது:</strong> Beginners க்கு மிகவும் எளிது</li>
+                </ul>
+                <div class="skill-level">
+                    <label>இதை கத்துக்கணும்:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%">95% முக்கியம்</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>2. Automation Anywhere</h3>
+                <p><strong>சிறப்பு:</strong> Cloud-based, AI/ML integration நல்லா இருக்கும்</p>
+                <ul>
+                    <li><strong>Language:</strong> Python-like scripting</li>
+                    <li><strong>IQ Bot:</strong> Advanced document processing</li>
+                    <li><strong>Market Share:</strong> 25-30%</li>
+                </ul>
+                <div class="skill-level">
+                    <label>இதை கத்துக்கணும்:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%">85% முக்கியம்</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>3. Blue Prism</h3>
+                <p><strong>சிறப்பு:</strong> Enterprise-level, மிகவும் secure</p>
+                <ul>
+                    <li><strong>Language:</strong> C#</li>
+                    <li><strong>பயன்படும் இடம்:</strong> Banking, Financial Services</li>
+                    <li><strong>Object-Oriented:</strong> Reusable objects create பண்ணலாம்</li>
+                </ul>
+                <div class="skill-level">
+                    <label>இதை கத்துக்கணும்:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%">75% முக்கியம்</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>4. Power Automate (Microsoft)</h3>
+                <p><strong>சிறப்பு:</strong> Microsoft ecosystem-ல நல்லா integrate ஆகும்</p>
+                <ul>
+                    <li><strong>முன்பு பெயர்:</strong> Microsoft Flow</li>
+                    <li><strong>Office 365-உடன்:</strong> நேரடியாக connect ஆகும்</li>
+                    <li><strong>Desktop + Cloud:</strong> இரண்டும் support பண்ணும்</li>
+                </ul>
+                <div class="skill-level">
+                    <label>இதை கத்துக்கணும்:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%">80% முக்கியம்</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>💻 கத்துக்க வேண்டிய Technical Skills</h2>
+            
+            <div class="skill-card">
+                <h3>Core Programming (அவசியம்)</h3>
+                <div class="skill-level">
+                    <label>VB.NET / C#:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%">90%</div>
+                    </div>
+                </div>
+                <div class="skill-level">
+                    <label>Python:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%">75%</div>
+                    </div>
+                </div>
+                <div class="skill-level">
+                    <label>JavaScript:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%">60%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>Database Knowledge</h3>
+                <div class="skill-level">
+                    <label>SQL Queries:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%">95% - Must Know</div>
+                    </div>
+                </div>
+                <div class="skill-level">
+                    <label>Excel Advanced:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%">90%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>Other Important Skills</h3>
+                <ul class="checklist">
+                    <li>HTML/CSS basics - Web scraping க்கு</li>
+                    <li>XML/JSON - Data handling</li>
+                    <li>Regular Expressions (Regex) - Pattern matching</li>
+                    <li>APIs (REST/SOAP) - System integration</li>
+                    <li>Version Control (Git) - Code management</li>
+                    <li>Orchestrator Knowledge - Bot deployment</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Project Types Section -->
+        <div id="projects" class="content-section">
+            <h2>📊 Real Company Projects - என்ன மாதிரி வேலை செய்வீர்கள்</h2>
+            
+            <div class="project-card">
+                <h4>1. Invoice Processing (Financial Automation)</h4>
+                <p><strong>Process:</strong></p>
+                <ul>
+                    <li>Email-ல வரும் invoices-ஐ download பண்றது</li>
+                    <li>PDF-ல இருந்து data extract பண்றது (OCR use பண்ணி)</li>
+                    <li>SAP/Oracle system-ல data entry பண்றது</li>
+                    <li>Validation errors இருந்தா email alert அனுப்புறது</li>
+                    <li>Daily report generate பண்ணி manager-க்கு send பண்றது</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Tools:</strong> UiPath, OCR Engine, SAP Connector</p>
+                <p><strong>தெரிஞ்சிருக்கணும்:</strong> PDF handling, Database operations, Email automation</p>
+            </div>
+            
+            <div class="project-card">
+                <h4>2. HR Onboarding Automation</h4>
+                <p><strong>Process:</strong></p>
+                <ul>
+                    <li>புது employee data-ஐ HRMS-ல enter பண்றது</li>
+                    <li>Email account, laptop request create பண்றது</li>
+                    <li>Training schedule setup பண்றது</li>
+                    <li>Access cards request பண்றது</li>
+                    <li>Welcome kit checklist prepare பண்றது</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Integration:</strong> Workday, ServiceNow, Active Directory</p>
+            </div>
+            
+            <div class="project-card">
+                <h4>3. Report Generation & Distribution</h4>
+                <p><strong>Process:</strong></p>
+                <ul>
+                    <li>Multiple sources-ல இருந்து data collect பண்றது</li>
+                    <li>Excel consolidation & formatting</li>
+                    <li>Charts & graphs create பண்றது</li>
+                    <li>PDF convert பண்ணி stakeholders-க்கு email பண்றது</li>
+                    <li>SharePoint-ல upload பண்றது</li>
+                </ul>
+            </div>
+            
+            <div class="project-card">
+                <h4>4. Customer Service Automation</h4>
+                <p><strong>Process:</strong></p>
+                <ul>
+                    <li>Customer emails-ஐ read பண்றது</li>
+                    <li>Request type identify பண்றது (AI use பண்ணி)</li>
+                    <li>CRM system-ல ticket create பண்றது</li>
+                    <li>Auto-reply send பண்றது</li>
+                    <li>Priority-based routing</li>
+                </ul>
+            </div>
+            
+            <div class="project-card">
+                <h4>5. Data Migration Projects</h4>
+                <p><strong>Process:</strong></p>
+                <ul>
+                    <li>Legacy system-ல இருந்து data extract பண்றது</li>
+                    <li>Data cleansing & validation</li>
+                    <li>New system-க்கு data migrate பண்றது</li>
+                    <li>Reconciliation report generate பண்றது</li>
+                </ul>
+            </div>
+            
+            <h2>🎓 Project Handle பண்ண தெரிஞ்சிருக்க வேண்டியவை</h2>
+            
+            <div class="skill-card">
+                <h3>1. Requirement Analysis</h3>
+                <ul class="checklist">
+                    <li>Client-உடன் பேசி exact requirement புரிஞ்சுக்கறது</li>
+                    <li>As-Is process document படிச்சு understand பண்றது</li>
+                    <li>Feasibility check பண்றது - automate பண்ண முடியுமா?</li>
+                    <li>ROI (Return on Investment) calculate பண்றது</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <h3>2. Solution Design (PDD - Process Design Document)</h3>
+                <ul class="checklist">
+                    <li>Flowchart வரைஞ்சு process-ஐ visualize பண்றது</li>
+                    <li>Exception scenarios identify பண்றது</li>
+                    <li>Error handling strategy define பண்றது</li>
+                    <li>Security & compliance check பண்றது</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <h3>3. Development Standards</h3>
+                <ul class="checklist">
+                    <li>Naming conventions follow பண்றது</li>
+                    <li>Reusable components create பண்றது</li>
+                    <li>Proper logging implement பண்றது</li>
+                    <li>Config file use பண்ணி hardcoding avoid பண்றது</li>
+                    <li>REFramework (UiPath) use பண்றது</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <h3>4. Testing</h3>
+                <ul class="checklist">
+                    <li>Unit Testing - Individual workflow test</li>
+                    <li>Integration Testing - End-to-end testing</li>
+                    <li>UAT (User Acceptance Testing) - Client testing</li>
+                    <li>Performance Testing - Load testing</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Coding Skills Section -->
+        <div id="coding" class="content-section">
+            <h2>💻 தெரிஞ்சிருக்க வேண்டிய Coding Concepts</h2>
+            
+            <div class="skill-card">
+                <h3>1. Variables & Data Types (UiPath - VB.NET)</h3>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">📝 String Variables (Text data store பண்ண)</h4>
+                <div class="code-block">
+<span class="comment">' பெயர் store பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">strName</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="string">"Kumar"</span>
+
+<span class="comment">' Email address store பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">strEmail</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="string">"kumar@company.com"</span>
+
+<span class="comment">' File path store பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">strFilePath</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="string">"C:\Documents\Invoice.xlsx"</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 எப்போ use பண்றது:</strong> Text data store பண்றதுக்கு - names, emails, addresses, file paths
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 25px;">🔢 Integer Variables (எண்கள் store பண்ண - decimal இல்லாம)</h4>
+                <div class="code-block">
+<span class="comment">' வயசு store பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">intAge</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="number">25</span>
+
+<span class="comment">' Count/எண்ணிக்கை track பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">intCount</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="number">0</span>
+
+<span class="comment">' Employee ID store பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">intEmployeeID</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="number">12345</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 எப்போ use பண்றது:</strong> முழு எண்கள் store பண்ண - age, count, ID numbers
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 25px;">💰 Double Variables (Decimal எண்கள் store பண்ண)</h4>
+                <div class="code-block">
+<span class="comment">' சம்பளம் store பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">dblSalary</span> <span class="keyword">As</span> <span class="type">Double</span> <span class="operator">=</span> <span class="number">50000.50</span>
+
+<span class="comment">' Invoice amount store பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">dblAmount</span> <span class="keyword">As</span> <span class="type">Double</span> <span class="operator">=</span> <span class="number">12345.75</span>
+
+<span class="comment">' Percentage store பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">dblPercentage</span> <span class="keyword">As</span> <span class="type">Double</span> <span class="operator">=</span> <span class="number">85.5</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 எப்போ use பண்றது:</strong> Decimal point இருக்கும் எண்கள் - salary, amount, percentage
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 25px;">✅ Boolean Variables (True/False store பண்ண)</h4>
+                <div class="code-block">
+<span class="comment">' Process success ஆச்சா இல்லையான்னு check பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">boolSuccess</span> <span class="keyword">As</span> <span class="type">Boolean</span> <span class="operator">=</span> <span class="boolean">True</span>
+
+<span class="comment">' Data processed ஆச்சா check பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">boolIsProcessed</span> <span class="keyword">As</span> <span class="type">Boolean</span> <span class="operator">=</span> <span class="boolean">False</span>
+
+<span class="comment">' Email sent ஆச்சா check பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">boolEmailSent</span> <span class="keyword">As</span> <span class="type">Boolean</span> <span class="operator">=</span> <span class="boolean">False</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 எப்போ use பண்றது:</strong> Yes/No, True/False type conditions - status check பண்றதுக்கு
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 25px;">📅 DateTime Variables (Date & Time store பண்ண)</h4>
+                <div class="code-block">
+<span class="comment">' இன்றைய date & time</span>
+<span class="keyword">Dim</span> <span class="variable">dtToday</span> <span class="keyword">As</span> <span class="type">DateTime</span> <span class="operator">=</span> <span class="type">DateTime</span>.<span class="function">Now</span>
+
+<span class="comment">' 7 நாள் கழித்து due date</span>
+<span class="keyword">Dim</span> <span class="variable">dtDueDate</span> <span class="keyword">As</span> <span class="type">DateTime</span> <span class="operator">=</span> <span class="type">DateTime</span>.<span class="function">Now</span>.<span class="function">AddDays</span>(<span class="number">7</span>)
+
+<span class="comment">' Specific date set பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">dtStartDate</span> <span class="keyword">As</span> <span class="type">DateTime</span> <span class="operator">=</span> <span class="keyword">New</span> <span class="type">DateTime</span>(<span class="number">2025</span>, <span class="number">10</span>, <span class="number">14</span>)
+
+<span class="comment">' Date-ஐ String-ஆ convert பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">strDate</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="variable">dtToday</span>.<span class="function">ToString</span>(<span class="string">"dd-MM-yyyy"</span>)
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 எப்போ use பண்றது:</strong> Date & Time operations - due dates, timestamps, date calculations
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 25px;">📋 Array (Fixed size list)</h4>
+                <div class="code-block">
+<span class="comment">' Names-ஓட array create பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">arrNames</span> <span class="keyword">As</span> <span class="type">String</span>() <span class="operator">=</span> {<span class="string">"Kumar"</span>, <span class="string">"Raja"</span>, <span class="string">"Vijay"</span>}
+
+<span class="comment">' First item access பண்ண (Index 0-ல இருந்து start ஆகும்)</span>
+<span class="keyword">Dim</span> <span class="variable">strFirstName</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="variable">arrNames</span>(<span class="number">0</span>)  <span class="comment">' Result: "Kumar"</span>
+
+<span class="comment">' Array length கண்டுபிடிக்க</span>
+<span class="keyword">Dim</span> <span class="variable">intLength</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="variable">arrNames</span>.<span class="function">Length</span>  <span class="comment">' Result: 3</span>
+
+<span class="comment">' Numbers array</span>
+<span class="keyword">Dim</span> <span class="variable">arrNumbers</span> <span class="keyword">As</span> <span class="type">Integer</span>() <span class="operator">=</span> {<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>}
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 எப்போ use பண்றது:</strong> Fixed number of items store பண்றதுக்கு. Size change ஆகாது.
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 25px;">📝 List (Dynamic size list - Add/Remove பண்ணலாம்)</h4>
+                <div class="code-block">
+<span class="comment">' Empty list create பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">lstEmails</span> <span class="keyword">As</span> <span class="keyword">New</span> <span class="type">List</span>(<span class="keyword">Of</span> <span class="type">String</span>)
+
+<span class="comment">' Items add பண்ண</span>
+<span class="variable">lstEmails</span>.<span class="function">Add</span>(<span class="string">"kumar@company.com"</span>)
+<span class="variable">lstEmails</span>.<span class="function">Add</span>(<span class="string">"raja@company.com"</span>)
+<span class="variable">lstEmails</span>.<span class="function">Add</span>(<span class="string">"vijay@company.com"</span>)
+
+<span class="comment">' Item remove பண்ண</span>
+<span class="variable">lstEmails</span>.<span class="function">Remove</span>(<span class="string">"raja@company.com"</span>)
+
+<span class="comment">' List-ல எத்தனை items இருக்குன்னு check பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">intCount</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="variable">lstEmails</span>.<span class="function">Count</span>
+
+<span class="comment">' Specific item இருக்கான்னு check பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">boolExists</span> <span class="keyword">As</span> <span class="type">Boolean</span> <span class="operator">=</span> <span class="variable">lstEmails</span>.<span class="function">Contains</span>(<span class="string">"kumar@company.com"</span>)
+
+<span class="comment">' First item access பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">strFirstEmail</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="variable">lstEmails</span>(<span class="number">0</span>)
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 எப்போ use பண்றது:</strong> Dynamic-ஆ items add/remove பண்ண வேண்டியிருந்தா. Array-விட flexible.
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 25px;">📊 DataTable (Excel மாதிரி Table data store பண்ண)</h4>
+                <div class="code-block">
+<span class="comment">' Empty DataTable create பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">dtExcelData</span> <span class="keyword">As</span> <span class="keyword">New</span> <span class="type">DataTable</span>
+
+<span class="comment">' Columns add பண்ண</span>
+<span class="variable">dtExcelData</span>.<span class="function">Columns</span>.<span class="function">Add</span>(<span class="string">"Name"</span>, <span class="function">GetType</span>(<span class="type">String</span>))
+<span class="variable">dtExcelData</span>.<span class="function">Columns</span>.<span class="function">Add</span>(<span class="string">"Age"</span>, <span class="function">GetType</span>(<span class="type">Integer</span>))
+<span class="variable">dtExcelData</span>.<span class="function">Columns</span>.<span class="function">Add</span>(<span class="string">"Salary"</span>, <span class="function">GetType</span>(<span class="type">Double</span>))
+
+<span class="comment">' Row add பண்ண</span>
+<span class="keyword">Dim</span> <span class="variable">newRow</span> <span class="keyword">As</span> <span class="type">DataRow</span> <span class="operator">=</span> <span class="variable">dtExcelData</span>.<span class="function">NewRow</span>()
+<span class="variable">newRow</span>(<span class="string">"Name"</span>) <span class="operator">=</span> <span class="string">"Kumar"</span>
+<span class="variable">newRow</span>(<span class="string">"Age"</span>) <span class="operator">=</span> <span class="number">25</span>
+<span class="variable">newRow</span>(<span class="string">"Salary"</span>) <span class="operator">=</span> <span class="number">50000.50</span>
+<span class="variable">dtExcelData</span>.<span class="function">Rows</span>.<span class="function">Add</span>(<span class="variable">newRow</span>)
+
+<span class="comment">' Excel-ல இருந்து direct-ஆ DataTable-க்கு read பண்ண</span>
+<span class="comment">' Read Range activity use பண்ணுங்க: dtExcelData = Read Range "Sheet1"</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 எப்போ use பண்றது:</strong> Excel data store பண்ண, Database results store பண்ண. Rows & Columns உள்ள data handle பண்ற்த்துக்கு.
+                </p>
+                
+                <div style="background: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin-top: 20px; border-radius: 5px;">
+                    <strong style="color: #856404;">🎯 Variable Naming Convention (முக்கியம்!):</strong>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li><strong>str</strong> - String variables (strName, strEmail)</li>
+                        <li><strong>int</strong> - Integer variables (intAge, intCount)</li>
+                        <li><strong>dbl</strong> - Double variables (dblSalary, dblAmount)</li>
+                        <li><strong>bool</strong> - Boolean variables (boolSuccess, boolIsValid)</li>
+                        <li><strong>dt</strong> - DateTime & DataTable variables (dtToday, dtExcelData)</li>
+                        <li><strong>arr</strong> - Array variables (arrNames, arrNumbers)</li>
+                        <li><strong>lst</strong> - List variables (lstEmails, lstItems)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>2. Control Flow - Conditions (If-Else)</h3>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">✅ Simple If-Else</h4>
+                <div class="code-block">
+<span class="comment">' Age-ஐ வச்சி Major/Minor check பண்றது</span>
+<span class="keyword">If</span> <span class="variable">intAge</span> <span class="operator">>=</span> <span class="number">18</span> <span class="keyword">Then</span>
+    <span class="function">Log Message</span>: <span class="string">"Major"</span>
+<span class="keyword">Else</span>
+    <span class="function">Log Message</span>: <span class="string">"Minor"</span>
+<span class="keyword">End If</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 Usage:</strong> ஒரே condition check பண்ண - Yes/No decision எடுக்கறதுக்கு
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">🔀 Multiple Conditions (ElseIf)</h4>
+                <div class="code-block">
+<span class="comment">' Status-ஐ வச்சி different actions செய்றது</span>
+<span class="keyword">If</span> <span class="variable">strStatus</span> <span class="operator">=</span> <span class="string">"Approved"</span> <span class="keyword">Then</span>
+    <span class="comment">' Approval process</span>
+    <span class="function">Log Message</span>: <span class="string">"Processing approved item"</span>
+    <span class="variable">boolSuccess</span> <span class="operator">=</span> <span class="boolean">True</span>
+    
+<span class="keyword">ElseIf</span> <span class="variable">strStatus</span> <span class="operator">=</span> <span class="string">"Rejected"</span> <span class="keyword">Then</span>
+    <span class="comment">' Rejection process</span>
+    <span class="function">Log Message</span>: <span class="string">"Item rejected - sending email"</span>
+    <span class="function">Send Email</span>
+    
+<span class="keyword">ElseIf</span> <span class="variable">strStatus</span> <span class="operator">=</span> <span class="string">"Pending"</span> <span class="keyword">Then</span>
+    <span class="comment">' Wait for approval</span>
+    <span class="function">Log Message</span>: <span class="string">"Waiting for approval"</span>
+    <span class="function">Delay</span> <span class="number">5000</span> <span class="comment">' 5 seconds wait</span>
+    
+<span class="keyword">Else</span>
+    <span class="comment">' Unknown status handle பண்றது</span>
+    <span class="function">Log Message</span>: <span class="string">"Unknown status: "</span> <span class="operator">+</span> <span class="variable">strStatus</span>
+    <span class="function">Throw Exception</span>
+<span class="keyword">End If</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 Usage:</strong> Multiple conditions check பண்ண - 3+ different scenarios handle பண்றதுக்கு
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">🔗 Boolean Logic (And, Or, Not)</h4>
+                <div class="code-block">
+<span class="comment">' AND - இரண்டு conditions-உம் True ஆனா மட்டும்</span>
+<span class="keyword">If</span> <span class="variable">boolIsValid</span> <span class="keyword">And</span> <span class="variable">intCount</span> <span class="operator">></span> <span class="number">0</span> <span class="keyword">Then</span>
+    <span class="function">Log Message</span>: <span class="string">"Data is valid AND count is greater than 0"</span>
+    <span class="comment">' Process data</span>
+<span class="keyword">End If</span>
+
+<span class="comment">' OR - ஏதாவது ஒரு condition True ஆனா போதும்</span>
+<span class="keyword">If</span> <span class="variable">strType</span> <span class="operator">=</span> <span class="string">"Invoice"</span> <span class="keyword">Or</span> <span class="variable">strType</span> <span class="operator">=</span> <span class="string">"Receipt"</span> <span class="keyword">Then</span>
+    <span class="function">Log Message</span>: <span class="string">"Financial document detected"</span>
+    <span class="comment">' Process financial document</span>
+<span class="keyword">End If</span>
+
+<span class="comment">' NOT - Condition-ஐ opposite பண்றது</span>
+<span class="keyword">If</span> <span class="keyword">Not</span> <span class="variable">boolEmailSent</span> <span class="keyword">Then</span>
+    <span class="function">Log Message</span>: <span class="string">"Email not sent yet - sending now"</span>
+    <span class="function">Send Email</span>
+    <span class="variable">boolEmailSent</span> <span class="operator">=</span> <span class="boolean">True</span>
+<span class="keyword">End If</span>
+
+<span class="comment">' Complex condition - Multiple operators சேர்த்து</span>
+<span class="keyword">If</span> (<span class="variable">intAge</span> <span class="operator">>=</span> <span class="number">18</span> <span class="keyword">And</span> <span class="variable">strCountry</span> <span class="operator">=</span> <span class="string">"India"</span>) <span class="keyword">Or</span> <span class="variable">boolIsVIP</span> <span class="keyword">Then</span>
+    <span class="function">Log Message</span>: <span class="string">"Eligible for service"</span>
+<span class="keyword">End If</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 Usage:</strong> Complex conditions - multiple checks ஒரே நேரத்தில் செய்யணுமா
+                </p>
+            </div>
+            
+            <div class="skill-card">
+                <h3>3. Loops - Repeat செய்யறது</h3>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">🔢 For Loop - Count-based (எத்தனை தடவை-ன்னு தெரிஞ்சா)</h4>
+                <div class="code-block">
+<span class="comment">' 1 முதல் 10 வரை print பண்றது</span>
+<span class="keyword">For</span> <span class="variable">i</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="number">1</span> <span class="keyword">To</span> <span class="number">10</span>
+    <span class="function">Log Message</span>: <span class="string">"Processing item "</span> <span class="operator">+</span> <span class="variable">i</span>.<span class="function">ToString</span>()
+<span class="keyword">Next</span>
+
+<span class="comment">' 0 முதல் array length வரை</span>
+<span class="keyword">For</span> <span class="variable">i</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="number">0</span> <span class="keyword">To</span> <span class="variable">arrNames</span>.<span class="function">Length</span> <span class="operator">-</span> <span class="number">1</span>
+    <span class="function">Log Message</span>: <span class="variable">arrNames</span>(<span class="variable">i</span>)
+<span class="keyword">Next</span>
+
+<span class="comment">' Step use பண்ணி - 2, 4, 6, 8, 10 (even numbers மட்டும்)</span>
+<span class="keyword">For</span> <span class="variable">i</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="number">2</span> <span class="keyword">To</span> <span class="number">10</span> <span class="keyword">Step</span> <span class="number">2</span>
+    <span class="function">Log Message</span>: <span class="variable">i</span>.<span class="function">ToString</span>()
+<span class="keyword">Next</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 Usage:</strong> எத்தனை தடவை repeat செய்யணும்-ன்னு exact-ஆ தெரிஞ்சா use பண்றது
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">🔄 For Each Loop - Collection loop (List, Array loop பண்ண)</h4>
+                <div class="code-block">
+<span class="comment">' Array-ல இருக்கற எல்லா items-உம் loop பண்றது</span>
+<span class="keyword">For Each</span> <span class="variable">name</span> <span class="keyword">As</span> <span class="type">String</span> <span class="keyword">In</span> <span class="variable">arrNames</span>
+    <span class="function">Log Message</span>: <span class="string">"Name: "</span> <span class="operator">+</span> <span class="variable">name</span>
+<span class="keyword">Next</span>
+
+<span class="comment">' List-ல இருக்கற emails-ஐ loop பண்றது</span>
+<span class="keyword">For Each</span> <span class="variable">email</span> <span class="keyword">As</span> <span class="type">String</span> <span class="keyword">In</span> <span class="variable">lstEmails</span>
+    <span class="function">Send Email</span> <span class="keyword">To</span>: <span class="variable">email</span>
+    <span class="function">Log Message</span>: <span class="string">"Email sent to: "</span> <span class="operator">+</span> <span class="variable">email</span>
+<span class="keyword">Next</span>
+
+<span class="comment">' DataTable rows-ஐ loop பண்றது (Excel data process பண்ண)</span>
+<span class="keyword">For Each</span> <span class="variable">row</span> <span class="keyword">As</span> <span class="type">DataRow</span> <span class="keyword">In</span> <span class="variable">dtExcelData</span>.<span class="function">Rows</span>
+    <span class="comment">' Column values-ஐ எடுக்கறது</span>
+    <span class="keyword">Dim</span> <span class="variable">strName</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="variable">row</span>(<span class="string">"Name"</span>).<span class="function">ToString</span>()
+    <span class="keyword">Dim</span> <span class="variable">intAge</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="function">CInt</span>(<span class="variable">row</span>(<span class="string">"Age"</span>))
+    <span class="keyword">Dim</span> <span class="variable">dblSalary</span> <span class="keyword">As</span> <span class="type">Double</span> <span class="operator">=</span> <span class="function">CDbl</span>(<span class="variable">row</span>(<span class="string">"Salary"</span>))
+    
+    <span class="function">Log Message</span>: <span class="variable">strName</span> <span class="operator">+</span> <span class="string">" - "</span> <span class="operator">+</span> <span class="variable">dblSalary</span>.<span class="function">ToString</span>()
+<span class="keyword">Next</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 Usage:</strong> Collection (Array, List, DataTable)-ல இருக்கற எல்லா items-உம் process பண்ண
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">⏳ While Loop - Condition-based (condition True-ஆ இருக்கும் வரை)</h4>
+                <div class="code-block">
+<span class="comment">' Retry logic - 3 times வரை try பண்றது</span>
+<span class="keyword">Dim</span> <span class="variable">intRetryCount</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="number">0</span>
+<span class="keyword">Dim</span> <span class="variable">boolSuccess</span> <span class="keyword">As</span> <span class="type">Boolean</span> <span class="operator">=</span> <span class="boolean">False</span>
+
+<span class="keyword">While</span> <span class="variable">intRetryCount</span> <span class="operator"><</span> <span class="number">3</span> <span class="keyword">And</span> <span class="keyword">Not</span> <span class="variable">boolSuccess</span>
+    <span class="keyword">Try</span>
+        <span class="comment">' Application open பண்ண try பண்றது</span>
+        <span class="function">Open Application</span> <span class="string">"SAP"</span>
+        <span class="variable">boolSuccess</span> <span class="operator">=</span> <span class="boolean">True</span>
+        <span class="function">Log Message</span>: <span class="string">"Application opened successfully"</span>
+        
+    <span class="keyword">Catch</span> <span class="variable">ex</span> <span class="keyword">As</span> <span class="type">Exception</span>
+        <span class="variable">intRetryCount</span> <span class="operator">=</span> <span class="variable">intRetryCount</span> <span class="operator">+</span> <span class="number">1</span>
+        <span class="function">Log Message</span>: <span class="string">"Retry "</span> <span class="operator">+</span> <span class="variable">intRetryCount</span>.<span class="function">ToString</span>()
+        <span class="function">Delay</span> <span class="number">2000</span> <span class="comment">' 2 seconds wait</span>
+    <span class="keyword">End Try</span>
+<span class="keyword">End While</span>
+
+<span class="comment">' Element visible ஆகும் வரை wait பண்றது</span>
+<span class="keyword">Dim</span> <span class="variable">boolElementFound</span> <span class="keyword">As</span> <span class="type">Boolean</span> <span class="operator">=</span> <span class="boolean">False</span>
+<span class="keyword">Dim</span> <span class="variable">intWaitTime</span> <span class="keyword">As</span> <span class="type">Integer</span> <span class="operator">=</span> <span class="number">0</span>
+
+<span class="keyword">While</span> <span class="keyword">Not</span> <span class="variable">boolElementFound</span> <span class="keyword">And</span> <span class="variable">intWaitTime</span> <span class="operator"><</span> <span class="number">30</span>
+    <span class="variable">boolElementFound</span> <span class="operator">=</span> <span class="function">Element Exists</span> <span class="string">"SubmitButton"</span>
+    <span class="keyword">If</span> <span class="keyword">Not</span> <span class="variable">boolElementFound</span> <span class="keyword">Then</span>
+        <span class="function">Delay</span> <span class="number">1000</span>
+        <span class="variable">intWaitTime</span> <span class="operator">=</span> <span class="variable">intWaitTime</span> <span class="operator">+</span> <span class="number">1</span>
+    <span class="keyword">End If</span>
+<span class="keyword">End While</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 Usage:</strong> Condition True ஆகும் வரை loop பண்றது - retry logic, wait for element
+                </p>
+                
+                <h4 style="color: #764ba2; margin-top: 20px;">🔁 Do While Loop (குறைந்தது ஒரு தடவை run ஆகும்)</h4>
+                <div class="code-block">
+<span class="comment">' User input valid ஆகும் வரை கேட்டுக்கிட்டே இருக்கறது</span>
+<span class="keyword">Dim</span> <span class="variable">strInput</span> <span class="keyword">As</span> <span class="type">String</span> <span class="operator">=</span> <span class="string">""</span>
+
+<span class="keyword">Do</span>
+    <span class="variable">strInput</span> <span class="operator">=</span> <span class="function">Input Dialog</span> <span class="string">"Enter email:"</span>
+    
+    <span class="keyword">If</span> <span class="keyword">Not</span> <span class="variable">strInput</span>.<span class="function">Contains</span>(<span class="string">"@"</span>) <span class="keyword">Then</span>
+        <span class="function">Message Box</span>: <span class="string">"Invalid email! Try again."</span>
+    <span class="keyword">End If</span>
+    
+<span class="keyword">Loop While</span> <span class="keyword">Not</span> <span class="variable">strInput</span>.<span class="function">Contains</span>(<span class="string">"@"</span>)
+
+<span class="function">Log Message</span>: <span class="string">"Valid email entered: "</span> <span class="operator">+</span> <span class="variable">strInput</span>
+                </div>
+                <p style="margin-top: 10px; background: #e7f3ff; padding: 10px; border-radius: 5px;">
+                    <strong>💡 Usage:</strong> குறைந்தது ஒரு தடவை execute ஆகணும்னா use பண்றது
+                </p>
+            </div>
+            
+            <div class="skill-card">
+                <h3>3. Loops - Repeat செய்யறது</h3>
+                <div class="code-block">
+' For Loop - Count-based
+For i As Integer = 1 To 10
+    Log Message: "Processing item " + i.ToString()
+Next
+
+' For Each - Collection loop
+For Each row As DataRow In dtExcelData.Rows
+    strName = row("Name").ToString()
+    strEmail = row("Email").ToString()
+    ' Process each row
+Next
+
+' While Loop - Condition-based
+While intRetryCount < 3
+    Try
+        ' Attempt operation
+        intRetryCount = intRetryCount + 1
+    Catch
+        ' Handle error
+    End Try
+End While
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>4. String Operations (மிக முக்கியம்)</h3>
+                <div class="code-block">
+' Concatenation
+strFullName = strFirstName + " " + strLastName
+strMessage = String.Format("வணக்கம் {0}, உங்கள் ID: {1}", strName, intID)
+
+' String Methods
+strUpper = strName.ToUpper()        ' "KUMAR"
+strLower = strName.ToLower()        ' "kumar"
+strTrim = strName.Trim()            ' spaces remove
+intLength = strName.Length          ' string length
+
+' Substring
+strFirst3 = strName.Substring(0, 3) ' First 3 characters
+
+' Replace
+strNew = strText.Replace("old", "new")
+
+' Contains Check
+If strEmail.Contains("@") Then
+    ' Valid email format
+End If
+
+' Split String
+arrParts = strFullName.Split(" "c)  ' Array-ஆ split ஆகும்
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>5. DataTable Operations (Excel work க்கு)</h3>
+                <div class="code-block">
+' Read Excel to DataTable
+dtData = Read Range "Sheet1"
+
+' Loop through rows
+For Each row As DataRow In dtData.Rows
+    strInvoiceNo = row("Invoice Number").ToString()
+    dblAmount = CDbl(row("Amount"))
+Next
+
+' Filter DataTable
+dtFiltered = dtData.Select("[Status] = 'Pending'")
+
+' Add new row
+drNewRow = dtData.NewRow()
+drNewRow("Name") = "Kumar"
+drNewRow("Age") = 25
+dtData.Rows.Add(drNewRow)
+
+' Write to Excel
+Write Range dtData to "Sheet1"
+
+' DataTable to CSV
+Output DataTable to CSV "C:\output.csv"
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>6. Exception Handling (Error handling)</h3>
+                <div class="code-block">
+Try
+    ' உங்கள் main code இங்கே
+    intResult = CInt(strNumber)
+    
+Catch ex As FormatException
+    ' Number format தப்பா இருந்தா
+    Log Message: "Invalid number format: " + ex.Message
+    
+Catch ex As FileNotFoundException
+    ' File காணல
+    Log Message: "File not found: " + ex.Message
+    
+Catch ex As Exception
+    ' Any other error
+    Log Message: "Error occurred: " + ex.Message
+    Take Screenshot
+    
+Finally
+    ' எப்போதும் run ஆகும் (error இருந்தாலும் இல்லாம இருந்தாலும்)
+    Close Application
+End Try
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3>7. Regular Expressions (Pattern Matching)</h3>
+                <div class="code-block">
+' Email validation
+strEmailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+boolIsValid = System.Text.RegularExpressions.Regex.IsMatch(strEmail, strEmailPattern)
+
+' Phone number extraction (Indian)
+strPhonePattern = "\d{10}"
+strPhone = System.Text.RegularExpressions.Regex.Match(strText, strPhonePattern).Value
+
+' Invoice number pattern
+strInvoicePattern = "INV-\d{6}"  ' INV-123456
+
+' P
