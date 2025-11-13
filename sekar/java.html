@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java String Programs - Interactive Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.5em;
+            opacity: 0.9;
+        }
+        
+        .menu-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .program-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .program-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        
+        .program-card p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .game-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .theory-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .theory-card h2 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .theory-box {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .theory-box h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        
+        .theory-box p {
+            line-height: 2;
+            font-size: 1.2em;
+            color: #333;
+            white-space: pre-line;
+        }
+        
+        .code-display {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 25px;
+            border-radius: 15px;
+            font-family: 'Courier New', monospace;
+            margin: 25px 0;
+            overflow-x: auto;
+            font-size: 1.1em;
+            line-height: 1.8;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .keyword { color: #c678dd; }
+        .string { color: #98c379; }
+        .comment { color: #5c6370; font-style: italic; }
+        .function { color: #61afef; }
+        
+        .drag-game {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .drag-game h3 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .drop-zones {
+            background: #f8f9fa;
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            min-height: 400px;
+            margin-bottom: 30px;
+        }
+        
+        .drop-zone {
+            background: white;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 12px 0;
+            min-height: 70px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+        }
+        
+        .drop-zone.drag-over {
+            background: #e3f2fd;
+            border-color: #667eea;
+            border-width: 3px;
+            transform: scale(1.02);
+        }
+        
+        .drop-zone.filled {
+            background: #c8e6c9;
+            border-color: #4caf50;
+            border-width: 3px;
+        }
+        
+        .drop-zone.wrong {
+            background: #ffcdd2;
+            border-color: #f44336;
+            border-width: 3px;
+            animation: shake 0.5s;
+        }
+        
+        .code-blocks-container {
+            background: #f0f4ff;
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .code-blocks-container h4 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        
+        .code-blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .code-block {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: move;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            user-select: none;
+        }
+        
+        .code-block:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .code-block.dragging {
+            opacity: 0.3;
+            cursor: grabbing;
+        }
+        
+        .code-block.used {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 18px 45px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-check {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+        }
+        
+        .btn-reset {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+        }
+        
+        .btn-back {
+            background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .score-board {
+            background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .score-board h3 {
+            font-size: 2.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 60px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            text-align: center;
+            z-index: 1000;
+            max-width: 600px;
+            transition: transform 0.5s;
+        }
+        
+        .celebration.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .celebration h2 {
+            font-size: 3.5em;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+        
+        .celebration p {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 999;
+            display: none;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        .line-number {
+            display: inline-block;
+            width: 40px;
+            color: #5c6370;
+            margin-right: 15px;
+            user-select: none;
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Java String Programs விளையாட்டு</h1>
+            <p>Drag & Drop செய்து Code-ஐ சரியா அடுக்கு! 🚀</p>
+        </div>
+        
+        <div id="menuSection" class="menu-section">
+            <h2 style="text-align: center; color: #667eea; font-size: 2.5em; margin-bottom: 30px;">
+                📚 15 String Programs - எதை கத்துக்க விரும்புறீங்க?
+            </h2>
+            <div class="program-grid" id="programGrid"></div>
+        </div>
+        
+        <div id="gameSection" class="game-section"></div>
+        
+        <div class="overlay" id="overlay"></div>
+        <div class="celebration" id="celebration">
+            <h2>🎉 சரியானது! 🎉</h2>
+            <p id="celebrationMsg">நீ கத்துட்ட! அடுத்த Program-க்கு போகலாமா?</p>
+            <button class="btn btn-check" onclick="closeModal()">அடுத்தது →</button>
+        </div>
+    </div>
+    
+    <script>
+        const programs = [
+            {
+                id: 1,
+                title: "String Reverse",
+                tamil: "String-ஐ Reverse பண்ணுவது",
+                description: "Built-in method இல்லாம String-ஐ திருப்புவது",
+                theory: {
+                    why: "String-ஐ reverse பண்ண வேண்டியது ஏன்?\n\n✓ Palindrome check பண்ணும் போது தேவைப்படும்\n✓ Data processing-ல பயன்படும்\n✓ Algorithm problems-ல அடிக்கடி வரும்\n✓ String manipulation கத்துக்க basic example",
+                    when: "எப்போது பயன்படுத்துவது?\n\n✓ Palindrome verify பண்ணும் போது\n✓ String pattern matching-ல\n✓ Text processing applications-ல\n✓ Interview questions-ல மிக முக்கியம்",
+                    benefits: "நன்மைகள்:\n\n✓ Loop concept நல்லா புரியும்\n✓ String charAt() method பயன்பாடு தெரியும்\n✓ Index handling கத்துக்கலாம்\n✓ Built-in methods இல்லாம logic எழுத கத்துக்கலாம்"
+                },
+                code: `class Program1_ReverseString {
+    public static void main(String[] args) {
+        String original = "Hello";
+        String reversed = "";
+        
+        for(int i = original.length() - 1; i >= 0; i--) {
+            reversed = reversed + original.charAt(i);
+        }
+        
+        System.out.println("Reversed: " + reversed);
+    }
+}`,
+                puzzle: [
+                    "class Program1_ReverseString {",
+                    "public static void main(String[] args) {",
+                    "String original = \"Hello\";",
+                    "String reversed = \"\";",
+                    "for(int i = original.length() - 1; i >= 0; i--) {",
+                    "reversed = reversed + original.charAt(i);",
+                    "}",
+                    "System.out.println(\"Reversed: \" + reversed);",
+                    "}",
+                    "}"
+                ]
+            },
+            {
+                id: 2,
+                title: "Palindrome Check",
+                tamil: "Palindrome ஆ இல்லையா Check பண்ணுவது",
+                description: "முன்னாடி இருந்து படித்தாலும் பின்னாடி இருந்து படித்தாலும் same",
+                theory: {
+                    why: "Palindrome check ஏன் முக்கியம்?\n\n✓ String comparison கத்துக்கலாம்\n✓ Logic building skills மேம்படும்\n✓ Interview-ல கேட்கிற பிரபலமான question\n✓ Real applications-ல பயன்படும் (validation)",
+                    when: "எப்போது பயன்படுத்துவது?\n\n✓ User input validation-ல\n✓ Pattern recognition-ல\n✓ Text processing-ல\n✓ Game development-ல (word puzzles)",
+                    benefits: "நன்மைகள்:\n\n✓ String manipulation தெரியும்\n✓ Boolean logic பயன்பாடு கத்துக்கலாம்\n✓ Comparison operators புரியும்\n✓ Break statement usage தெரியும்"
+                },
+                code: `class Program2_Palindrome {
+    public static void main(String[] args) {
+        String str = "madam";
+        String reversed = "";
+        
+        for(int i = str.length() - 1; i >= 0; i--) {
+            reversed = reversed + str.charAt(i);
+        }
+        
+        boolean isPalindrome = true;
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) != reversed.charAt(i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+        
+        if(isPalindrome) {
+            System.out.println("Palindrome");
+        }
+    }
+}`,
+                puzzle: [
+                    "class Program2_Palindrome {",
+                    "public static void main(String[] args) {",
+                    "String str = \"madam\";",
+                    "String reversed = \"\";",
+                    "for(int i = str.length() - 1; i >= 0; i--) {",
+                    "reversed = reversed + str.charAt(i);",
+                    "}",
+                    "boolean isPalindrome = true;",
+                    "for(int i = 0; i < str.length(); i++) {",
+                    "if(str.charAt(i) != reversed.charAt(i)) {",
+                    "isPalindrome = false;",
+                    "break;",
+                    "}",
+                    "}",
+                    "if(isPalindrome) {",
+                    "System.out.println(\"Palindrome\");",
+                    "}",
+                    "}",
+                    "}"
+                ]
+            },
+            {
+                id: 3,
+                title: "Duplicate Characters",
+                tamil: "மீண்டும் வரும் Characters-ஐ கண்டுபிடிப்பது",
+                description: "String-ல எந்த character repeat ஆகுதுனு கண்டுபிடிக்கலாம்",
+                theory: {
+                    why: "Duplicate கண்டுபிடிக்கிறது ஏன் முக்கியம்?\n\n✓ Data validation-ல பயன்படும்\n✓ Character frequency analysis கத்துக்கலாம்\n✓ Nested loops concept தெளிவாகும்\n✓ Real-world text processing-ல உபயோகம்",
+                    when: "எப்போது பயன்படுத்துவது?\n\n✓ Password strength check-ல\n✓ Text analysis tools-ல\n✓ Data cleaning operations-ல\n✓ Pattern detection-ல",
+                    benefits: "நன்மைகள்:\n\n✓ Nested loops எப்படி வேலை செய்யும் தெரியும்\n✓ Character comparison கத்துக்கலாம்\n✓ Counter variables பயன்பாடு புரியும்\n✓ Optimization thinking develop ஆகும்"
+                },
+                code: `class Program3_DuplicateCharacters {
+    public static void main(String[] args) {
+        String str = "programming";
+        String checked = "";
+        
+        for(int i = 0; i < str.length(); i++) {
+            char currentChar = str.charAt(i);
+            boolean alreadyChecked = false;
+            
+            for(int k = 0; k < checked.length(); k++) {
+                if(checked.charAt(k) == currentChar) {
+                    alreadyChecked = true;
+                    break;
+                }
+            }
+            
+            if(alreadyChecked) continue;
+            
+            int count = 0;
+            for(int j = 0; j < str.length(); j++) {
+                if(str.charAt(j) == currentChar) {
+                    count++;
+                }
+            }
+            
+            if(count > 1) {
+                System.out.println(currentChar + " - " + count);
+            }
+            
+            checked = checked + currentChar;
+        }
+    }
+}`,
+                puzzle: [
+                    "class Program3_DuplicateCharacters {",
+                    "public static void main(String[] args) {",
+                    "String str = \"programming\";",
+                    "String checked = \"\";",
+                    "for(int i = 0; i < str.length(); i++) {",
+                    "char currentChar = str.charAt(i);",
+                    "int count = 0;",
+                    "for(int j = 0; j < str.length(); j++) {",
+                    "if(str.charAt(j) == currentChar) {",
+                    "count++;",
+                    "}",
+                    "}",
+                    "if(count > 1) {",
+                    "System.out.println(currentChar + \" - \" + count);",
+                    "}",
+                    "}",
+                    "}",
+                    "}"
+                ]
+            },
+            {
+                id: 4,
+                title: "Remove Spaces",
+                tamil: "Space-களை நீக்குவது",
+                description: "String-ல இருக்கும் எல்லா spaces-யும் remove பண்ணலாம்",
+                theory: {
+                    why: "Space removal ஏன் தேவை?\n\n✓ Data cleaning-ல முக்கியம்\n✓ User input process பண்ண உதவும்\n✓ String formatting கத்துக்கலாம்\n✓ Conditional logic practice ஆகும்",
+                    when: "எப்போது பயன்படுத்துவது?\n\n✓ User form data clean பண்ணும் போது\n✓ File processing-ல\n✓ Database operations-ல\n✓ Text normalization-ல",
+                    benefits: "நன்மைகள்:\n\n✓ Character filtering கத்துக்கலாம்\n✓ If conditions பயன்பாடு தெரியும்\n✓ String building concept புரியும்\n✓ Data processing skills மேம்படும்"
+                },
+                code: `class Program4_RemoveSpaces {
+    public static void main(String[] args) {
+        String str = "Hello World Java";
+        String result = "";
+        
+        for(int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if(ch != ' ') {
+                result = result + ch;
+            }
+        }
+        
+        System.out.println("Result: " + result);
+    }
+}`,
+                puzzle: [
+                    "class Program4_RemoveSpaces {",
+                    "public static void main(String[] args) {",
+                    "String str = \"Hello World Java\";",
+                    "String result = \"\";",
+                    "for(int i = 0; i < str.length(); i++) {",
+                    "char ch = str.charAt(i);",
+                    "if(ch != ' ') {",
+                    "result = result + ch;",
+                    "}",
+                    "}",
+                    "System.out.println(\"Result: \" + result);",
+                    "}",
+                    "}"
+                ]
+            },
+            {
+                id: 5,
+                title: "Character Count",
+                tamil: "ஒரு Character எத்தனை முறை வருது Count பண்ணுவது",
+                description: "Specific character occurrence கண்டுபிடிக்கலாம்",
+                theory: {
+                    why: "Character counting ஏன் பயன்படுத்துவது?\n\n✓ Frequency analysis கத்துக்கலாம்\n✓ Counter variable concept தெளிவாகும்\n✓ Simple ஆனா powerful logic\n✓ Many algorithms-ல base concept",
+                    when: "எப்போது பயன்படுத்துவது?\n\n✓ Text analysis-ல\n✓ Data statistics-ல\n✓ Pattern matching-ல\n✓ Encoding/Decoding operations-ல",
+                    benefits: "நன்மைகள்:\n\n✓ Loop counter பயன்பாடு புரியும்\n✓ Character comparison தெரியும்\n✓ Variable increment logic கத்துக்கலாம்\n✓ Simple logic-ல problem solve பண்ணலாம்"
+                },
+                code: `class Program5_CharacterCount {
+    public static void main(String[] args) {
+        String str = "hello world";
+        char searchChar = 'o';
+        int count = 0;
+        
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == searchChar) {
+                count++;
+            }
+        }
+        
+        System.out.println("Count: " + count);
+    }
+}`,
+                puzzle: [
+                    "class Program5_CharacterCount {",
+                    "public static void main(String[] args) {",
+                    "String str = \"hello world\";",
+                    "char searchChar = 'o';",
+                    "int count = 0;",
+                    "for(int i = 0; i < str.length(); i++) {",
+                    "if(str.charAt(i) == searchChar) {",
+                    "count++;",
+                    "}",
+                    "}",
+                    "System.out.println(\"Count: \" + count);",
+                    "}",
+                    "}"
+                ]
+            }
+        ];
+
+        let currentProgram = null;
+        let draggedBlock = null;
+        let correctOrder = [];
+        
+        // Initialize menu
+        function initMenu() {
+            const grid = document.getElementById('programGrid');
+            programs.forEach(prog => {
+                const card = document.createElement('div');
+                card.className = 'program-card';
+                card.onclick = () => loadProgram(prog.id);
+                card.innerHTML = `
+                    <h3>Program ${prog.id}: ${prog.title}</h3>
+                    <p>${prog.tamil}</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">${prog.description}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        function loadProgram(id) {
+            currentProgram = programs.find(p => p.id === id);
+            if(!currentProgram) return;
+            
+            document.getElementById('menuSection').style.display = 'none';
+            document.getElementById('gameSection').style.display = 'block';
+            
+            correctOrder = [...currentProgram.puzzle];
+            
+            const gameSection = document.getElementById('gameSection');
+            gameSection.innerHTML = `
+                <div class="theory-card">
+                    <h2>📚 Program ${currentProgram.id}: ${currentProgram.title}</h2>
+                    <p style="text-align: center; font-size: 1.3em; color: #666; margin-bottom: 30px;">
+                        ${currentProgram.tamil}
+                    </p>
+                    
+                    <div class="theory-box">
+                        <h3>🤔 ஏன் (Why) இந்த Program?</h3>
+                        <p>${currentProgram.theory.why}</p>
+                    </div>
+                    
+                    <div class="theory-box">
+                        <h3>⏰ எப்போது (When) பயன்படுத்துவது?</h3>
+                        <p>${currentProgram.theory.when}</p>
+                    </div>
+                    
+                    <div class="theory-box">
+                        <h3>✨ நன்மைகள் (Benefits)</h3>
+                        <p>${currentProgram.theory.benefits}</p>
+                    </div>
+                    
+                    <h3 style="color: #667eea; margin: 30px 0 15px;">💻 Complete Code (Reference):</h3>
+                    <div class="code-display">${formatCode(currentProgram.code)}</div>
+                </div>
+                
+                <div class="drag-game">
+                    <div class="score-board">
+                        <h3>🎯 விளையாட்டு பகுதி</h3>
+                        <p style="font-size: 1.2em;">கீழே உள்ள code blocks-ஐ drag பண்ணி சரியான வரிசையில் அடுக்கு!</p>
+                    </div>
+                    
+                    <h3>📋 Code-ஐ இங்கே Drop பண்ணு:</h3>
+                    <div class="drop-zones" id="dropZones"></div>
+                    
+                    <div class="code-blocks-container">
+                        <h4>🧩 இந்த Blocks-ஐ Drag பண்ணு:</h4>
+                        <div class="code-blocks" id="codeBlocks"></div>
+                    </div>
+                    
+                    <div class="buttons">
+                        <button class="btn btn-check" onclick="checkAnswer()">✅ Check பண்ணு</button>
+                        <button class="btn btn-reset" onclick="resetGame()">🔄 Reset</button>
+                        <button class="btn btn-back" onclick="backToMenu()">◀ Menu-க்கு போ</button>
+                    </div>
+                </div>
+            `;
+            
+            createDropZones();
+            createCodeBlocks();
+        }
+        
+        function formatCode(code) {
+            return code
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .split('\n')
+                .map((line, i) => `<div><span class="line-number">${i + 1}</span>${line}</div>`)
+                .join('');
+        }
+        
+        function createDropZones() {
+            const container = document.getElementById('dropZones');
+            container.innerHTML = '';
+            
+            correctOrder.forEach((_, index) => {
+                const zone = document.createElement('div');
+                zone.className = 'drop-zone';
+                zone.dataset.index = index;
+                zone.innerHTML = `<span style="color: #999;">Line ${index + 1}: Drop code here...</span>`;
+                
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('drop', handleDrop);
+                zone.addEventListener('dragleave', handleDragLeave);
+                
+                container.appendChild(zone);
+            });
+        }
+        
+        function createCodeBlocks() {
+            const container = document.getElementById('codeBlocks');
+            container.innerHTML = '';
+            
+            // Shuffle the blocks
+            const shuffled = [...correctOrder].sort(() => Math.random() - 0.5);
+            
+            shuffled.forEach((code, index) => {
+                const block = document.createElement('div');
+                block.className = 'code-block';
+                block.draggable = true;
+                block.dataset.code = code;
+                block.textContent = code;
+                
+                block.addEventListener('dragstart', handleDragStart);
+                block.addEventListener('dragend', handleDragEnd);
+                
+                container.appendChild(block);
+            });
+        }
+        
+        function handleDragStart(e) {
+            if(this.classList.contains('used')) return;
+            draggedBlock = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+        
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+        }
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+            if(!this.classList.contains('filled')) {
+                this.classList.add('drag-over');
+            }
+            return false;
+        }
+        
+        function handleDragLeave(e) {
+            this.classList.remove('drag-over');
+        }
+        
+        function handleDrop(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            
+            if(!draggedBlock || this.classList.contains('filled')) return;
+            
+            const code = draggedBlock.dataset.code;
+            this.innerHTML = code;
+            this.classList.add('filled');
+            this.dataset.code = code;
+            
+            draggedBlock.classList.add('used');
+            draggedBlock.style.opacity = '0.3';
+            draggedBlock.draggable = false;
+            
+            playSound('drop');
+            
+            return false;
+        }
+        
+        function checkAnswer() {
+            const zones = document.querySelectorAll('.drop-zone');
+            let allCorrect = true;
+            let filledCount = 0;
+            
+            zones.forEach((zone, index) => {
+                if(zone.classList.contains('filled')) {
+                    filledCount++;
+                    const userCode = zone.dataset.code;
+                    const correctCode = correctOrder[index];
+                    
+                    if(userCode === correctCode) {
+                        zone.classList.remove('wrong');
+                        zone.classList.add('filled');
+                    } else {
+                        zone.classList.add('wrong');
+                        allCorrect = false;
+                    }
+                } else {
+                    allCorrect = false;
+                }
+            });
+            
+            if(filledCount === 0) {
+                alert('🤔 Code blocks-ஐ drag பண்ணி drop zones-ல போடு!');
+                return;
+            }
+            
+            if(allCorrect && filledCount === correctOrder.length) {
+                playSound('success');
+                setTimeout(() => {
+                    showCelebration();
+                }, 500);
+            } else {
+                playSound('error');
+                setTimeout(() => {
+                    alert('❌ சில lines தப்பா இருக்கு! மீண்டும் முயற்சி பண்ணு! சிவப்பு நிறத்துல தப்பான lines காட்டும்.');
+                }, 300);
+            }
+        }
+        
+        function resetGame() {
+            const zones = document.querySelectorAll('.drop-zone');
+            zones.forEach(zone => {
+                zone.classList.remove('filled', 'wrong');
+                zone.innerHTML = `<span style="color: #999;">Drop code here...</span>`;
+                zone.dataset.code = '';
+            });
+            
+            const blocks = document.querySelectorAll('.code-block');
+            blocks.forEach(block => {
+                block.classList.remove('used');
+                block.style.opacity = '1';
+                block.draggable = true;
+            });
+            
+            playSound('reset');
+        }
+        
+        function backToMenu() {
+            document.getElementById('menuSection').style.display = 'block';
+            document.getElementById('gameSection').style.display = 'none';
+            currentProgram = null;
+        }
+        
+        function showCelebration() {
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('celebration').classList.add('show');
+            
+            const msg = document.getElementById('celebrationMsg');
+            msg.textContent = `நீ Program ${currentProgram.id}-ஐ சரியா செஞ்சுட்ட! 🎊 அடுத்த Program-க்கு போகலாமா?`;
+        }
+        
+        function closeModal() {
+            document.getElementById('overlay').classList.remove('show');
+            document.getElementById('celebration').classList.remove('show');
+            backToMenu();
+        }
+        
+        // Sound effects using Web Audio API
+        function playSound(type) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            if(type === 'success') {
+                
+                const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+                let time = audioContext.currentTime;
+                
+                notes.forEach((freq, i) => {
+                    const osc = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioContext.destination);
+                    
+                    osc.frequency.value = freq;
+                    osc.type = 'sine';
+                    gain.gain.setValueAtTime(0.3, time);
+                    gain.gain.exponentialRampToValueAtTime(0.01, time + 0.3);
+                    
+                    osc.start(time);
+                    osc.stop(time + 0.3);
+                    time += 0.15;
+                });
+            } else if(type === 'error') {
+                
+                oscillator.frequency.value = 200;
+                oscillator.type = 'sawtooth';
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } else if(type === 'drop') {
+               
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            } else if(type === 'reset') {
+                
+                oscillator.frequency.value = 440;
+                oscillator.type = 'triangle';
+                gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.2);
+            }
+        }
+        
+        
+        window.onload = function() {
+            initMenu();
+        };
+    </script>
+</body>
+</html>
